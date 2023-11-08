@@ -6,5 +6,5 @@
 - 系统
 - web3
 
-[GitHub](https://github.com/binbinly/blog/)
+[GitHub](https://github.com/binbinly/blog)
 [Get Started](#home)

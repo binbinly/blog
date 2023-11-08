@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
 
   <link href="themes/prism-ghcolors.css" rel="stylesheet" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 </head>
 <body>
   <div id="app"></div>
@@ -20,38 +19,25 @@
       loadNavbar: true,
       coverpage: true,
       name: 'binbinly blog',
-      search: {
-        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
-        paths: 'auto',
-        placeholder: 'Type to search',
-        noData: 'No Results!',
-        // 搜索标题的最大层级, 1 - 6
-        depth: 3,
-        hideOtherSidebarContent: false, // 是否隐藏其他侧边栏内容
-      },
-      repo: ''
+      // search: {
+      //   // maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+      //   paths: 'auto',
+      //   // placeholder: 'Type to search',
+      //   // noData: 'No Results!',
+      //   // 搜索标题的最大层级, 1 - 6
+      //   depth: 6,
+      //   // hideOtherSidebarContent: false, // 是否隐藏其他侧边栏内容
+      // },
+      repo: 'binbinly/blog'
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-  <script>
-    const gitalk = new Gitalk({
-      clientID: 'Github Application Client ID',
-      clientSecret: 'Github Application Client Secret',
-      repo: 'Github repo',
-      owner: 'Github repo owner',
-      admin: ['Github repo collaborators, only these guys can initialize github issues'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false
-    })
-  </script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+* [首页](/)
+
 * 编程语言
 
   * [php](backend/php.md)
@@ -9,7 +11,7 @@
 * 存储
   * [mysql](storage/mysql.md)
   * [redis](storage/redis.md)
-  * [es](storage/es.md)
+  * [es](storage/elasticsearch.md)
 
 
 * 系统服务
