@@ -1,10 +1,10 @@
 # binbinly blog
 
-> 记录一些
+> 记录一些工作生活中常用的工具
 
-- 后端
-- 系统
-- web3
+- 程序开发
+- 系统服务
+- 工具集
 
 [GitHub](https://github.com/binbinly/blog)
-[Get Started](#home)
+[Get Started](#Home)

@@ -19,8 +19,18 @@
   * [docker](system/docker.md)
   * [git](system/git.md)
 
+* 面试相关
+  * [golang](interview/go.md)
+  * [php](interview/php.md)
+  * [mysql](interview/mysql.md)
+  * [redis](interview/redis.md)
+
 * web3
   * [solidity](web3/solidity.md)
 
-* 其他
+* 系统工具
   * [工具](other/tools.md)
+  * [chrome](other/chrome.md)
+  * [phpstorm](other/phpstorm.md)
+  * [vscode](other/vscode.md)
+  * [其他](other/other.md)
