@@ -4,6 +4,7 @@
 
 - [下载](https://redis.io/download/)
 - [安装文档](https://redis.io/docs/install/install-redis/install-redis-from-source/)
+- [redis常用命令参考](http://doc.redisfans.com/)
 
 ### 源码编译安装
 

@@ -3,6 +3,7 @@
 ## 编程语言
 
   * [php 基础](develop/php.md)
+  * [php 常用函数](develop/php_func.md)
   * [php 运行机制](develop/php_run.md)
   * [php 深入 Laravel 核心](develop/php_laravel.md)
   * [golang 基础](develop/golang.md)
@@ -17,6 +18,7 @@
   
   * [mysql 基础](storage/mysql.md)
   * [mysql 索引](storage/mysql_index.md)
+  * [mysql 事务隔离级别](storage/mysql_transaction_level.md)
   * [mysql 日志](storage/mysql_logs.md)
   * [mysql InnoDB存储引擎对MVCC的实现](storage/mysql_mvcc.md)
   * [mysql 高性能优化规范建议总结](storage/mysql_optimization.md)

@@ -648,12 +648,6 @@ func main() {
 
 如果你去 [Go Playground](https://play.golang.org/) 重复运行上边的代码，输出是不会变的，只有你更新代码它才会重新编译。重新编译后迭代顺序是被打乱的：
 
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079494-de9e6a55-0bd7-4d37-9cf8-4edc3c9ee978.png)
-
-
-
 ### 26. switch 中的 fallthrough 语句
 
 `switch` 语句中的 `case` 代码块会默认带上 break，但可以使用 `fallthrough` 来强制执行下一个 case 代码块。
@@ -843,11 +837,6 @@ func doIt(workerID int) {
 如下，`main()` 主程序不等两个 goroutine 执行完就直接退出了：
 
 
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079610-d9523090-8363-463a-b6f0-aa4e55a1b7ef.png)
-
-
-
 常用解决办法：使用 "WaitGroup" 变量，它会让主程序等待所有 goroutine 执行完毕再退出。
 
 如果你的 goroutine 要做消息的循环处理等耗时操作，可以向它们发送一条 `kill` 消息来关闭它们。或直接关闭一个它们都等待接收数据的 channel：
@@ -877,14 +866,6 @@ func doIt(workerID int, done <-chan struct{}, wg sync.WaitGroup) {
     fmt.Printf("[%v] is done\n", workerID)
 }
 ```
-
-执行结果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079522-5d8f767c-aa6d-4960-bcd3-795aca54b1da.png)
-
-
 
 看起来好像 goroutine 都执行完了，然而报错：
 
@@ -935,14 +916,6 @@ func doIt(workerID int, ch <-chan interface{}, done <-chan struct{}, wg *sync.Wa
 }
 ```
 
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079530-48ae068a-8fe5-49b8-ba79-6aecc941525a.png)
-
-
-
 ### 32. 向无缓冲的 channel 发送数据，只要 receiver 准备好了就会立刻返回
 
 只有在数据被 receiver 处理时，sender 才会阻塞。因运行环境而异，在 sender 发送完数据后，receiver 的 goroutine 可能没有足够的时间处理下一个数据。如：
@@ -962,14 +935,6 @@ func main() {
     ch <- "cmd.2" // 不会被接收处理
 }
 ```
-
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079544-84c1140a-23ae-4858-80b7-b0adf759ee18.png)
-
-
 
 ### 33. 向已关闭的 channel 发送数据会造成 panic
 
@@ -994,14 +959,6 @@ func main() {
 }
 ```
 
-运行结果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079495-645d7d98-a284-417a-94d0-a0b810b6d032.png)
-
-
-
 针对上边有 bug 的这个例子，可使用一个废弃 channel `done` 来告诉剩余的 goroutine 无需再向 ch 发送数据。此时 `<- done` 的结果是 `{}`：
 
 ```go
@@ -1025,14 +982,6 @@ func main() {
     time.Sleep(3 * time.Second)
 }
 ```
-
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079515-81889255-1ad8-424a-9b46-20de774153b4.png)
-
-
 
 ### 34. 使用了值为 `nil` 的 channel
 
@@ -1097,14 +1046,6 @@ func main() {
 }
 ```
 
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079586-ec05c601-40cf-4ae1-b8f6-c02b63226d74.png)
-
-
-
 ### 34. 若函数 receiver 传参是传值方式，则无法修改参数的原有值
 
 方法 receiver 的参数与一般函数的参数类似：如果声明为值，那方法体得到的是一份参数的值拷贝，此时对参数的任何修改都不会对原有值产生影响。
@@ -1141,14 +1082,6 @@ func main() {
     fmt.Printf("num=%v  key=%v  items=%v\n", d.num, *d.key, d.items)
 }
 ```
-
-运行结果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079495-aac01481-dec9-4479-b0be-d9f7165af772.png)
-
-
 
 ## 中级篇：35-50
 
@@ -1982,14 +1915,6 @@ for n in {1..10000}; do
 done
 ```
 
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079519-ec32c68a-4892-4e5c-bced-cd3d864c960f.png)
-
-
-
 解决办法：defer 延迟执行的函数写入匿名函数中：
 
 ```go
@@ -2317,12 +2242,6 @@ Go 编译器会根据变量的大小及其 "escape analysis" 的结果来决定�
 
 在 go build 或 go run 时，加入 -m 参数，能准确分析程序的变量分配位置：
 
-
-
- ![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079583-c6b22446-874e-41ce-8898-39d36c0881b5.png)
-
-
-
 ### 55. GOMAXPROCS、Concurrency（并发）and Parallelism（并行）
 
 Go 1.4 及以下版本，程序只会使用 1 个执行上下文 / OS 线程，即任何时间都最多只有 1 个 goroutine 在执行。
@@ -2376,14 +2295,6 @@ func main() {
 }
 ```
 
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079530-1ec1022c-6083-4b1a-93fd-982ef37ae959.png)
-
-
-
 如果你想保持多 goroutine 像代码中的那样顺序执行，可以使用 channel 或 sync 包中的锁机制等。
 
 ### 57. 优先调度
@@ -2427,12 +2338,6 @@ func main() {
 
 可以添加 `-m` 参数来分析 `for` 代码块中调用的内联函数：
 
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079553-0bfc962d-ba49-426c-b720-43d42581d3af.png)
-
-
-
 你也可以使用 runtime 包中的 `Gosched()` 来 手动启动调度器：
 
 ```go
@@ -2450,16 +2355,6 @@ func main() {
     println("done !")
 }
 ```
-
-
-
-运行效果：
-
-
-
-![img](https://cdn.nlark.com/yuque/0/2019/png/106947/1575377079699-1d179d4e-3e72-4be3-8595-67d600aa223e.png)
-
-
 
 ## 相关链接
 

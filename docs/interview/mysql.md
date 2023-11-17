@@ -366,23 +366,6 @@ set global  query_cache_size=600000;
 SELECT sql_no_cache COUNT(*) FROM usr;
 ```
 
-## MySQL 日志
-
-MySQL 日志常见的面试题有：
-
-- MySQL 中常见的日志有哪些？
-- 慢查询日志有什么用？
-- binlog 主要记录了什么？
-- redo log 如何保证事务的持久性？
-- 页修改之后为什么不直接刷盘呢？
-- binlog 和 redolog 有什么区别？
-- undo log 如何保证事务的原子性？
-- ……
-
-上诉问题的答案可以在[《Java 面试指北》(付费)](../../zhuanlan/java-mian-shi-zhi-bei.md) 的 **「技术面试题篇」** 中找到。
-
-![《Java 面试指北》技术面试题篇](https://oss.javaguide.cn/javamianshizhibei/technical-interview-questions.png)
-
 ## MySQL 事务
 
 ### 何谓事务？

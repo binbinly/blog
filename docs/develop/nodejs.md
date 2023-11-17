@@ -3,6 +3,7 @@
 ### 下载
 
 - [官方下载](https://nodejs.org/en/download/current)
+- [npm](https://www.npmjs.com/)
 
 ### 二进制包安装
 

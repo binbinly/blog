@@ -622,7 +622,8 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 // 这个相当于我们创建了Kernel::class的服务提供者
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-// 获取一个 Request ，返回一个 Response。以把该内核想象作一个代表整个应用的大黑盒子，输入 HTTP 请求，返回 HTTP 响应。
+// 获取一个 Request ，返回一个 Response。以把该内核想象作一个代表整个应用的大黑盒子，
+// 输入 HTTP 请求，返回 HTTP 响应。
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
@@ -677,7 +678,7 @@ class Observer1 implements Observer
 }
 
 /**
- * 观察者1
+ * 观察者2
  */
 class Observer2 implements Observer
 {
