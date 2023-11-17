@@ -1,29 +1,36 @@
-# 常用的工具集
+# 常用的工具与资源
 
-## 文档
+## IT/AI/工具
 
-* [PHP Package Repository](https://packagist.org/)
-* [redis常用命令参考](http://doc.redisfans.com/)
-* [Laravel 10 中文文档](https://learnku.com/docs/laravel/10.x)
-* [laravel-admin](https://explore-pu.github.io/laravel-admin-docs-cn/guide/)
-* [npm](https://www.npmjs.com/)
-
-## 云部署
-
-* [railway 容器化平台](https://railway.app)
-* [upstash](https://console.upstash.com)
-* [cloudflare](https://www.cloudflare.com/zh-cn)
-* [planetscale](https://app.planetscale.com)
-* [vercel](https://vercel.com)
-
-## 工具
-
+* [openai](https://platform.openai.com)
+* [codeium](https://codeium.com/)
+* [opencommit](https://github.com/di-sukharev/opencommit)
+* [chatgpt-next](https://chat-gpt-next-web-weld-nine-63.vercel.app)
 * [果核剥壳](https://www.ghxi.com)
+* [Mac应用下载](https://xclient.info/)
+* [Mac应用下载](https://www.xxmac.com/)
 * [U盘启动盘制作](https://rufus.ie/zh/)
 * [抓包 charles](https://www.charlesproxy.com/download/)
 * [ssh-electerm](https://electerm.github.io/electerm/)
 * [代码分析 sonarqube](https://www.sonarsource.com/)
 * [lnmp安装](https://oneinstack.com/)
+* [codelf](https://unbug.github.io/codelf)
+* [AI工具导航](https://ai-bot.cn)
+* [文字转语音](https://ttsmaker.com/zh-cn)
+* [多彩的颜色（图片色彩分析）](https://woshizja.github.io/colorful-color/)
+* [万象智能鉴黄系统（图片分析）](https://cloud.tencent.com/act/event/ci_demo)
+* [Foxmiguel（游戏直播聚合站）](http://www.foxmiguel.com/)
+* [railway 容器化平台](https://railway.app)
+* [upstash 数据服务平台](https://console.upstash.com)
+* [cloudflare](https://www.cloudflare.com/zh-cn)
+* [planetscale mysql云平台](https://app.planetscale.com)
+* [supabase postgres云平台](https://supabase.com/)
+* [neon postgres云平台](https://console.neon.tech/)
+* [vercel 免费网站托管平台](https://vercel.com)
+
+## 其他工具
+
+* [接码平台](https://sms-activate.org/cn/)
 * [在线电子书转换器（电子书格式在线转换）](http://cn.epubee.com/)
 * [字体转换器（字体在线转换）](http://www.akuziti.com/)
 * [证件照换底色（一键换底色）](https://www.bgconverter.com/)
@@ -33,7 +40,7 @@
 * [DesignCap（免费海报在线制作）](https://www.designcap.com/app/)
 * [孟坤工具箱](http://tool.mkblog.cn/)
 
-## email
+## email邮箱
 
 * [proton](https://mail.proton.me)
 * [outlook](https://outlook.live.com)
@@ -51,15 +58,6 @@
 * [Squoosh（图片压缩）](https://squoosh.app/)
 * [ILOVEIMG（在线图片编辑器）](https://www.iloveimg.com/)
 * [视频解析网（微博，秒拍，快手，抖音）](https://www.parsevideo.com/)
-
-## IT/AI/工具类
-
-* [codelf](https://unbug.github.io/codelf)
-* [AI工具集](https://ai-bot.cn)
-* [文字转语音](https://ttsmaker.com/zh-cn)
-* [多彩的颜色（图片色彩分析）](https://woshizja.github.io/colorful-color/)
-* [万象智能鉴黄系统（图片分析）](https://cloud.tencent.com/act/event/ci_demo)
-* [Foxmiguel（游戏直播聚合站）](http://www.foxmiguel.com/)
 
 ## 影视类
 
@@ -93,7 +91,7 @@
 * [乡音苑](http://phonemica.net/) - 乡音苑是一个方言故事平台
 * [汉典（汉字典书）](http://www.zdic.net/)
 * [书格（传统书籍）](https://shuge.org/)
-* [古诗文网（中国传统古诗文）](https://www.wuxiaworld.com/)
+* [古诗文网（中国传统古诗文）](https://www.gushiwen.cn/)
 * [中少快乐阅读平台（怀旧少儿老杂志）](http://202.96.31.36:8888/reading/moremagazines/baozhi)
 
 ## 趣味/无聊类
@@ -136,3 +134,5 @@
 * [龙轩导航](http://ilxdh.com/)
 * [抽屉新热榜](https://dig.chouti.com)
 * [有趣网址之家](https://youquhome.com/)
+* [电鸭 job](https://eleduck.com)
+* [社工库](https://privacy.aiuys.com/)

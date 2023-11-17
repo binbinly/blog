@@ -2,6 +2,7 @@
 
   * [php 基础](develop/php.md)
   * [php 运行机制](develop/php_run.md)
+  * [php 深入 Laravel 核心](develop/php_laravel.md)
   * [golang 基础](develop/golang.md)
   * [golang 新手可能会踩的 50 个坑](develop/golang_gotchas.md)
   * [golang GPM调度器](develop/golang_gpm.md)
@@ -12,27 +13,38 @@
 
 * 存储
   
-  * [mysql](storage/mysql.md)
+  * [mysql 基础](storage/mysql.md)
+  * [mysql 索引](storage/mysql_index.md)
+  * [mysql 日志](storage/mysql_logs.md)
+  * [mysql InnoDB存储引擎对MVCC的实现](storage/mysql_mvcc.md)
+  * [mysql 高性能优化规范建议总结](storage/mysql_optimization.md)
   * [redis](storage/redis.md)
+  * [redis 常见阻塞原因总结](storage/redis_common_blocking_problems.md)
   * [mongodb](storage/mongodb.md)
   * [elasticsearch](storage/elasticsearch.md)
 
 * 系统服务
-  * [linux](system/linux.md)
+  * [Linux](system/linux.md)
+  * [Linux 性能优化-CPU性能篇](system/linux_optimization_cpu.md)
   * [nginx](system/nginx.md)
   * [docker](system/docker.md)
   * [git](system/git.md)
 
-* 面试相关
+* 面试指南
   * [golang](interview/go.md)
   * [php](interview/php.md)
   * [mysql](interview/mysql.md)
   * [redis](interview/redis.md)
+  * [rabbitmq](interview/rabbitmq.md)
+  * [mongodb上](interview/mongodb.md)
+  * [mongodb下](interview/mongodb2.md)
+  * [cdn](interview/cdn.md)
+  * [读写分离和分库分表常见问题总结](interview/read_write.md)
 
 * web3
   * [solidity](web3/solidity.md)
 
-* 系统工具
+* 工具资源
   * [工具](other/tools.md)
   * [Chrome常用插件](other/chrome.md)
   * [phpstorm](other/phpstorm.md)

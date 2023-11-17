@@ -2,10 +2,15 @@
 
 ### 文档
 
-[官网](https://www.php.net/manual/zh/)
-[PHP8.2新特性](https://www.php.net/releases/8.2/zh.php)
-[PHP7新特性](https://www.php.net/manual/zh/migration70.new-features.php)
-[PHP8新特性](https://www.php.net/manual/zh/migration80.new-features.php)
+* [官网](https://www.php.net/manual/zh/)
+* [PHP8.2新特性](https://www.php.net/releases/8.2/zh.php)
+* [PHP8新特性](https://www.php.net/manual/zh/migration80.new-features.php)
+* [PHP7新特性](https://www.php.net/manual/zh/migration70.new-features.php)
+* [PHP Package Repository](https://packagist.org/)
+* [Laravel 10 中文文档](https://learnku.com/docs/laravel/10.x)
+* [laravel-admin](https://explore-pu.github.io/laravel-admin-docs-cn/guide/)
+* [npm](https://www.npmjs.com/)
+* [redis常用命令参考](http://doc.redisfans.com/)
 
 ### 下载
 
