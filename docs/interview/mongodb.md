@@ -1,7 +1,7 @@
 # MongoDB常见面试题总结（上）
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mongodb/mongodb-questions-01.md)
-
+>
 > 少部分内容参考了 MongoDB 官方文档的描述，在此说明一下。
 
 ## MongoDB 基础

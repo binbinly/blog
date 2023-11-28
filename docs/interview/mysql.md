@@ -1,4 +1,4 @@
-# MySQL常见面试题总结
+# MySQL常见问题总结
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mysql/mysql-questions-01.md)
 
@@ -10,13 +10,11 @@
 
 关系型数据库中，我们的数据都被存放在了各种表中（比如用户表），表中的每一行就存放着一条数据（比如一个用户的信息）。
 
-![关系型数据库表关系](https://oss.javaguide.cn/java-guide-blog/5e3c1a71724a38245aa43b02_99bf70d46cc247be878de9d3a88f0c44.png)
-
 大部分关系型数据库都使用 SQL 来操作数据库中的数据。并且，大部分关系型数据库都支持事务的四大特性(ACID)。
 
 **有哪些常见的关系型数据库呢？**
 
-MySQL、PostgreSQL、Oracle、SQL Server、SQLite（微信本地的聊天记录的存储就是用的 SQLite） ……。
+`MySQL`、`PostgreSQL`、`Oracle`、`SQL Server`、`SQLite`（微信本地的聊天记录的存储就是用的 SQLite） ……。
 
 ### 什么是 SQL？
 
@@ -35,8 +33,6 @@ SQL 可以帮助我们：
 - ……
 
 ### 什么是 MySQL？
-
-![](https://oss.javaguide.cn/github/javaguide/csdn/20210327143351823.png)
 
 **MySQL 是一种关系型数据库，主要用于持久化存储我们的系统中的一些数据比如用户信息。**
 
@@ -67,7 +63,7 @@ MySQL 字段类型可以简单分为三大类：
 
 下面这张图不是我画的，忘记是从哪里保存下来的了，总结的还蛮不错的。
 
-![MySQL 常见字段类型总结](https://oss.javaguide.cn/github/javaguide/mysql/summary-of-mysql-field-types.png)
+![MySQL 常见字段类型总结](../images/mysql/summary-of-mysql-field-types.png)
 
 MySQL 字段类型比较多，我这里会挑选一些日常开发使用很频繁且面试常问的字段类型，以面试问题的形式来详细介绍。如无特殊说明，针对的都是 InnoDB 存储引擎。
 
@@ -104,8 +100,6 @@ VARCHAR(100)和 VARCHAR(10)都是变长类型，表示能存储最多 100 个字
 DECIMAL 和 FLOAT 的区别是：**DECIMAL 是定点数，FLOAT/DOUBLE 是浮点数。DECIMAL 可以存储精确的小数值，FLOAT/DOUBLE 只能存储近似的小数值。**
 
 DECIMAL 用于存储具有精度要求的小数，例如与货币相关的数据，可以避免浮点数带来的精度损失。
-
-在 Java 中，MySQL 的 DECIMAL 类型对应的是 Java 类 `java.math.BigDecimal`。
 
 ### 为什么不推荐使用 TEXT 和 BLOB？
 
@@ -148,8 +142,6 @@ TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗
 - DATETIME：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59
 - Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59
 
-关于两者的详细对比，请参考我写的[MySQL 时间类型数据存储建议](./some-thoughts-on-database-storage-time.md)。
-
 ### NULL 和 '' 的区别是什么？
 
 `NULL` 跟 `''`(空字符串)是两个完全不一样的值，区别如下：
@@ -167,11 +159,9 @@ MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布�
 
 ## MySQL 基础架构
 
-> 建议配合 [SQL 语句在 MySQL 中的执行过程](./how-sql-executed-in-mysql.md) 这篇文章来理解 MySQL 基础架构。另外，“一个 SQL 语句在 MySQL 中的执行流程”也是面试中比较常问的一个问题。
-
 下图是 MySQL 的一个简要架构图，从下图你可以很清晰的看到客户端的一条 SQL 语句在 MySQL 内部是如何执行的。
 
-![](https://oss.javaguide.cn/javaguide/13526879-3037b144ed09eb88.png)
+![](../images/mysql/13526879-3037b144ed09eb88.png)
 
 从上图可以看出， MySQL 主要由下面几部分构成：
 
@@ -190,7 +180,7 @@ MySQL 核心在于存储引擎，想要深入学习 MySQL，必定要深入研�
 
 MySQL 支持多种存储引擎，你可以通过 `SHOW ENGINES` 命令来查看 MySQL 支持的所有存储引擎。
 
-![查看 MySQL 提供的所有存储引擎](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510105408703.png)
+![查看 MySQL 提供的所有存储引擎](../images/mysql/image-20220510105408703.png)
 
 从上图我们可以查看出， MySQL 当前默认的存储引擎是 InnoDB。并且，所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
 
@@ -230,8 +220,6 @@ mysql> SHOW VARIABLES  LIKE '%storage_engine%';
 - InnoDB 存储引擎详细介绍：<https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html> 。
 - 其他存储引擎详细介绍：<https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html> 。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510155143458.png)
-
 ### MySQL 存储引擎架构了解吗？
 
 MySQL 存储引擎采用的是 **插件式架构** ，支持多种存储引擎，我们甚至可以为不同的数据库表设置不同的存储引擎以适应不同场景的需要。**存储引擎是基于表的，而不是数据库。**
@@ -262,17 +250,11 @@ MyISAM 不提供事务支持。
 
 InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别，具有提交(commit)和回滚(rollback)事务的能力。并且，InnoDB 默认使用的 REPEATABLE-READ（可重读）隔离级别是可以解决幻读问题发生的（基于 MVCC 和 Next-Key Lock）。
 
-关于 MySQL 事务的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](./transaction-isolation-level.md)。
-
 **3.是否支持外键**
 
 MyISAM 不支持，而 InnoDB 支持。
 
 外键对于维护数据一致性非常有帮助，但是对性能有一定的损耗。因此，通常情况下，我们是不建议在实际生产项目中使用外键的，在业务代码中进行约束即可！
-
-阿里的《Java 开发手册》也是明确规定禁止使用外键的。
-
-![](https://oss.javaguide.cn/github/javaguide/mysql/image-20220510090309427.png)
 
 不过，在代码中进行约束的话，对程序员的能力要求更高，具体是否要采用外键还是要根据你的项目实际情况而定。
 
@@ -296,13 +278,11 @@ MyISAM 不支持，而 InnoDB 支持。
 
 InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索引文件和数据文件是分离的，其表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。
 
-详细区别，推荐你看看我写的这篇文章：[MySQL 索引详解](./mysql-index.md)。
-
 **7.性能有差别。**
 
 InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是只读模式下，随着 CPU 核数的增加，InnoDB 的读写能力呈线性增长。MyISAM 因为读写不能并发，它的处理能力跟核数没关系。
 
-![InnoDB 和 MyISAM 性能对比](https://oss.javaguide.cn/github/javaguide/mysql/innodb-myisam-performance-comparison.png)
+![InnoDB 和 MyISAM 性能对比](../images/mysql/innodb-myisam-performance-comparison.png)
 
 **总结**：
 
@@ -313,10 +293,6 @@ InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是�
 - 虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。
 - MyISAM 不支持数据库异常崩溃后的安全恢复，而 InnoDB 支持。
 - InnoDB 的性能比 MyISAM 更强大。
-
-最后，再分享一张图片给你，这张图片详细对比了常见的几种 MySQL 存储引擎。
-
-![常见的几种 MySQL 存储引擎对比](https://oss.javaguide.cn/github/javaguide/mysql/comparison-of-common-mysql-storage-engines.png)
 
 ### MyISAM 和 InnoDB 如何选择？
 
@@ -329,10 +305,6 @@ InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是�
 一般情况下我们选择 InnoDB 都是没有问题的，但是某些情况下你并不在乎可扩展能力和并发能力，也不需要事务支持，也不在乎崩溃后的安全恢复问题的话，选择 MyISAM 也是一个不错的选择。但是一般情况下，我们都是需要考虑到这些问题的。
 
 因此，对于咱们日常开发的业务系统来说，你几乎找不到什么理由再使用 MyISAM 作为自己的 MySQL 数据库的存储引擎。
-
-## MySQL 索引
-
-MySQL 索引相关的问题比较多，对于面试和工作都比较重要，于是，我单独抽了一篇文章专门来总结 MySQL 索引相关的知识点和问题：[MySQL 索引详解](./mysql-index.md) 。
 
 ## MySQL 查询缓存
 
@@ -388,8 +360,6 @@ SELECT sql_no_cache COUNT(*) FROM usr;
 
 事务会把这两个操作就可以看成逻辑上的一个整体，这个整体包含的操作要么都成功，要么都要失败。这样就不会出现小明余额减少而小红的余额却并没有增加的情况。
 
-![事务示意图](https://oss.javaguide.cn/github/javaguide/mysql/%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
-
 ### 何谓数据库事务？
 
 大多数情况下，我们在谈论事务的时候，如果没有特指**分布式事务**，往往指的就是**数据库事务**。
@@ -409,11 +379,7 @@ SQL1,SQL2...
 COMMIT;
 ```
 
-![数据库事务示意图](https://oss.javaguide.cn/github/javaguide/mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
-
 另外，关系型数据库（例如：`MySQL`、`SQL Server`、`Oracle` 等）事务都有 **ACID** 特性：
-
-![ACID](https://oss.javaguide.cn/github/javaguide/mysql/ACID.png)
 
 1. **原子性**（`Atomicity`）：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
 2. **一致性**（`Consistency`）：执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；
@@ -421,8 +387,6 @@ COMMIT;
 4. **持久性**（`Durability`）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
 
 🌈 这里要额外补充一点：**只有保证了事务的持久性、原子性、隔离性之后，一致性才能得到保障。也就是说 A、I、D 是手段，C 是目的！** 想必大家也和我一样，被 ACID 这个概念被误导了很久! 我也是看周志明老师的公开课[《周志明的软件架构课》](https://time.geekbang.org/opencourse/intro/100064201)才搞清楚的（多看好书！！！）。
-
-![AID->C](https://oss.javaguide.cn/github/javaguide/mysql/AID-%3EC.png)
 
 另外，DDIA 也就是 [《Designing Data-Intensive Application（数据密集型应用系统设计）》](https://book.douban.com/subject/30329536/) 的作者在他的这本书中如是说：
 
@@ -435,8 +399,6 @@ COMMIT;
 
 《Designing Data-Intensive Application（数据密集型应用系统设计）》这本书强推一波，值得读很多遍！豆瓣有接近 90% 的人看了这本书之后给了五星好评。另外，中文翻译版本已经在 GitHub 开源，地址：[https://github.com/Vonng/ddia](https://github.com/Vonng/ddia) 。
 
-![](https://oss.javaguide.cn/github/javaguide/books/ddia.png)
-
 ### 并发事务带来了哪些问题?
 
 在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。
@@ -447,15 +409,11 @@ COMMIT;
 
 例如：事务 1 读取某表中的数据 A=20，事务 1 修改 A=A-1，事务 2 读取到 A = 19,事务 1 回滚导致对 A 的修改并未提交到数据库， A 的值还是 20。
 
-![脏读](./images/concurrency-consistency-issues-dirty-reading.png)
-
 #### 丢失修改（Lost to modify）
 
 在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 先修改 A=A-1，事务 2 后来也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。
-
-![丢失修改](./images/concurrency-consistency-issues-missing-modifications.png)
 
 #### 不可重复读（Unrepeatable read）
 
@@ -463,15 +421,11 @@ COMMIT;
 
 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 再次读取 A =19，此时读取的结果和第一次读取的结果不同。
 
-![不可重复读](./images/concurrency-consistency-issues-unrepeatable-read.png)
-
 #### 幻读（Phantom read）
 
 幻读与不可重复读类似。它发生在一个事务读取了几行数据，接着另一个并发事务插入了一些数据时。在随后的查询中，第一个事务就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。
 
 例如：事务 2 读取某个范围的数据，事务 1 在这个范围插入了新的数据，事务 2 再次读取这个范围的数据发现相比于第一次读取的结果多了新的数据。
-
-![幻读](./images/concurrency-consistency-issues-phantom-read.png)
 
 ### 不可重复读和幻读有什么区别？
 
@@ -499,8 +453,6 @@ MVCC 在 MySQL 中实现所依赖的手段主要是: **隐藏字段、read view�
 
 - undo log : undo log 用于记录某行数据的多个版本的数据。
 - read view 和 隐藏字段 : 用来判断当前版本数据的可见性。
-
-关于 InnoDB 对 MVCC 的具体实现可以看这篇文章：[InnoDB 存储引擎对 MVCC 的实现](./innodb-implementation-of-mvcc.md) 。
 
 ### SQL 标准定义了哪些事务隔离级别?
 
@@ -538,8 +490,6 @@ mysql> SELECT @@tx_isolation;
 | REPEATABLE-READ |
 +-----------------+
 ```
-
-关于 MySQL 事务隔离级别的详细介绍，可以看看我写的这篇文章：[MySQL 事务隔离级别详解](./transaction-isolation-level.md)。
 
 ## MySQL 锁
 
@@ -626,7 +576,7 @@ SELECT ... FOR UPDATE;
 
 《MySQL 技术内幕 InnoDB 存储引擎》这本书对应的描述应该是笔误了。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/image-20220511171419081.png)
+![](../images/mysql/image-20220511171419081.png)
 
 ### 当前读和快照读有什么区别？
 
@@ -703,15 +653,11 @@ CREATE TABLE `sequence_id` (
 
 ## MySQL 性能优化
 
-关于 MySQL 性能优化的建议总结，请看这篇文章：[MySQL 高性能优化规范建议总结](./mysql-high-performance-optimization-specification-recommendations.md) 。
-
 ### 能用 MySQL 直接存储文件（比如图片）吗？
 
 可以是可以，直接存储文件对应的二进制数据即可。不过，还是建议不要在数据库中存储文件，会严重影响数据库性能，消耗过多存储空间。
 
 可以选择使用云服务厂商提供的开箱即用的文件存储服务，成熟稳定，价格也比较低。
-
-![](https://oss.javaguide.cn/github/javaguide/mysql/oss-search.png)
 
 也可以选择自建文件存储服务，实现起来也不难，基于 FastDFS、MinIO（推荐） 等开源项目就可以实现分布式文件服务。
 
@@ -729,12 +675,6 @@ MySQL 提供了两个方法来处理 ip 地址
 - `INET_NTOA()` :把整型的 ip 转为地址
 
 插入数据前，先用 `INET_ATON()` 把 ip 地址转为整型，显示数据时，使用 `INET_NTOA()` 把整型的 ip 地址转为地址显示即可。
-
-### 有哪些常见的 SQL 优化手段？
-
-[《Java 面试指北》(付费)](../../zhuanlan/java-mian-shi-zhi-bei.md) 的 **「技术面试题篇」** 有一篇文章详细介绍了常见的 SQL 优化手段，非常全面，清晰易懂！
-
-![常见的 SQL 优化手段](https://oss.javaguide.cn/javamianshizhibei/javamianshizhibei-sql-optimization.png)
 
 ### 如何分析 SQL 的性能？
 
@@ -775,15 +715,7 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | filtered      | 按表条件过滤后，留存的记录数的百分比         |
 | Extra         | 附加信息                                     |
 
-篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[SQL 的执行计划](./mysql-query-execution-plan.md)这篇文章。
-
-### 读写分离和分库分表了解吗？
-
-读写分离和分库分表相关的问题比较多，于是，我单独写了一篇文章来介绍：[读写分离和分库分表详解](../../high-performance/read-and-write-separation-and-library-subtable.md)。
-
 ## MySQL 学习资料推荐
-
-[**书籍推荐**](../../books/database.md#mysql) 。
 
 **文章推荐** :
 

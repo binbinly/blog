@@ -1,6 +1,6 @@
-# 1.基础
+# REDIS 常见问题总结
 
-## 1.1 什么是Redis？
+## 什么是Redis？
 
 Redis的全称是：Remote Dictionary Server，本质上是一个 Key-Value 类型的内存数据库。
 
