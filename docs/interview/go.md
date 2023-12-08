@@ -1,6 +1,8 @@
-## 零、go与其他语言
+# golang 常见问题总结
 
-### 0、什么是[面向对象](https://so.csdn.net/so/search?q=面向对象&spm=1001.2101.3001.7020)
+## 前言
+
+### 什么是[面向对象](https://so.csdn.net/so/search?q=面向对象&spm=1001.2101.3001.7020)
 
 在了解 Go 语言是不是面向对象（简称：OOP） 之前，我们必须先知道 OOP 是啥，得先给他 “下定义”
 
@@ -17,21 +19,7 @@
 - 继承
 - 多态
 
-### 1、Go语言和Java有什么区别? 
-
-1、Go上不允许函数重载，必须具有方法和函数的唯一名称，而Java允许函数重载。
-
-2、在速度方面，Go的速度要比Java快。
-
-3、Java默认允许多态，而Go没有。
-
-4、Go语言使用HTTP协议进行路由配置，而Java使用Akka.routing.ConsistentHashingRouter和Akka.routing.ScatterGatherFirstCompletedRouter进行路由配置。
-
-5、Go代码可以自动扩展到多个核心，而Java并不总是具有足够的可扩展性。
-
-6、Go语言的继承通过匿名组合完成，基类以Struct的方式定义，子类只需要把基类作为成员放在子类的定义中，支持多继承;而Java的继承通过extends关键字完成，不支持多继承。
-
-### 2、Go 是面向对象的语言吗？
+### Go 是面向对象的语言吗？
 
 是的，也不是。原因是：
 
@@ -40,7 +28,7 @@
 3. Go 中的方法比 C++ 或 Java 中的方法更通用：它们可以为任何类型的数据定义，甚至是内置类型，如普通的、"未装箱的 "整数。它们并不局限于结构（类）。
 4. Go 由于缺乏类型层次，Go 中的 "对象 "比 C++ 或 Java 等语言更轻巧。
 
-### 3、Go 实现面向对象编程
+### Go 实现面向对象编程
 
 #### 封装
 
@@ -71,8 +59,6 @@ func (p *Animal) GetName() string {
 }
 ```
 
-
-
 在上述例子中，我们声明了一个结构体 Animal，其属性 name 为小写。没法通过外部方法，在配套上存在 Setter 和 Getter 的方法，用于统一的访问和设置控制。
 
 以此实现在 Go 语言中的基本封装。
@@ -80,8 +66,6 @@ func (p *Animal) GetName() string {
 #### 继承
 
 面向对象中的 “继承” 指的是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661876060993-91ac09c4-3a79-4b38-a09e-6450552a3bfe.png)
 
 从实际的例子来看，就是动物是一个大父类，下面又能细分为 “食草动物”、“食肉动物”，这两者会包含 “动物” 这个父类的基本定义。
 
@@ -146,7 +130,7 @@ type AnimalSounder interface {
  	MakeDNA()
 }
 
-func MakeSomeDNA(animalSounder AnimalSounder) {		// 参数是AnimalSounder接口类型
+func MakeSomeDNA(animalSounder AnimalSounder) {// 参数是AnimalSounder接口类型
  	animalSounder.MakeDNA()
 }
 ```
@@ -184,7 +168,7 @@ func main() {
 
 在日常工作中，基本了解这些概念就可以了。若是面试，可以针对三大特性：“封装、继承、多态” 和 五大原则 “单一职责原则（SRP）、开放封闭原则（OCP）、里氏替换原则（LSP）、依赖倒置原则（DIP）、接口隔离原则（ISP）” 进行深入理解和说明。
 
-### 4、go语言和python的区别：
+### go语言和python的区别
 
 1、范例
 
@@ -220,51 +204,44 @@ Python的语法使用缩进来指示代码块。Go的语法基于打开和关闭
 
 为了获得相同的功能，Golang代码通常需要编写比Python代码更多的字符。
 
-### 5、go 与 node.js
+### go 与 node.js
 
-深入对比Node.js和Golang 到底谁才是NO.1 : https://zhuanlan.zhihu.com/p/421352168
+深入对比Node.js和Golang 到底谁才是NO.1 : <https://zhuanlan.zhihu.com/p/421352168>
 
-从 Node 到 Go：一个粗略的比较 : https://zhuanlan.zhihu.com/p/29847628
+从 Node 到 Go：一个粗略的比较 : <https://zhuanlan.zhihu.com/p/29847628>
 
-## **一、基础部分**
+## 基础
 
-### 0、为什么选择golang
+### 为什么选择golang
 
 **0、高性能-协程**
 golang 源码级别支持协程，实现简单；对比进程和线程，协程占用资源少，能够简洁高效地处理高并发问题。
 
 **1、学习曲线容易-****代码极简**
-
 Go语言语法简单，包含了类C语法。因为Go语言容易学习，所以一个普通的大学生花几个星期就能写出来可以上手的、高性能的应用。在国内大家都追求快，这也是为什么国内Go流行的原因之一。
 
 Go 语言的语法特性简直是太简单了，简单到你几乎玩不出什么花招，直来直去的，学习曲线很低，上手非常快。
 
 **2、效率：快速的编译时间，开发效率和运行效率高**
-
 开发过程中相较于 Java 和 C++呆滞的编译速度，Go 的快速编译时间是一个主要的效率优势。Go拥有接近C的运行效率和接近PHP的开发效率。
 
 C 语言的理念是信任程序员，保持语言的小巧，不屏蔽底层且底层友好，关注语言的执行效率和性能。而 Python 的姿态是用尽量少的代码完成尽量多的事。于是我能够感觉到，Go 语言想要把 C 和 Python 统一起来，这是多棒的一件事啊。
 
 **3、出身名门、血统纯正**
-
 之所以说Go出身名门，从Go语言的创造者就可见端倪，Go语言绝对血统纯正。其次Go语言出自Google公司，Google在业界的知名度和实力自然不用多说。Google公司聚集了一批牛人，在各种编程语言称雄争霸的局面下推出新的编程语言，自然有它的战略考虑。而且从Go语言的发展态势来看，Google对它这个新的宠儿还是很看重的，Go自然有一个良好的发展前途。
 
 **4、自由高效：组合的思想、无侵入式的接口**
-
 Go语言可以说是开发效率和运行效率二者的完美融合，天生的并发编程支持。Go语言支持当前所有的编程范式，包括过程式编程、面向对象编程、面向接口编程、函数式编程。程序员们可以各取所需、自由组合、想怎么玩就怎么玩。
 
 **5、强大的标准库-****生态**
-
 背靠谷歌，生态丰富，轻松 go get 获取各种高质量轮子。用户可以专注于业务逻辑，避免重复造轮子。
 
 这包括互联网应用、系统编程和网络编程。Go里面的标准库基本上已经是非常稳定了，特别是我这里提到的三个，网络层、系统层的库非常实用。Go 语言的 lib 库麻雀虽小五脏俱全。Go 语言的 lib 库中基本上有绝大多数常用的库，虽然有些库还不是很好，但我觉得不是问题，因为我相信在未来的发展中会把这些问题解决掉。
 
 **6、部署方便：二进制文件，Copy部署**
-
 部署简单，源码编译成执行文件后，可以直接运行，减少了对其它插件依赖。不像其它语言，执行文件依赖各种插件，各种库，研发机器运行正常，部署到生产环境，死活跑不起来 。
 
 **7、简单的并发**
-
 并行和异步编程几乎无痛点。Go 语言的 Goroutine 和 Channel 这两个神器简直就是并发和异步编程的巨大福音。像 C、C++、Java、Python 和 JavaScript 这些语言的并发和异步方式太控制就比较复杂了，而且容易出错，而 Go 解决这个问题非常地优雅和流畅。这对于编程多年受尽并发和异步折磨的编程者来说，完全就是让人眼前一亮的感觉。Go 是一种非常高效的语言，高度支持并发性。Go是为大数据、微服务、并发而生的一种编程语言。
 
 Go 作为一门语言致力于使事情简单化。它并未引入很多新概念，而是聚焦于打造一门简单的语言，它使用起来异常快速并且简单。其唯一的创新之处是 goroutines 和通道。Goroutines 是 Go 面向线程的轻量级方法，而通道是 goroutines 之间通信的优先方式。
@@ -272,7 +249,6 @@ Go 作为一门语言致力于使事情简单化。它并未引入很多新概�
 创建 Goroutines 的成本很低，只需几千个字节的额外内存，正由于此，才使得同时运行数百个甚至数千个 goroutines 成为可能。可以借助通道实现 goroutines 之间的通信。Goroutines 以及基于通道的并发性方法使其非常容易使用所有可用的 CPU 内核，并处理并发的 IO。相较于 Python/Java，在一个 goroutine 上运行一个函数需要最小的代码。
 
 **8、稳定性**
-
 Go拥有强大的编译检查、严格的编码规范和完整的软件生命周期工具，具有很强的稳定性，稳定压倒一切。那么为什么Go相比于其他程序会更稳定呢？这是因为Go提供了软件生命周期（开发、测试、部署、维护等等）的各个环节的工具，如go tool、gofmt、go test。
 
 **9、跨平台**
@@ -280,42 +256,32 @@ Go拥有强大的编译检查、严格的编码规范和完整的软件生命周
 
 ### golang 缺点
 
-**①右大括号不允许换行，否则编译报错**
+1. **右大括号不允许换行，否则编译报错**
+2. **不允许有未使用的包或变量**
+3. **错误处理原始，虽然引入了defer、panic、recover处理出错后的逻辑，函数可以返回多个值，但基本依靠返回错误是否为空来判断函数是否执行成功，if err != nil语句较多，比较繁琐，程序没有java美观。**(官方解释：提供了多个返回值，处理错误方便，如加入异常机制会要求记住一些常见异常，例如IOException，go的错误Error类型较统一方便)
+4. **[]interface{}不支持下标操作**
+5. **struct没有构造和析构，一些资源申请和释放动作不太方便**
+6. **仍然保留C/C++的指针操作，取地址&，取值\***
 
-**②不允许有未使用的包或变量**
+### **golang 中 make 和 new 的区别？*
 
-**③错误处理原始，虽然引入了defer、panic、recover处理出错后的逻辑，函数可以返回多个值，但基本依靠返回错误是否为空来判断函数是否执行成功，if err != nil语句较多，比较繁琐，程序没有java美观。**(官方解释：提供了多个返回值，处理错误方便，如加入异常机制会要求记住一些常见异常，例如IOException，go的错误Error类型较统一方便)
-**④[]interface{}不支持下标操作**
-
-**⑤struct没有构造和析构，一些资源申请和释放动作不太方便**
-
-**⑥仍然保留C/C++的指针操作，取地址&，取值\***
-
-### **1、golang 中 make 和 new 的区别？（基本必问）**
-
-**共同点：**给变量分配内存
+**共同点：** 给变量分配内存
 
 **不同点：**
 
-1）作用变量类型不同，new给string,int和数组分配内存，make给切片，map，channel分配内存；
+1. 作用变量类型不同，new给string,int和数组分配内存，make给切片，map，channel分配内存；
+2. 返回类型不一样，new返回指向变量的指针，make返回变量本身；
+3. new 分配的空间被清零。make 分配空间后，会进行初始化；
 
-2）返回类型不一样，new返回指向变量的指针，make返回变量本身；
+[详细参考](https://www.cnblogs.com/chenpingzhao/p/9918062.html)
 
-3）new 分配的空间被清零。make 分配空间后，会进行初始化；
+### [IO多路复用](https://zhuanlan.zhihu.com/p/115220699)
 
-\4) 字节的面试官还说了另外一个区别，就是分配的位置，在堆上还是在栈上？这块我比较模糊，大家可以自己探究下，我搜索出来的答案是golang会弱化分配的位置的概念，因为编译的时候会自动内存逃逸处理，懂的大佬帮忙补充下：make、new内存分配是在堆上还是在栈上？
+### **for range 的时候它的地址会发生变化么？**
 
-new和make都在堆上分配内存
-new 函数分配内存，make 函数初始化
-https://www.cnblogs.com/chenpingzhao/p/9918062.html
+在 `for a,b := range c` 遍历中， a 和 b 在内存中只会存在一份，即之后每次循环时遍历到的数据都是以值覆盖的方式赋给 a 和 b，a，b 的内存地址始终不变。由于有这个特性，for 循环里面如果开协程，不要直接把 a 或者 b 的地址传给协程。解决办法：在每次循环时，创建一个临时变量。
 
-### 2、[IO多路复用](https://zhuanlan.zhihu.com/p/115220699)
-
-### **3、for range 的时候它的地址会发生变化么？**
-
-答：在 for a,b := range c 遍历中， a 和 b 在内存中只会存在一份，即之后每次循环时遍历到的数据都是以值覆盖的方式赋给 a 和 b，a，b 的内存地址始终不变。由于有这个特性，for 循环里面如果开协程，不要直接把 a 或者 b 的地址传给协程。解决办法：在每次循环时，创建一个临时变量。
-
-### **4、go defer，多个 defer 的顺序，defer 在什么时机会修改返回值？**
+### **go defer，多个 defer 的顺序，defer 在什么时机会修改返回值？**
 
 https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmee0q64ij5p
 
@@ -332,47 +298,45 @@ defer，return，return value（函数返回值） 执行顺序：首先return�
 **有名返回值**
 
 ```go
-func b() (i int) { 	
-    defer func() { 		
-        i++ 		
-        fmt.Println("defer2:", i) 	
-    }() 	
-    defer func() { 		
-        i++ 		
-        fmt.Println("defer1:", i) 	
-    }() 	
+func b() (i int) {
+    defer func() {
+        i++
+        fmt.Println("defer2:", i)
+    }()
+    defer func() {
+        i++
+        fmt.Println("defer1:", i)
+    }()
     return i 
     //或者直接写成
     return 
 } 
-func main() { 	
+func main() {
     fmt.Println("return:", b()) 
 } 
 ```
 
-
-
 **函数返回指针**
 
 ```go
-func c() *int { 	
-    var i int 	
-    defer func() { 		
-        i++ 		
-        fmt.Println("defer2:", i) 	
-    }() 	
-    defer func() { 		
-        i++ 		
-        fmt.Println("defer1:", i) 	
-    }() 	
+func c() *int {
+    var i int
+    defer func() {
+        i++
+        fmt.Println("defer2:", i)
+    }()
+    defer func() {
+        i++
+        fmt.Println("defer1:", i)
+    }()
     return &i 
 } 
-func main() { 	
+func main() {
     fmt.Println("return:", *(c())) 
 }
 ```
 
-### **5、uint 类型溢出问题**
+### **uint 类型溢出问题**
 
 超过最大存储值如uint8最大是255
 
@@ -381,8 +345,6 @@ var a uint8 =255
 var b uint8 =1
 
 a+b = 0总之类型溢出会出现难以意料的事
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378774-f5ecf978-5d67-4b9a-bd37-47d569ba7353.png)
 
 ### **6、能介绍下 rune 类型吗？**
 
@@ -394,27 +356,21 @@ byte 等同于int8，常用来处理ascii字符
 
 rune 等同于int32,常用来处理unicode或utf-8字符
 
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-48538a44-1ccb-47ac-9492-0b569d219e2b.png)
+### **golang 中解析 tag 是怎么实现的？反射原理是什么？**
 
-### **7、 golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级肯定会问，比较难，需要自己多去总结)**
-
-**参考如下连接**
-
-[golang中struct关于反射tag_paladinosment的博客-CSDN博客_golang 反射tagblog.csdn.net/paladinosment/article/details/42570937](https://link.zhihu.com/?target=https%3A//blog.csdn.net/paladinosment/article/details/42570937)
-
-type User struct { 	name string `json:name-field` 	age  int } func main() { 	user := &User{"John Doe The Fourth", 20} 	field, ok := reflect.TypeOf(user).Elem().FieldByName("name") 	if !ok { 		panic("Field not found") 	} 	fmt.Println(getStructTag(field)) } func getStructTag(f reflect.StructField) string { 	return string(f.Tag) }
+[golang中struct关于反射tag](https://blog.csdn.net/paladinosment/article/details/42570937)
 
 Go 中解析的 tag 是通过反射实现的，反射是指计算机程序在运行时（Run time）可以访问、检测和修改它本身状态或行为的一种能力或动态知道给定数据对象的类型和结构，并有机会修改它。反射将接口变量转换成反射对象 Type 和 Value；反射可以通过反射对象 Value 还原成原先的接口变量；反射可以用来修改一个变量的值，前提是这个值可以被修改；tag是啥:结构体支持标记，name string `json:name-field` 就是 `json:name-field` 这部分
 
-**gorm json yaml gRPC protobuf gin.Bind()都是通过反射来实现的**
+> gorm json yaml gRPC protobuf gin.Bind()都是通过反射来实现的
 
-### **8、调用函数传入结构体时，应该传值还是指针？ （Golang 都是传值）**
+### **调用函数传入结构体时，应该传值还是指针？ （Golang 都是传值）**
 
 Go 的函数参数传递都是值传递。所谓值传递：指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。参数传递还有引用传递，所谓引用传递是指在调用函数时将实际参数的地址传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数
 
 因为 Go 里面的 map，slice，chan 是引用类型。变量区分值类型和引用类型。所谓值类型：变量和变量的值存在同一个位置。所谓引用类型：变量和变量的值是不同的位置，变量的值存储的是对值的引用。但并不是 map，slice，chan 的所有的变量在函数内都能被修改，不同数据类型的底层存储结构和实现可能不太一样，情况也就不一样。
 
-### 9、goroutine什么情况下会阻塞
+### goroutine什么情况下会阻塞
 
 在 Go 里面阻塞主要分为以下 4 种场景：
 
@@ -423,27 +379,23 @@ Go 的函数参数传递都是值传递。所谓值传递：指在调用函数�
 3. 当调用一些系统方法的时候（如文件 I/O），如果系统方法调用的时候发生阻塞，这种情况下，网络轮询器（NetPoller）无法使用，而进行系统调用的 G1 将阻塞当前 M1。调度器引入 其它M 来服务 M1 的P。
 4. 如果在 Goroutine 去执行一个 sleep 操作，导致 M 被阻塞了。Go 程序后台有一个监控线程 sysmon，它监控那些长时间运行的 G 任务然后设置可以强占的标识符，别的 Goroutine 就可以抢先进来执行。
 
-### **10、讲讲 Go 的 select 底层数据结构和一些特性？（难点，没有项目经常可能说不清，面试一般会问你项目中怎么使用select）**
+### **讲讲 Go 的 select 底层数据结构和一些特性？**
 
-答：go 的 select 为 golang 提供了多路 IO 复用机制，和其他 IO 复用一样，用于检测是否有读写事件是否 ready。linux 的系统 IO 模型有 select，poll，epoll，go 的 select 和 linux 系统 select 非常相似。
+go 的 select 为 golang 提供了多路 IO 复用机制，和其他 IO 复用一样，用于检测是否有读写事件是否 ready。linux 的系统 IO 模型有 select，poll，epoll，go 的 select 和 linux 系统 select 非常相似。
 
 select 结构组成主要是由 case 语句和执行的函数组成 select 实现的多路复用是：每个线程或者进程都先到注册和接受的 channel（装置）注册，然后阻塞，然后只有一个线程在运输，当注册的线程和进程准备好数据后，装置会根据注册的信息得到相应的数据。
 
 **select 的特性**
 
-1）select 操作至少要有一个 case 语句，出现读写 nil 的 channel 该分支会忽略，在 nil 的 channel 上操作则会报错。
+1. select 操作至少要有一个 case 语句，出现读写 nil 的 channel 该分支会忽略，在 nil 的 channel 上操作则会报错。
+2. select 仅支持管道，而且是单协程操作。
+3. 每个 case 语句仅能处理一个管道，要么读要么写。
+4. 多个 case 语句的执行顺序是随机的。
+5. 存在 default 语句，select 将不会阻塞，但是存在 default 会影响性能。
 
-2）select 仅支持管道，而且是单协程操作。
+### **讲讲 Go 的 defer 底层数据结构和一些特性？**
 
-3）每个 case 语句仅能处理一个管道，要么读要么写。
-
-4）多个 case 语句的执行顺序是随机的。
-
-5）存在 default 语句，select 将不会阻塞，但是存在 default 会影响性能。
-
-### **11、讲讲 Go 的 defer 底层数据结构和一些特性？**
-
-答：每个 defer 语句都对应一个_defer 实例，多个实例使用指针连接起来形成一个单连表，保存在 gotoutine 数据结构中，每次插入_defer 实例，均插入到链表的头部，函数结束再一次从头部取出，从而形成后进先出的效果。
+每个 defer 语句都对应一个_defer 实例，多个实例使用指针连接起来形成一个单连表，保存在 gotoutine 数据结构中，每次插入_defer 实例，均插入到链表的头部，函数结束再一次从头部取出，从而形成后进先出的效果。
 
 **defer 的规则总结**：
 
@@ -455,7 +407,7 @@ select 结构组成主要是由 case 语句和执行的函数组成 select 实�
 
 申请资源后立即使用 defer 关闭资源是个好习惯。
 
-### **12、单引号，双引号，反引号的区别？**
+### **单引号，双引号，反引号的区别**
 
 单引号，表示byte类型或rune类型，对应 uint8和int32类型，默认是 rune 类型。byte用来强调数据是raw data，而不是数字；而rune用来表示Unicode的code point。
 
@@ -463,35 +415,31 @@ select 结构组成主要是由 case 语句和执行的函数组成 select 实�
 
 反引号，表示字符串字面量，但不支持任何转义序列。字面量 raw literal string 的意思是，你定义时写的啥样，它就啥样，你有换行，它就换行。你写转义字符，它也就展示转义字符。
 
-### 13、go出现panic的场景
+### go出现panic的场景
 
-### https://www.cnblogs.com/paulwhw/p/15585467.html
+[参考](https://www.cnblogs.com/paulwhw/p/15585467.html)
 
-- - 数组/切片越界
-  - 空指针调用。比如访问一个 nil 结构体指针的成员
-  - 过早关闭 HTTP 响应体
-  - 除以 0
-  - 向已经关闭的 channel 发送消息
-  - 重复关闭 channel
-  - 关闭未初始化的 channel
-  - 未初始化 map。注意访问 map 不存在的 key 不会 panic，而是返回 map 类型对应的零值，但是不能直接赋值
-  - 跨协程的 panic 处理
-  - sync 计数为负数。
-  - 类型断言不匹配。`var a interface{} = 1; fmt.Println(a.(string))` 会 panic，建议用 `s,ok := a.(string)`
+- 数组/切片越界
+- 空指针调用。比如访问一个 nil 结构体指针的成员
+- 过早关闭 HTTP 响应体
+- 除以 0
+- 向已经关闭的 channel 发送消息
+- 重复关闭 channel
+- 关闭未初始化的 channel
+- 未初始化 map。注意访问 map 不存在的 key 不会 panic，而是返回 map 类型对应的零值，但是不能直接赋值
+- 跨协程的 panic 处理
+- sync 计数为负数。
+- 类型断言不匹配。`var a interface{} = 1; fmt.Println(a.(string))` 会 panic，建议用 `s,ok := a.(string)`
 
-### 14、go是否支持while循环，如何实现这种机制
+### [go是否支持while循环，如何实现这种机制](https://blog.csdn.net/chengqiuming/article/details/115573947)
 
-https://blog.csdn.net/chengqiuming/article/details/115573947
-
-### 15、go里面如何实现set？
+### go里面如何实现set？
 
 Go中是不提供Set类型的，Set是一个集合，其本质就是一个List，只是List里的元素不能重复。
 
 Go提供了map类型，但是我们知道，map类型的key是不能重复的，因此，我们可以利用这一点，来实现一个set。那value呢？value我们可以用一个常量来代替，比如一个空结构体，实际上空结构体不占任何内存，使用空结构体，能够帮我们节省内存空间，提高性能
 
-代码实现：https://blog.csdn.net/haodawang/article/details/80006059
-
-### 16、go如何实现类似于java当中的继承机制？
+### go如何实现类似于java当中的继承机制？
 
 https://zhuanlan.zhihu.com/p/88480107
 
@@ -535,15 +483,11 @@ cat.Eat() // cat is eating
 - 如果一个 struct 嵌套了另一个有名的结构体，那么这个模式叫做组合。
 - 如果一个 struct 嵌套了多个匿名结构体，那么这个结构可以直接访问多个匿名结构体的属性和方法，从而实现多重继承。
 
-### 17、怎么去复用一个接口的方法？
-
-https://www.yisu.com/zixun/452409.html
+### [怎么去复用一个接口的方法](https://www.yisu.com/zixun/452409.html)
 
 ### 18、go里面的 _ 
 
 1. **忽略返回值**
-
-1. 1. 比如某个函数返回三个参数，但是我们只需要其中的两个，另外一个参数可以忽略，这样的话代码可以这样写：
 
 ```go
 v1, v2, _ := function(...)
@@ -568,17 +512,15 @@ import _ "test/food"
 
 引入包时，会先调用包中的初始化函数，这种使用方式仅让导入的包做初始化，而不使用包中其他功能
 
-### 19、goroutine创建的时候如果要传一个参数进去有什么要注意的点？
+### [goroutine创建的时候如果要传一个参数进去有什么要注意的点](https://www.cnblogs.com/waken-captain/p/10496454.html)
 
-https://www.cnblogs.com/waken-captain/p/10496454.html
-
-### 20、写go单元测试的规范？
+### 写go单元测试的规范？
 
 1.  **单元测试文件命名规则 ：**
 
 单元测试需要创建单独的测试文件，不能在原有文件中书写，名字规则为 xxx_test.go。这个规则很好理解。
 
-1.  **单元测试包命令规则** 
+2.  **单元测试包命令规则** 
 
 单元测试文件的包名为原文件的包名添加下划线接test，举例如下：
 
@@ -592,7 +534,7 @@ package xxx
 package xxx_test
 ```
 
-1.  **单元测试方法命名规则** 
+3.  **单元测试方法命名规则** 
 
 单元测试文件中的测试方法和原文件中的待测试的方法名相对应，以Test开头，举例如下：
 
@@ -604,7 +546,7 @@ func Xxx(name string) error
 func TestXxx()
 ```
 
-1.  **单元测试方法参数** 
+4.  **单元测试方法参数** 
 
 单元测试方法的参数必须是t *testing.T，举例如下：
 
@@ -612,21 +554,17 @@ func TestXxx()
 func TestZipFiles(t *testing.T) { ...
 ```
 
-### 21、单步调试？
+### [单步调试](https://www.jianshu.com/p/21ed30859d80)
 
-https://www.jianshu.com/p/21ed30859d80
+### [导入一个go的工程，有些依赖找不到，改怎么办](https://www.cnblogs.com/niuben/p/16182001.html)
 
-### 22、导入一个go的工程，有些依赖找不到，改怎么办？
-
-https://www.cnblogs.com/niuben/p/16182001.html
-
-### 23、[值拷贝 与 引用拷贝，深拷贝 与 浅拷贝](https://www.cnblogs.com/yizhixiaowenzi/p/14664222.html)
+### [值拷贝 与 引用拷贝，深拷贝 与 浅拷贝](https://www.cnblogs.com/yizhixiaowenzi/p/14664222.html)
 
 map，slice，chan 是引用拷贝；引用拷贝 是 浅拷贝
 
 其余的，都是 值拷贝；值拷贝 是 深拷贝
 
-#### 深浅拷贝的本质区别：
+#### 深浅拷贝的本质区别
 
 是否真正获取对象实体，而不是引用
 
@@ -680,95 +618,87 @@ func main() {
 }
 ```
 
-### 24、[精通Golang项目依赖Go modules](https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmee13oek1e8)
+### [精通Golang项目依赖Go modules](https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmee13oek1e8)
 
-### 25、Go 多返回值怎么实现的？
+### Go 多返回值怎么实现的？
 
-答：Go 传参和返回值是通过 FP+offset 实现，并且存储在调用函数的栈帧中。FP 栈底寄存器，指向一个函数栈的顶部;PC 程序计数器，指向下一条执行指令;SB 指向静态数据的基指针，全局符号;SP 栈顶寄存器。
+Go 传参和返回值是通过 FP+offset 实现，并且存储在调用函数的栈帧中。FP 栈底寄存器，指向一个函数栈的顶部;PC 程序计数器，指向下一条执行指令;SB 指向静态数据的基指针，全局符号;SP 栈顶寄存器。
 
-### 26、Go 语言中不同的类型如何比较是否相等？
+### Go 语言中不同的类型如何比较是否相等？
 
-答：像 string，int，float interface 等可以通过 reflect.DeepEqual 和等于号进行比较，像 slice，struct，map 则一般使用 reflect.DeepEqual 来检测是否相等。
+像 string，int，float interface 等可以通过 reflect.DeepEqual 和等于号进行比较，像 slice，struct，map 则一般使用 reflect.DeepEqual 来检测是否相等。
 
-### 27、Go中init 函数的特征?
+### Go中init 函数的特征?
 
-答：一个包下可以有多个 init 函数，每个文件也可以有多个 init 函数。多个 init 函数按照它们的文件名顺序逐个初始化。应用初始化时初始化工作的顺序是，从被导入的最深层包开始进行初始化，层层递出最后到 main 包。不管包被导入多少次，包内的 init 函数只会执行一次。应用初始化时初始化工作的顺序是，从被导入的最深层包开始进行初始化，层层递出最后到 main 包。但包级别变量的初始化先于包内 init 函数的执行。
+一个包下可以有多个 init 函数，每个文件也可以有多个 init 函数。多个 init 函数按照它们的文件名顺序逐个初始化。应用初始化时初始化工作的顺序是，从被导入的最深层包开始进行初始化，层层递出最后到 main 包。不管包被导入多少次，包内的 init 函数只会执行一次。应用初始化时初始化工作的顺序是，从被导入的最深层包开始进行初始化，层层递出最后到 main 包。但包级别变量的初始化先于包内 init 函数的执行。
 
-### 28、Go中 uintptr和 unsafe.Pointer 的区别？
+### Go中 uintptr和 unsafe.Pointer 的区别？
 
-答：unsafe.Pointer 是通用指针类型，它不能参与计算，任何类型的指针都可以转化成 unsafe.Pointer，unsafe.Pointer 可以转化成任何类型的指针，uintptr 可以转换为 unsafe.Pointer，unsafe.Pointer 可以转换为 uintptr。uintptr 是指针运算的工具，但是它不能持有指针对象（意思就是它跟指针对象不能互相转换），unsafe.Pointer 是指针对象进行运算（也就是 uintptr）的桥梁。
+unsafe.Pointer 是通用指针类型，它不能参与计算，任何类型的指针都可以转化成 unsafe.Pointer，unsafe.Pointer 可以转化成任何类型的指针，uintptr 可以转换为 unsafe.Pointer，unsafe.Pointer 可以转换为 uintptr。uintptr 是指针运算的工具，但是它不能持有指针对象（意思就是它跟指针对象不能互相转换），unsafe.Pointer 是指针对象进行运算（也就是 uintptr）的桥梁。
 
-## 二、slice
+## slice
 
-### **1、数组和切片的区别 （基本必问）**
+### **数组和切片的区别**
 
 **相同点：**
 
-1)只能存储一组相同类型的数据结构
-
-2)都是通过下标来访问，并且有容量长度，长度通过 len 获取，容量通过 cap 获取
+1. 只能存储一组相同类型的数据结构
+2. 都是通过下标来访问，并且有容量长度，长度通过 len 获取，容量通过 cap 获取
 
 **区别：**
 
-1）数组是定长，访问和复制不能超过数组定义的长度，否则就会下标越界，切片长度和容量可以自动扩容
+1. 数组是定长，访问和复制不能超过数组定义的长度，否则就会下标越界，切片长度和容量可以自动扩容
+2. 数组是值类型，切片是引用类型，每个切片都引用了一个底层数组，切片本身不能存储任何数据，都是这底层数组存储数据，所以修改切片的时候修改的是底层数组中的数据。切片一旦扩容，指向一个新的底层数组，内存地址也就随之改变
 
-2）数组是值类型，切片是引用类型，每个切片都引用了一个底层数组，切片本身不能存储任何数据，都是这底层数组存储数据，所以修改切片的时候修改的是底层数组中的数据。切片一旦扩容，指向一个新的底层数组，内存地址也就随之改变
+总结
 
-**简洁的回答：**
+1. 定义方式不一样
+2. 初始化方式不一样，数组需要指定大小，大小不改变
+3. 在函数传递中，数组切片都是值传递。
 
-1）定义方式不一样 2）初始化方式不一样，数组需要指定大小，大小不改变 3）在函数传递中，数组切片都是值传递。
-
-**数组的定义**
+```go
+// 数组的定义
 
 var a1 [3]int
 
 var a2 [...]int{1,2,3}
 
-**切片的定义**
+// 切片的定义
 
 var a1 []int
 
 var a2 :=make([]int,3,5)
 
-**数组的初始化**
+// 数组的初始化
 
 a1 := [...]int{1,2,3}
 
 a2 := [5]int{1,2,3}
 
-**切片的初始化**
+// 切片的初始化
 
 b:= make([]int,3,5)
+```
 
+### [讲讲 Go 的 slice 底层数据结构和一些特性](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiaslice)
 
-
-### **2、**[**讲讲 Go 的 slice 底层数据结构和一些特性？**](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiaslice)
-
-答：Go 的 slice 底层数据结构是由一个 array 指针指向底层数组，len 表示切片长度，cap 表示切片容量。slice 的主要实现是扩容。对于 append 向 slice 添加元素时，假如 slice 容量够用，则追加新元素进去，slice.len++，返回原来的 slice。当原容量不够，则 slice 先扩容，扩容之后 slice 得到新的 slice，将元素追加进新的 slice，slice.len++，返回新的 slice。对于切片的扩容规则：当切片比较小时（容量小于 1024），则采用较大的扩容倍速进行扩容（新的扩容会是原来的 2 倍），避免频繁扩容，从而减少内存分配的次数和数据拷贝的代价。当切片较大的时（原来的 slice 的容量大于或者等于 1024），采用较小的扩容倍速（新的扩容将扩大大于或者等于原来 1.25 倍），主要避免空间浪费，网上其实很多总结的是 1.25 倍，那是在不考虑内存对齐的情况下，实际上还要考虑内存对齐，扩容是大于或者等于 1.25 倍。
+Go 的 slice 底层数据结构是由一个 array 指针指向底层数组，len 表示切片长度，cap 表示切片容量。slice 的主要实现是扩容。对于 append 向 slice 添加元素时，假如 slice 容量够用，则追加新元素进去，slice.len++，返回原来的 slice。当原容量不够，则 slice 先扩容，扩容之后 slice 得到新的 slice，将元素追加进新的 slice，slice.len++，返回新的 slice。对于切片的扩容规则：当切片比较小时（容量小于 1024），则采用较大的扩容倍速进行扩容（新的扩容会是原来的 2 倍），避免频繁扩容，从而减少内存分配的次数和数据拷贝的代价。当切片较大的时（原来的 slice 的容量大于或者等于 1024），采用较小的扩容倍速（新的扩容将扩大大于或者等于原来 1.25 倍），主要避免空间浪费，网上其实很多总结的是 1.25 倍，那是在不考虑内存对齐的情况下，实际上还要考虑内存对齐，扩容是大于或者等于 1.25 倍。
 
 （关于刚才问的 slice 为什么传到函数内可能被修改，如果 slice 在函数内没有出现扩容，函数外和函数内 slice 变量指向是同一个数组，则函数内复制的 slice 变量值出现更改，函数外这个 slice 变量值也会被修改。如果 slice 在函数内出现扩容，则函数内变量的值会新生成一个数组（也就是新的 slice，而函数外的 slice 指向的还是原来的 slice，则函数内的修改不会影响函数外的 slice。）
 
-### 3、golang中数组和slice作为参数的区别？slice作为参数传递有什么问题？
+### golang中数组和slice作为参数的区别？slice作为参数传递有什么问题？
 
-https://blog.csdn.net/weixin_44387482/article/details/119763558
+[参考](https://blog.csdn.net/weixin_44387482/article/details/119763558)
 
 1. 当使用数组作为参数和返回值的时候，传进去的是值，在函数内部对数组进行修改并不会影响原数据
 2. 当切片作为参数的时候穿进去的是值，也就是值传递，但是当我在函数里面修改切片的时候，我们发现源数据也会被修改，这是因为我们在切片的底层维护这一个匿名的数组，当我们把切片当成参数的时候，会重现创建一个切片，但是创建的这个切片和我们原来的数据是共享数据源的，所以在函数内被修改，源数据也会被修改
 3. 数组还是切片，在函数中传递的时候如果没有指定为指针传递的话，都是值传递，但是切片在传递的过程中，有着共享底层数组的风险，所以如果在函数内部进行了更改的时候，会修改到源数据，所以我们需要根据不同的需求来处理，如果我们不希望源数据被修改话的我们可以使用copy函数复制切片后再传入，如果希望源数据被修改的话我们应该使用指针传递的方式
 
-### 4、从数组中取一个相同大小的slice有成本吗？
+### [从数组中截取切片](https://blog.csdn.net/weixin_42117918/article/details/81913036)
 
-或者这么问：从切片中取一个相同大小的数组有成本吗？
+## **map**
 
-
-
-从数组中截取切片：https://blog.csdn.net/weixin_42117918/article/details/81913036
-
-
-
-## **三、map相关**
-
-### 1、map 使用注意的点，是否并发安全？
+### map 使用注意的点，是否并发安全？
 
 map的类型是map[key]，key类型的ke必须是可比较的，通常情况，会选择内建的基本类型，比如整数、字符串做key的类型。如果要使用struct作为key，要保证struct对象在逻辑上是不可变的。在Go语言中，map[key]函数返回结果可以是一个值，也可以是两个值。map是无序的，如果我们想要保证遍历map时元素有序，可以使用辅助的数据结构，例如orderedmap。
 
@@ -776,11 +706,11 @@ map的类型是map[key]，key类型的ke必须是可比较的，通常情况，�
 
 **第二，**map类型是容易发生并发访问问题的。不注意就容易发生程序运行时并发读写导致的panic。 Go语言内建的map对象不是线程安全的，并发读写的时候运行时会有检查，遇到并发问题就会导致panic。
 
-### 2、map 循环是有序的还是无序的？
+### map 循环是有序的还是无序的？
 
 无序的, map 因扩张⽽重新哈希时，各键值项存储位置都可能会发生改变，顺序自然也没法保证了，所以官方避免大家依赖顺序，直接打乱处理。就是 for range map 在开始处理循环逻辑的时候，就做了随机播种
 
-### 3、 map 中删除一个 key，它的内存会释放么？（常问）
+### map 中删除一个 key，它的内存会释放么？（常问）
 
 如果删除的元素是值类型，如int，float，bool，string以及数组和struct，map的内存不会自动释放
 
@@ -790,58 +720,49 @@ map的类型是map[key]，key类型的ke必须是可比较的，通常情况，�
 
 **这个问题还需要大家去搜索下答案，我记得有不一样的说法，谨慎采用本题答案。**
 
-### 4、怎么处理对 map 进行并发访问？有没有其他方案？ 区别是什么？
+### 怎么处理对 map 进行并发访问？有没有其他方案？ 区别是什么？
 
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-2e47defb-6941-4481-af64-a2ca6dda832d.png)
+1. 使用内置sync.Map
+2. 使用读写锁实现并发安全map
 
-**方式一、使用内置sync.Map，详细参考**
+> [参考](https://cloud.tencent.com/developer/article/1539049)
 
-[https://mbd.baidu.com/ma/s/7Hwd9yMcmbd.baidu.com/ma/s/7Hwd9yMc](https://link.zhihu.com/?target=https%3A//mbd.baidu.com/ma/s/7Hwd9yMc)
+### nil map 和空 map 有何不同？
 
-**方式二、使用读写锁实现并发安全map**
-
-[https://mbd.baidu.com/ma/s/qO7b0VQUmbd.baidu.com/ma/s/qO7b0VQU](https://link.zhihu.com/?target=https%3A//mbd.baidu.com/ma/s/qO7b0VQU)
-
-
-
-https://cloud.tencent.com/developer/article/1539049
-
-### 5、 nil map 和空 map 有何不同？
-
-1）可以对未初始化的map进行取值，但取出来的东西是空：
+1. 可以对未初始化的map进行取值，但取出来的东西是空：
 
 ```go
 var m1 map[string]string
 fmt.Println(m1["1"])
 ```
 
-2）不能对未初始化的map进行赋值，这样将会抛出一个异常：
+2. 不能对未初始化的map进行赋值，这样将会抛出一个异常：
 
 未初始化的map是nil，它与一个空map基本等价，只是nil的map不允许往里面添加值。
 
 ```go
 var m1 map[string]string
 m1["1"] = "1"
-panic: assignment to entry in nil map
+// panic: assignment to entry in nil map
 
-因此，map是nil时，取值是不会报错的（取不到而已），但增加值会报错。
+// 因此，map是nil时，取值是不会报错的（取不到而已），但增加值会报错。
 
-其实，还有一个区别，delete一个nil map会panic，
-但是delete 空map是一个空操作（并不会panic）
-（这个区别在最新的Go tips中已经没有了，即：delete一个nil map也不会panic）
+// 其实，还有一个区别，delete一个nil map会panic，
+// 但是delete 空map是一个空操作（并不会panic）
+// （这个区别在最新的Go tips中已经没有了，即：delete一个nil map也不会panic）
 ```
 
-\3) 通过fmt打印map时，空map和nil map结果是一样的，都为map[]。所以，这个时候别断定map是空还是nil，而应该通过map == nil来判断。
+3. 通过fmt打印map时，空map和nil map结果是一样的，都为map[]。所以，这个时候别断定map是空还是nil，而应该通过map == nil来判断。
 
 **nil map 未初始化，空map是长度为空**
 
-### 6、map 的数据结构是什么？
+### map 的数据结构是什么？
 
-https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamap
+> [参考](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamap)
 
-答：golang 中 map 是一个 kv 对集合。底层使用 hash table，用链表来解决冲突 ，出现冲突时，不是每一个 key 都申请一个结构通过链表串起来，而是以 bmap 为最小粒度挂载，一个 bmap 可以放 8 个 kv。在哈希函数的选择上，会在程序启动时，检测 cpu 是否支持 aes，如果支持，则使用 aes hash，否则使用 memhash。每个 map 的底层结构是 hmap，是有若干个结构为 bmap 的 bucket 组成的数组。每个 bucket 底层都采用链表结构。
+golang 中 map 是一个 kv 对集合。底层使用 hash table，用链表来解决冲突 ，出现冲突时，不是每一个 key 都申请一个结构通过链表串起来，而是以 bmap 为最小粒度挂载，一个 bmap 可以放 8 个 kv。在哈希函数的选择上，会在程序启动时，检测 cpu 是否支持 aes，如果支持，则使用 aes hash，否则使用 memhash。每个 map 的底层结构是 hmap，是有若干个结构为 bmap 的 bucket 组成的数组。每个 bucket 底层都采用链表结构。
 
-#### hmap 的结构如下：
+#### hmap 的结构如下
 
 ```go
 type hmap struct {     
@@ -856,12 +777,6 @@ type hmap struct {
     extra *mapextra                // 用于扩容的指针 
 }
 ```
-
-**下图展示一个拥有4个bucket的map：**
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789793109-401b7c75-c26b-4893-bbf7-1f2dfa69316b.png)
-
-本例中, hmap.B=2， 而hmap.buckets长度是2^B为4. 元素经过哈希运算后会落到某个bucket中进行存储。查找过程类似。
 
 bucket很多时候被翻译为桶，所谓的哈希桶实际上就是bucket。
 
@@ -906,20 +821,12 @@ bmap 即 bucket map 的缩写。
 - pad 对齐内存使用的，不是每个bmap都有会这个字段，需要满足一定条件
 - overflow 指针指向的是下一个bucket，据此将所有冲突的键连接起来。
 
-下图展示bucket存放8个key-value对：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789834784-c60b0cb4-96be-4c4c-8978-2bfc9ca716b9.png)
-
 #### [解决哈希冲突（四种方法）](https://blog.csdn.net/qq_48241564/article/details/118613312)
 
 #### 哈希冲突
 
 当有两个或以上数量的键被哈希到了同一个bucket时，我们称这些键发生了冲突。Go使用链地址法来解决键冲突。
 由于每个bucket可以存放8个键值对，所以同一个bucket存放超过8个键值对时就会再创建一个键值对，用类似链表的方式将bucket连接起来。
-
-下图展示产生冲突后的map：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789900886-a77838be-46c8-4254-999b-b6e217721fbf.png)
 
 bucket数据结构指示下一个bucket的指针称为overflow bucket，意为当前bucket盛不下而溢出的部分。事实上哈希冲突并不是好事情，它降低了存取效率，好的哈希算法可以保证哈希值的随机性，但冲突过多也是要控制的，后面会再详细介绍。
 
@@ -938,7 +845,7 @@ bucket数据结构指示下一个bucket的指针称为overflow bucket，意为�
 
 每个哈希表的实现对负载因子容忍程度不同，比如Redis实现中负载因子大于1时就会触发rehash，而Go则在在负载因子达到6.5时才会触发rehash，因为Redis的每个bucket只能存1个键值对，而Go的bucket可能存8个键值对，所以Go可以容忍更高的负载因子。
 
-### 7、是怎么实现扩容？
+### 怎么实现扩容
 
 #### map 的容量大小
 
@@ -957,22 +864,8 @@ bucket数据结构指示下一个bucket的指针称为overflow bucket，意为�
 当负载因子过大时，就新建一个bucket，新的bucket长度是原来的2倍，然后旧bucket数据搬迁到新的bucket。
 考虑到如果map存储了数以亿计的key-value，一次性搬迁将会造成比较大的延时，Go采用逐步搬迁策略，即每次访问map时都会触发一次搬迁，每次搬迁2个键值对。
 
-下图展示了包含一个bucket满载的map(为了描述方便，图中bucket省略了value区域):
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723150-6a635c5e-5d5a-4173-972f-ac0fd0326ffe.png)
-
-当前map存储了7个键值对，只有1个bucket。此地负载因子为7。再次插入数据时将会触发扩容操作，扩容之后再将新插入键写入新的bucket。
-
-当第8个键值对插入时，将会触发扩容，扩容后示意图如下：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723181-66b62c5f-34bb-4427-8c68-446e7e05b4de.png)
-
 hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申请的bucket。新的键值对被插入新的bucket中。
 后续对map的访问操作会触发迁移，将oldbuckets中的键值对逐步的搬迁过来。当oldbuckets中的键值对全部搬迁完毕后，删除oldbuckets。
-
-搬迁完成后的示意图如下：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723183-d1c03c9d-b6a9-4dd7-8410-a2674f1f1c0c.png)
 
 数据搬迁过程中原bucket中的键值对将存在于新bucket的前面，新插入的键值对将存在于新bucket的后面。
 实际搬迁过程中比较复杂，将在后续源码分析中详细介绍。
@@ -982,11 +875,7 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 所谓等量扩容，实际上并不是扩大容量，buckets数量不变，重新做一遍类似增量扩容的搬迁动作，把松散的键值对重新排列一次，以使bucket的使用率更高，进而保证更快的存取。
 在极端场景下，比如不断地增删，而键值对正好集中在一小部分的bucket，这样会造成overflow的bucket数量增多，但负载因子又不高，从而无法执行增量搬迁的情况，如下图所示：
 
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789747828-6f31463b-a48d-4a4d-877b-828f7f6abc9d.png)
-
-上图可见，overflow的bucket中大部分是空的，访问效率会很差。此时进行一次等量扩容，即buckets数量不变，经过重新组织后overflow的bucket数量会减少，即节省了空间又会提高访问效率。
-
-### 8、查找过程
+### 查找过程
 
 查找过程如下：
 
@@ -997,9 +886,9 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 5. 当前bucket没有找到，则继续从下个overflow的bucket中查找。
 6. 如果当前处于搬迁过程，则优先从oldbuckets查找
 
-注：如果查找不到，也不会返回空值，而是返回相应类型的0值。
+> 注：如果查找不到，也不会返回空值，而是返回相应类型的0值。
 
-### 9、插入过程
+### 插入过程
 
 新元素插入过程如下：
 
@@ -1008,29 +897,15 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 3. 查找该key是否已经存在，如果存在则直接更新值
 4. 如果没找到将key，将key插入
 
-### 10、slices能作为map类型的key吗？
+### [哪些类型可以作为map key](https://blog.csdn.net/lanyang123456/article/details/123765745)
 
-当时被问的一脸懵逼，其实是这个问题的变种：golang 哪些类型可以作为map key？
+## 接口
 
-答案是：**在golang规范中，可比较的类型都可以作为map key；**这个问题又延伸到在：golang规范中，哪些数据类型可以比较？
-
-**不能作为map key 的类型包括：**
-
-- slices
-- maps
-- functions
-
-详细参考：
-
-[golang 哪些类型可以作为map keyblog.csdn.net/lanyang123456/article/details/123765745](https://link.zhihu.com/?target=https%3A//blog.csdn.net/lanyang123456/article/details/123765745)
-
-## 四、接口
-
-### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
+### [Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
 
 总结一下，鸭子类型是一种动态语言的风格，在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由它"当前方法和属性的集合"决定。Go 作为一种静态语言，通过接口实现了 鸭子类型，实际上是 Go 的编译器在其中作了隐匿的转换工作。
 
-### 2、[值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
+### [值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
 
 #### 方法
 
@@ -1074,13 +949,13 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 
 如果类型具备非原始的本质，不能被安全地复制，这种类型总是应该被共享，那就定义指针接收者的方法。比如 go 源码里的文件结构体（struct File）就不应该被复制，应该只有一份实体。
 
-### 3、[iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
+### [iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
 
 iface 和 eface 都是 Go 中描述接口的底层结构体，区别在于 iface 描述的接口包含方法，而 eface 则是不包含任何方法的空接口：interface{}。
 
 从源码层面看一下：
 
-```plain
+```go
 type iface struct {
     tab  *itab
     data unsafe.Pointer
@@ -1108,7 +983,7 @@ iface 内部维护两个指针，tab 指向一个 itab 实体， 它表示接口
 
 再看一下 interfacetype 类型，它描述的是接口的类型：
 
-```plain
+```go
 type interfacetype struct {
     typ     _type
     pkgpath name
@@ -1118,13 +993,9 @@ type interfacetype struct {
 
 可以看到，它包装了 _type 类型，_type 实际上是描述 Go 语言中各种数据类型的结构体。我们注意到，这里还包含一个 mhdr 字段，表示接口所定义的函数列表， pkgpath 记录定义了接口的包名。
 
-这里通过一张图来看下 iface 结构体的全貌：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113733638-8e2e9037-11a8-49af-8dd3-dfd37d7f5d21.png)
-
 接着来看一下 eface 的源码：
 
-```plain
+```go
 type eface struct {
     _type *_type
     data  unsafe.Pointer
@@ -1133,9 +1004,7 @@ type eface struct {
 
 相比 iface，eface 就比较简单了。只维护了一个 _type 字段，表示空接口所承载的具体的实体类型。data 描述了具体的值。
 
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113735267-6bcdb7c8-dd73-432c-b933-d218fc1b7480.png)
-
-### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
+### [接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
 
 从源码里可以看到：iface包含两个字段：tab 是接口表指针，指向类型信息；data 是数据指针，则指向具体的数据。它们分别被称为动态类型和动态值。而接口值包括动态类型和动态值。
 
@@ -1143,11 +1012,11 @@ type eface struct {
 
 接口值的零值是指动态类型和动态值都为 nil。当仅且当这两部分的值都为 nil 的情况下，这个接口值就才会被认为 接口值 == nil。
 
-### 5、[编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
+### [编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
 
-### 6、[接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
+### [接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
 
-### 7、[类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
+### [类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
 
 我们知道，Go 语言中不允许隐式类型转换，也就是说 = 两边，不允许出现类型不相同的变量。
 
@@ -1159,7 +1028,7 @@ type eface struct {
 
 <结果类型> := <目标类型> ( <表达式> )
 
-```plain
+```go
 func main() {
     var i int = 9
 
@@ -1185,7 +1054,7 @@ func main() {
 
 类型转换和类型断言有些相似，不同之处，在于类型断言是对接口进行的操作。
 
-```plain
+```go
 type Student struct {
     Name string
     Age int
@@ -1202,7 +1071,7 @@ func main() {
 
 断言其实还有另一种形式，就是用在利用 switch 语句判断接口的类型。每一个 case 会被顺序地考虑。当命中一个 case 时，就会执行 case 中的语句，因此 case 语句的顺序是很重要的，因为很有可能会有多个 case 匹配的情况。
 
-### 8、[接口转换的原理](http://golang.design/go-questions/interface/convert/)
+### [接口转换的原理](http://golang.design/go-questions/interface/convert/)
 
 通过前面提到的 iface 的源码可以看到，实际上它包含接口的类型 interfacetype 和 实体类型的类型 _type，这两者都是 iface 的字段 itab 的成员。也就是说生成一个 itab 同时需要接口的类型和实体的类型。
 
@@ -1218,7 +1087,7 @@ func main() {
 2. 具体类型转非空接口时，入参 tab 是编译器在编译阶段预先生成好的，新接口 tab 字段直接指向入参 tab 指向的 itab；调用 mallocgc 获得一块新内存，把值复制进去，data 再指向这块新内存。
 3. 而对于接口转接口，itab 调用 getitab 函数获取。只用生成一次，之后直接从 hash 表中获取。
 
-### 9、[如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
+### [如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
 
 Go 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承等概念，但它通过接口却非常优雅地支持了面向对象的特性。
 
@@ -1231,13 +1100,13 @@ Go 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承�
 
 main 函数里先生成 Student 和 Programmer 的对象，再将它们分别传入到函数 whatJob 和 growUp。函数中，直接调用接口函数，实际执行的时候是看最终传入的实体类型是什么，调用的是实体类型实现的函数。于是，不同对象针对同一消息就有多种表现，多态就实现了。
 
-### 10、[Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
+### [Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
 
 接口定义了一种规范，描述了类的行为和功能，而不做具体实现。
 
 C++ 的接口是使用抽象类来实现的，如果类中至少有一个函数被声明为纯虚函数，则这个类就是抽象类。纯虚函数是通过在声明中使用 “= 0” 来指定的。例如：
 
-```plain
+```go
 class Shape
 {
    public:
@@ -1256,35 +1125,31 @@ C++ 定义接口的方式称为“侵入式”，而 Go 采用的是 “非侵�
 
 C++ 和 Go 在定义接口方式上的不同，也导致了底层实现上的不同。C++ 通过虚函数表来实现基类调用派生类的函数；而 Go 通过 itab 中的 fun 字段来实现接口变量调用实体类型的函数。C++ 中的虚函数表是在编译期生成的；而 Go 的 itab 中的 fun 字段是在运行期间动态生成的。原因在于，Go 中实体类型可能会无意中实现 N 多接口，很多接口并不是本来需要的，所以不能为类型实现的所有接口都生成一个 itab， 这也是“非侵入式”带来的影响；这在 C++ 中是不存在的，因为派生需要显示声明它继承自哪个基类。
 
+## **context**
 
+[参考](https://www.topgoer.cn/docs/gozhuanjia/chapter055.3-context)
 
-## 五**、context相关**
+### **context 结构是什么样的？context 使用场景和用途**
 
-https://www.topgoer.cn/docs/gozhuanjia/chapter055.3-context
+[go context详解](https://www.cnblogs.com/juanmaofeifei/p/14439957.html)
 
-### **1、context 结构是什么样的？context 使用场景和用途？**
+Go 的 Context 的数据结构包含 Deadline，Done，Err，Value，Deadline 方法返回一个 time.Time，表示当前 Context 应该结束的时间，ok 则表示有结束时间，Done 方法当 Context 被取消或者超时时候返回的一个 close 的 channel，告诉给 context 相关的函数要停止当前工作然后返回了，Err 表示 context 被取消的原因，Value 方法表示 context 实现共享数据存储的地方，是协程安全的。context 在业务中是经常被使用的，
 
-**（难，也常常问你项目中怎么用，光靠记答案很难让面试官满意，反正有各种结合实际的问题）**
+主要的应用
 
-**参考链接：**
+1. 上下文控制
+2. 多个 goroutine 之间的数据交互等
+3. 超时控制：到某个时间点超时，过多久超时。
 
-[go context详解 - 卷毛狒狒 - 博客园www.cnblogs.com/juanmaofeifei/p/14439957.html](https://link.zhihu.com/?target=https%3A//www.cnblogs.com/juanmaofeifei/p/14439957.html)
+## **channel**
 
-答：Go 的 Context 的数据结构包含 Deadline，Done，Err，Value，Deadline 方法返回一个 time.Time，表示当前 Context 应该结束的时间，ok 则表示有结束时间，Done 方法当 Context 被取消或者超时时候返回的一个 close 的 channel，告诉给 context 相关的函数要停止当前工作然后返回了，Err 表示 context 被取消的原因，Value 方法表示 context 实现共享数据存储的地方，是协程安全的。context 在业务中是经常被使用的，
-
-**其主要的应用 ：**
-
-1：上下文控制，2：多个 goroutine 之间的数据交互等，3：超时控制：到某个时间点超时，过多久超时。
-
-## **六、channel相关**
-
-### **1、channel 是否线程安全？锁用在什么地方？**
+### **channel 是否线程安全？锁用在什么地方？**
 
 1. Golang的Channel,发送一个数据到Channel 和 从Channel接收一个数据 都是 原子性的。
 2. 而且Go的设计思想就是:不要通过共享内存来通信，而是通过通信来共享内存，前者就是传统的加锁，后者就是Channel。
 3. 也就是说，设计Channel的主要目的就是在多任务间传递数据的，这当然是安全的
 
-### **2、go channel 的底层实现原理 （数据结构）**
+### **go channel 的底层实现原理 （数据结构）**
 
 https://juejin.cn/post/7037656471210819614
 
@@ -1320,8 +1185,6 @@ type hchan struct {
 }
 ```
 
-![img](https://cdn.nlark.com/yuque/0/2022/webp/22219483/1661787750459-2608e3a8-f5f9-4d1c-a97f-314d4d83fecf.webp)
-
 总结hchan结构体的主要组成部分有四个：
 
 - 用来保存goroutine之间传递数据的循环链表。=====> buf。
@@ -1329,9 +1192,7 @@ type hchan struct {
 - 用于保存向该chan发送和从改chan接收数据的goroutine的队列。=====> sendq 和 recvq
 - 保证channel写入和读取数据时线程安全的锁。 =====> lock
 
-
-
-### **3、nil、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样？（各类变种题型，重要）**
+### **nil、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样？（各类变种题型，重要）**
 
 #### Channel读写特性(15字口诀)
 
@@ -1345,9 +1206,9 @@ type hchan struct {
 
 以上5个特性是死东西，也可以通过口诀来记忆：“空读写阻塞，写关闭异常，读关闭空零”。
 
-### **4、向 channel 发送数据和从 channel 读数据的流程是什么样的？**
+### **向 channel 发送数据和从 channel 读数据的流程是什么样的？**
 
-#### 发送流程：
+#### 发送流程
 
 向一个channel中写数据简单过程如下：
 
@@ -1355,11 +1216,7 @@ type hchan struct {
 2. 如果缓冲区中有空余位置，将数据写入缓冲区，结束发送过程；
 3. 如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；
 
-简单流程图如下：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788117541-f82a3d7e-8b22-46cd-9bd9-dde26f0d290c.png)
-
-#### 接收流程：
+#### 接收流程
 
 从一个channel读数据简单过程如下：
 
@@ -1367,10 +1224,6 @@ type hchan struct {
 2. 如果等待发送队列sendq不为空，此时说明缓冲区已满，从缓冲区中首部读出数据，把G中数据写入缓冲区尾部，把G唤醒，结束读取过程；
 3. 如果缓冲区中有数据，则从缓冲区取出数据，结束读取过程；
 4. 将当前goroutine加入recvq，进入睡眠，等待被写goroutine唤醒；
-
-简单流程图如下：
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788153163-c386fedf-84b2-42ed-9965-d5d80743650c.png)
 
 #### 关闭channel
 
@@ -1382,9 +1235,9 @@ type hchan struct {
 2. 关闭已经被关闭的channel
 3. 向已经关闭的channel写数据
 
-### **5、讲讲 Go 的 chan 底层数据结构和主要使用场景**
+### **讲讲 Go 的 chan 底层数据结构和主要使用场景**
 
-答：channel 的数据结构包含 qccount 当前队列中剩余元素个数，dataqsiz 环形队列长度，即可以存放的元素个数，buf 环形队列指针，elemsize 每个元素的大小，closed 标识关闭状态，elemtype 元素类型，sendx 队列下表，指示元素写入时存放到队列中的位置，recv 队列下表，指示元素从队列的该位置读出。recvq 等待读消息的 goroutine 队列，sendq 等待写消息的 goroutine 队列，lock 互斥锁，chan 不允许并发读写。
+channel 的数据结构包含 qccount 当前队列中剩余元素个数，dataqsiz 环形队列长度，即可以存放的元素个数，buf 环形队列指针，elemsize 每个元素的大小，closed 标识关闭状态，elemtype 元素类型，sendx 队列下表，指示元素写入时存放到队列中的位置，recv 队列下表，指示元素从队列的该位置读出。recvq 等待读消息的 goroutine 队列，sendq 等待写消息的 goroutine 队列，lock 互斥锁，chan 不允许并发读写。
 
 **无缓冲和有缓冲区别：** 管道没有缓冲区，从管道读数据会阻塞，直到有协程向管道中写入数据。同样，向管道写入数据也会阻塞，直到有协程从管道读取数据。管道有缓冲区但缓冲区没有数据，从管道读取数据也会阻塞，直到协程写入数据，如果管道满了，写数据也会阻塞，直到协程从缓冲区读取数据。
 
@@ -1396,18 +1249,17 @@ type hchan struct {
 
 **使用场景：** 消息传递、消息过滤，信号广播，事件订阅与广播，请求、响应转发，任务分发，结果汇总，并发控制，限流，同步与异步
 
-### 6、有缓存channel和无缓存channel
+### 有缓存channel和无缓存channel
 
-https://zhuanlan.zhihu.com/p/355487940
+[参考](https://zhuanlan.zhihu.com/p/355487940)
 
 无缓存channel适用于数据要求同步的场景，而有缓存channel适用于无数据同步的场景。可以根据实现项目需求选择。
 
-## **七、GMP相关**
+## **GMP**
 
-- https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmeduvk27bo0
-- https://www.mubucm.com/doc/7pukUL_nuCI-刘超
+[Golang的协程调度器原理及GMP设计思想](https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmeduvk27bo0)
 
-### 0、进程、线程、协程有什么区别？（必问）
+### 进程、线程、协程有什么区别
 
 进程：是应用程序的启动实例，每个进程都有独立的内存空间，不同的进程通过进程间的通信方式来通信。
 
@@ -1415,9 +1267,9 @@ https://zhuanlan.zhihu.com/p/355487940
 
 协程：为轻量级线程，与线程相比，协程不受操作系统的调度，协程的调度器由用户应用程序提供，协程调度器按照调度策略把协程调度到线程中运行
 
-### 1、什么是 GMP？（必问）
+### 什么是 GMP
 
-答：G 代表着 goroutine，P 代表着上下文处理器，M 代表 thread 线程，
+G 代表着 goroutine，P 代表着上下文处理器，M 代表 thread 线程，
 
 在 GPM 模型，有一个全局队列（Global Queue）：存放等待运行的 G，还有一个 P 的本地队列：也是存放等待运行的 G，但数量有限，不超过 256 个。
 
@@ -1431,23 +1283,22 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 
  **G,P,M 的个数问题**：
 
-1. G 的个数理论上是无限制的，但是受内存限制，
-2. P 的数量一般建议是逻辑 CPU 数量的 2 倍，
++ G 的个数理论上是无限制的，但是受内存限制，
++ P 的数量一般建议是逻辑 CPU 数量的 2 倍，
 
-1. 1. 由启动时环境变量$GOMAXPROCS或者是由runtime的方法GOMAXPROCS()决定。这意味着在程序执行的任意时刻都只有$GOMAXPROCS个goroutine在同时运行。
+    + 由启动时环境变量$GOMAXPROCS或者是由runtime的方法GOMAXPROCS()决定。这意味着在程序执行的任意时刻都只有$GOMAXPROCS个goroutine在同时运行。
++ M 的数量
 
-1. M 的数量
++  go语言本身的限制：go程序启动时，会设置M的最大数量，默认10000.但是内核很难支持这么多的线程数，所以这个限制可以忽略。
+   +  runtime/debug中的SetMaxThreads函数，设置M的最大数量
+   + 一个M阻塞了，会创建新的M。
 
-1. 1. go语言本身的限制：go程序启动时，会设置M的最大数量，默认10000.但是内核很难支持这么多的线程数，所以这个限制可以忽略。
-   2. runtime/debug中的SetMaxThreads函数，设置M的最大数量
-   3. 一个M阻塞了，会创建新的M。
-
-1. M与P的数量没有绝对关系，一个M阻塞，P就会去创建或者切换另一个M，所以，即使P的默认数量是1，也有可能会创建很多个M出来。
++ M与P的数量没有绝对关系，一个M阻塞，P就会去创建或者切换另一个M，所以，即使P的默认数量是1，也有可能会创建很多个M出来。
 
 **work stealing（工作量窃取） 机制**：会优先从全局队列里进行窃取，之后会从其它的P队列里窃取一半的G，放入到本地P队列里。
 **hand off （移交）机制**：当前线程的G进行阻塞调用时，例如睡眠，则当前线程就会释放P，然后把P转交给其它空闲的线程执行，如果没有闲置的线程，则创建新的线程
 
-### 2、[为什么要有 P？](https://segmentfault.com/a/1190000040092613)
+### [为什么要有 P？](https://segmentfault.com/a/1190000040092613)
 
 **带来什么改变**
 
@@ -1468,7 +1319,7 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 
 因此使用 M 是不合理的，那么引入新的组件 P，把本地队列关联到 P 上，就能很好的解决这个问题。
 
-### 3、调度器的设计策略
+### 调度器的设计策略
 
 **复用线程**：避免频繁的创建、销毁线程，而是对线程的复用。
 
@@ -1498,9 +1349,7 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 
 **上面这两段文字只是对调度的一个概括，具体的协作式调度、信号量调度大家还需要去详细了解，这偏底层了，大厂或者中高级开发会问。（字节就问了）**
 
-### 4、调度器的生命周期
-
-![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671108479128-e538cce4-0911-4683-ba0a-8a7866e4e2c1.png)
+### 调度器的生命周期
 
 特殊的M0和G0
 
@@ -1536,13 +1385,13 @@ func main() {
 
 调度器的生命周期几乎占满了一个Go程序的一生，runtime.main的goroutine执行之前都是为调度器做准备工作，runtime.main的goroutine运行，才是调度器的真正开始，直到runtime.main结束而结束。
 
-## 八、锁相关
+## 锁
 
 https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamutex
 
 https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiarwmutex
 
-### 1、除了 mutex 以外还有那些方式安全读写共享变量？
+### 除了 mutex 以外还有那些方式安全读写共享变量？
 
 \* 将共享变量的读写放到一个 goroutine 中，其它 goroutine 通过 channel 进行读写操作。
 
@@ -1550,11 +1399,11 @@ https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiarwmutex
 
 \* 通过 Mutex 锁实现
 
-### 2、Go 如何实现原子操作？
+### Go 如何实现原子操作？
 
-答：原子操作就是不可中断的操作，外界是看不到原子操作的中间状态，要么看到原子操作已经完成，要么看到原子操作已经结束。在某个值的原子操作执行的过程中，CPU 绝对不会再去执行其他针对该值的操作，那么其他操作也是原子操作。
+原子操作就是不可中断的操作，外界是看不到原子操作的中间状态，要么看到原子操作已经完成，要么看到原子操作已经结束。在某个值的原子操作执行的过程中，CPU 绝对不会再去执行其他针对该值的操作，那么其他操作也是原子操作。
 
-Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为前缀的函数）或写入（Store 为前缀的函数）某个值（这里细节还要多去查查资料）。
+Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为前缀的函数）或写入（Store 为前缀的函数）某个值
 
 **原子操作与互斥锁的区别**
 
@@ -1562,7 +1411,7 @@ Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为�
 
 2）、原子操作是针对某个值的单个互斥操作。
 
-### 3、Mutex 是悲观锁还是乐观锁？悲观锁、乐观锁是什么？
+### Mutex 是悲观锁还是乐观锁？悲观锁、乐观锁是什么？
 
 **悲观锁**
 
@@ -1572,7 +1421,7 @@ Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为�
 
 乐观锁是相对悲观锁而言的，乐观锁假设数据一般情况不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果冲突，则返回给用户异常信息，让用户决定如何去做。乐观锁适用于读多写少的场景，这样可以提高程序的吞吐量
 
-### 4、Mutex 有几种模式？
+### Mutex 有几种模式？
 
 **1）正常模式**
 
@@ -1587,7 +1436,7 @@ Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为�
 1. 此 waiter 已经是队列中的最后一个 waiter 了，没有其它的等待锁的 goroutine 了；
 2. 此 waiter 的等待时间小于 1 毫秒。
 
-### 5、goroutine 的自旋占用资源如何解决
+### goroutine 的自旋占用资源如何解决
 
 自旋锁是指当一个线程在获取锁的时候，如果锁已经被其他线程获取，那么该线程将循环等待，然后不断地判断是否能够被成功获取，直到获取到锁才会退出循环。
 
@@ -1603,15 +1452,15 @@ Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为�
 
 mutex 会让当前的 goroutine 去空转 CPU，在空转完后再次调用 CAS 方法去尝试性的占有锁资源，直到不满足自旋条件，则最终会加入到等待队列里。
 
-## **九、并发相关**
+## **并发**
 
-### 0、讲讲 Go 中主协程如何等待其余协程退出?
+### 讲讲 Go 中主协程如何等待其余协程退出?
 
-答：Go 的 sync.WaitGroup 是等待一组协程结束，sync.WaitGroup 只有 3 个方法，Add()是添加计数，Done()减去一个计数，Wait()阻塞直到所有的任务完成。Go 里面还能通过有缓冲的 channel 实现其阻塞等待一组协程结束，这个不能保证一组 goroutine 按照顺序执行，可以并发执行协程。Go 里面能通过无缓冲的 channel 实现其阻塞等待一组协程结束，这个能保证一组 goroutine 按照顺序执行，但是不能并发执行。
+Go 的 sync.WaitGroup 是等待一组协程结束，sync.WaitGroup 只有 3 个方法，Add()是添加计数，Done()减去一个计数，Wait()阻塞直到所有的任务完成。Go 里面还能通过有缓冲的 channel 实现其阻塞等待一组协程结束，这个不能保证一组 goroutine 按照顺序执行，可以并发执行协程。Go 里面能通过无缓冲的 channel 实现其阻塞等待一组协程结束，这个能保证一组 goroutine 按照顺序执行，但是不能并发执行。
 
 **啰嗦一句：**循环智能二面，手写代码部分时，三个协程按交替顺序打印数字，最后题目做出来了，问我代码中Add()是什么意思，我回答的不是很清晰，这家公司就没有然后了。Add()表示协程计数，可以一次Add多个，如Add(3),可以多次Add(1);然后每个子协程必须调用done（）,这样才能保证所有子协程结束，主协程才能结束。
 
-### 1、怎么控制并发数？
+### 怎么控制并发数？
 
 **第一，有缓冲通道**
 
@@ -1659,7 +1508,7 @@ func main() {
 }
 ```
 
-### 2、多个 goroutine 对同一个 map 写会 panic，异常是否可以用 defer 捕获？
+### 多个 goroutine 对同一个 map 写会 panic，异常是否可以用 defer 捕获？
 
 可以捕获异常，但是只能捕获一次，Go语言，可以使用多值返回来返回错误。不要用异常代替错误，更不要用来控制流程。在极个别的情况下，才使用Go中引入的Exception处理：defer, panic, recover Go中，对异常处理的原则是：多用error包，少用panic
 
@@ -1672,29 +1521,11 @@ defer func() {
 }()
 ```
 
-### 3、如何优雅的实现一个 goroutine 池
+### 如何优雅的实现一个 goroutine 池
 
-（百度、手写代码，本人面传音控股被问道：请求数大于消费能力怎么设计协程池）
+[协程池](https://blog.csdn.net/finghting321/article/details/106492915/)
 
-这一块能啃下来，offer满天飞，这应该是保证高并发系统稳定性、高可用的核心部分之一。
-
-**建议参考：**
-
-[Golang学习篇--协程池_Word哥的博客-CSDN博客_golang协程池blog.csdn.net/finghting321/article/details/106492915/](https://link.zhihu.com/?target=https%3A//blog.csdn.net/finghting321/article/details/106492915/)
-
-**这篇文章的目录是：**
-
-\1. 为什么需要协程池？
-
-\2. 简单的协程池
-
-\3. go-playground/pool
-
-\4. ants（推荐）
-
-**所以直接研究ants底层吧，省的造轮子。**
-
-### 4、golang实现多并发请求（发送多个get请求）
+### golang实现多并发请求（发送多个get请求）
 
 在[go语言](https://so.csdn.net/so/search?q=go语言&spm=1001.2101.3001.7020)中其实有两种方法进行协程之间的通信。**一个是共享内存、一个是消息传递**
 
@@ -1809,15 +1640,13 @@ func main() {
 
 我们通过[go语言](https://so.csdn.net/so/search?q=go语言&spm=1001.2101.3001.7020)的管道channel来实现并发请求，能够解决如何避免传统共享内存实现并发的很多问题而且效率会高于共享内存的方法。 
 
-## **十、GC相关**
+## **GC**
 
 https://www.topgoer.cn/docs/gozhuanjia/chapter044.2-garbage_collection
 
 https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmee076rjgk7
 
-### 1、go gc 是怎么实现的？（必问）
-
-答：
+### go gc 是怎么实现的？
 
 **细分常见的三个问题：1、GC机制随着golang版本变化如何变化的？2、三色标记法的流程？3、插入屏障、删除屏障，混合写屏障（具体的实现比较难描述，但你要知道屏障的作用：避免程序运行过程中，变量被误回收；减少STW的时间）4、虾皮还问了个开放性的题目：你觉得以后GC机制会怎么优化？**
 
@@ -1831,7 +1660,7 @@ GoV1.8 **混合写屏障**规则是：
 
 1）GC 开始将栈上的对象全部扫描并标记为黑色(之后不再进行第二次重复扫描，无需 STW)，2）GC 期间，任何在栈上创建的新对象，均为黑色。3）被删除的对象标记为灰色。4）被添加的对象标记为灰色。
 
-### 2、go 是 gc 算法是怎么实现的？ （得物，出现频率低）
+### go 是 gc 算法是怎么实现的
 
 ```go
 func GC() {
@@ -1857,9 +1686,9 @@ func GC() {
 
 底层原理了，可能大厂，中高级才会问，参考：
 
-[Golang GC算法解读_suchy_sz的博客-CSDN博客_go的gc算法blog.csdn.net/shudaqi2010/article/details/90025192](https://link.zhihu.com/?target=https%3A//blog.csdn.net/shudaqi2010/article/details/90025192)
+[GC算法解读](https://blog.csdn.net/shudaqi2010/article/details/90025192)
 
-### 3、GC 中 stw 时机，各个阶段是如何解决的？ （百度）
+### GC 中 stw 时机，各个阶段是如何解决的？
 
 **底层原理，自行百度一下，我等渣渣简历都过不了BAT，字节，虾皮，特使拉以及一些国Q还能收到面试邀约**。
 
@@ -1875,19 +1704,14 @@ func GC() {
 
 6）结束，释放 M。
 
-### 4、GC 的触发时机？
+### GC 的触发时机？
 
-初级必问，分为系统触发和主动触发。
+1. gcTriggerHeap：当所分配的堆大小达到阈值（由控制器计算的触发堆的大小）时，将会触发。
+2. gcTriggerTime：当距离上一个 GC 周期的时间超过一定时间时，将会触发。时间周期以runtime.forcegcperiod 变量为准，默认 2 分钟。
+3. gcTriggerCycle：如果没有开启 GC，则启动 GC。
+4. 手动触发的 runtime.GC 方法。
 
-1）gcTriggerHeap：当所分配的堆大小达到阈值（由控制器计算的触发堆的大小）时，将会触发。
-
-2）gcTriggerTime：当距离上一个 GC 周期的时间超过一定时间时，将会触发。时间周期以runtime.forcegcperiod 变量为准，默认 2 分钟。
-
-3）gcTriggerCycle：如果没有开启 GC，则启动 GC。
-
-4）手动触发的 runtime.GC 方法。
-
-## **十一、内存相关**
+## **内存**
 
 ### [内存分配原理](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiachapter044.1-memory_alloc)
 
@@ -1897,19 +1721,16 @@ func GC() {
 
 ### [Go语言的内存模型及堆的分配管理](https://zhuanlan.zhihu.com/p/76802887)
 
-### 1、谈谈内存泄露，什么情况下内存会泄露？怎么定位排查内存泄漏问题？
+### 谈谈内存泄露，什么情况下内存会泄露？怎么定位排查内存泄漏问题？
 
-答：go 中的内存泄漏一般都是 goroutine 泄漏，就是 goroutine 没有被关闭，或者没有添加超时控制，让 goroutine 一只处于阻塞状态，不能被 GC。
+go 中的内存泄漏一般都是 goroutine 泄漏，就是 goroutine 没有被关闭，或者没有添加超时控制，让 goroutine 一只处于阻塞状态，不能被 GC。
 
 **内存泄露有下面一些情况**
 
-1）如果 goroutine 在执行时被阻塞而无法退出，就会导致 goroutine 的内存泄漏，一个 goroutine 的最低栈大小为 2KB，在高并发的场景下，对内存的消耗也是非常恐怖的。
-
-2）互斥锁未释放或者造成死锁会造成内存泄漏
-
-3）time.Ticker 是每隔指定的时间就会向通道内写数据。作为循环触发器，必须调用 stop 方法才会停止，从而被 GC 掉，否则会一直占用内存空间。
-
-4）字符串的截取引发临时性的内存泄漏
+1. 如果 goroutine 在执行时被阻塞而无法退出，就会导致 goroutine 的内存泄漏，一个 goroutine 的最低栈大小为 2KB，在高并发的场景下，对内存的消耗也是非常恐怖的。
+2. 互斥锁未释放或者造成死锁会造成内存泄漏
+3. time.Ticker 是每隔指定的时间就会向通道内写数据。作为循环触发器，必须调用 stop 方法才会停止，从而被 GC 掉，否则会一直占用内存空间。
+4. 字符串的截取引发临时性的内存泄漏
 
 ```go
 func main() {
@@ -1935,25 +1756,22 @@ func main() {
 
 **当然你能说说具体的分析指标更加分咯，有的面试官就喜欢他问什么，你简洁的回答什么，不喜欢巴拉巴拉详细解释一通，比如虾P面试官，不过他考察的内容特别多，可能是为了节约时间。**
 
-### 2、golang 的内存逃逸吗？什么情况下会发生内存逃逸？（必问）
+### golang 的内存逃逸吗？什么情况下会发生内存逃逸？
 
-答：1)本该分配到栈上的变量，跑到了堆上，这就导致了内存逃逸。2)栈是高地址到低地址，栈上的变量，函数结束后变量会跟着回收掉，不会有额外性能的开销。3)变量从栈逃逸到堆上，如果要回收掉，需要进行 gc，那么 gc 一定会带来额外的性能开销。编程语言不断优化 gc 算法，主要目的都是为了减少 gc 带来的额外性能开销，变量一旦逃逸会导致性能开销变大。
+1. 本该分配到栈上的变量，跑到了堆上，这就导致了内存逃逸。
+2. 栈是高地址到低地址，栈上的变量，函数结束后变量会跟着回收掉，不会有额外性能的开销
+3. 变量从栈逃逸到堆上，如果要回收掉，需要进行 gc，那么 gc 一定会带来额外的性能开销。编程语言不断优化 gc 算法，主要目的都是为了减少 gc 带来的额外性能开销，变量一旦逃逸会导致性能开销变大。
 
 **内存逃逸的情况如下：**
 
-1）方法内返回局部变量指针。
+1. 方法内返回局部变量指针。
+2. 向 channel 发送指针数据。
+3. 在闭包中引用包外的值。
+4. 在 slice 或 map 中存储指针。
+5. 切片（扩容后）长度太大。
+6. 在 interface 类型上调用方法。
 
-2）向 channel 发送指针数据。
-
-3）在闭包中引用包外的值。
-
-4）在 slice 或 map 中存储指针。
-
-5）切片（扩容后）长度太大。
-
-6）在 interface 类型上调用方法。
-
-### 3、请简述 Go 是如何分配内存的？
+### 请简述 Go 是如何分配内存的？
 
 mcache mcentral mheap mspan
 
@@ -1961,9 +1779,9 @@ Go 程序启动的时候申请一大块内存，并且划分 spans，bitmap，ar
 
 **这里描述的比较简单，你可以自己再去搜索下更简洁完整的答案。**
 
-### 4、[go内存分配器](https://zhuanlan.zhihu.com/p/410317967)
+### [go内存分配器](https://zhuanlan.zhihu.com/p/410317967)
 
-### 5、Channel 分配在栈上还是堆上？哪些对象分配在堆上，哪些对象分配在栈上？
+### Channel 分配在栈上还是堆上？哪些对象分配在堆上，哪些对象分配在栈上？
 
 Channel 被设计用来实现协程间通信的组件，其作用域和生命周期不可能仅限于某个函数内部，所以 golang 直接将其分配在堆上
 
@@ -1973,7 +1791,7 @@ Channel 被设计用来实现协程间通信的组件，其作用域和生命周
 
 当前情况下，如果一个变量被取地址，那么它就有可能被分配到堆上,然而，还要对这些变量做逃逸分析，如果函数 return 之后，变量不再被引用，则将其分配到栈上。
 
-### 6、介绍一下大对象小对象，为什么小对象多了会造成 gc 压力？
+### 介绍一下大对象小对象，为什么小对象多了会造成 gc 压力？
 
 小于等于 32k 的对象就是小对象，其它都是大对象。一般小对象通过 mspan 分配内存；大对象则直接由 mheap 分配内存。通常小对象过多会导致 GC 三色法消耗过多的 CPU。优化思路是，减少对象分配。
 
@@ -1981,198 +1799,75 @@ Channel 被设计用来实现协程间通信的组件，其作用域和生命周
 
 大对象：如果申请大于 32k 以上的大对象时，可能会触发 GC 行为。
 
-## 十二、编译
+## 编译
 
 ### [逃逸分析是怎么进行的](http://golang.design/go-questions/compile/escape/)
 
-
-
 在编译原理中，分析指针动态范围的方法称之为逃逸分析。通俗来讲，当一个对象的指针被多个方法或线程引用时，我们称这个指针发生了逃逸。
-
-
 
 Go语言的逃逸分析是编译器执行静态代码分析后，对内存管理进行的优化和简化，它可以决定一个变量是分配到堆还栈上。
 
-
-
 写过C/C++的同学都知道，调用著名的malloc和new函数可以在堆上分配一块内存，这块内存的使用和销毁的责任都在程序员。一不小心，就会发生内存泄露。
-
-
 
 Go语言里，基本不用担心内存泄露了。虽然也有new函数，但是使用new函数得到的内存不一定就在堆上。堆和栈的区别对程序员“模糊化”了，当然这一切都是Go编译器在背后帮我们完成的。
 
-
-
 Go语言逃逸分析最基本的原则是：如果一个函数返回对一个变量的引用，那么它就会发生逃逸。
-
-
 
 简单来说，编译器会分析代码的特征和代码生命周期，Go中的变量只有在编译器可以证明在函数返回后不会再被引用的，才分配到栈上，其他情况下都是分配到堆上。
 
-
-
 Go语言里没有一个关键字或者函数可以直接让变量被编译器分配到堆上，相反，编译器通过分析代码来决定将变量分配到何处。
-
-
 
 对一个变量取地址，可能会被分配到堆上。但是编译器进行逃逸分析后，如果考察到在函数返回后，此变量不会被引用，那么还是会被分配到栈上。
 
-
-
 编译器会根据变量是否被外部引用来决定是否逃逸：
-
-
 
 1. 如果函数外部没有引用，则优先放到栈中；
 2. 如果函数外部存在引用，则必定放到堆中；
 
-
-
 Go的垃圾回收，让堆和栈对程序员保持透明。真正解放了程序员的双手，让他们可以专注于业务，“高效”地完成代码编写。把那些内存管理的复杂机制交给编译器，而程序员可以去享受生活。
-
-
 
 逃逸分析这种“骚操作”把变量合理地分配到它该去的地方。即使你是用new申请到的内存，如果我发现你竟然在退出函数后没有用了，那么就把你丢到栈上，毕竟栈上的内存分配比堆上快很多；反之，即使你表面上只是一个普通的变量，但是经过逃逸分析后发现在退出函数之后还有其他地方在引用，那我就把你分配到堆上。
 
-
-
 如果变量都分配到堆上，堆不像栈可以自动清理。它会引起Go频繁地进行垃圾回收，而垃圾回收会占用比较大的系统开销（占用CPU容量的25%）。
-
-
 
 堆和栈相比，堆适合不可预知大小的内存分配。但是为此付出的代价是分配速度较慢，而且会形成内存碎片。栈内存分配则会非常快。栈分配内存只需要两个CPU指令：“PUSH”和“RELEASE”，分配和释放；而堆分配内存首先需要去找到一块大小合适的内存块，之后要通过垃圾回收才能释放。
 
-
-
 通过逃逸分析，可以尽量把那些不需要分配到堆上的变量直接分配到栈上，堆上的变量少了，会减轻分配堆内存的开销，同时也会减少gc的压力，提高程序的运行速度。
-
-
 
 ### [GoRoot 和 GoPath 有什么用](http://golang.design/go-questions/compile/gopath/)
 
-
-
 GoRoot 是 Go 的安装路径。mac 或 unix 是在 `/usr/local/go` 路径上，来看下这里都装了些什么：
-
-
-
-![img](https://golang.design/go-questions/compile/assets/1.png)
-
-
-
-bin 目录下面：
-
-
-
-![img](https://golang.design/go-questions/compile/assets/2.png)
-
-
-
-pkg 目录下面：
-
-
-
-![img](https://golang.design/go-questions/compile/assets/3.png)
-
-
-
-Go 工具目录如下，其中比较重要的有编译器 `compile`，链接器 `link`：
-
-
-
-![img](https://golang.design/go-questions/compile/assets/4.png)
-
-
 
 GoPath 的作用在于提供一个可以寻找 `.go` 源码的路径，它是一个工作空间的概念，可以设置多个目录。Go 官方要求，GoPath 下面需要包含三个文件夹：
 
-
-
-```go
-src
-pkg
-bin
-```
-
-
-
 src 存放源文件，pkg 存放源文件编译后的库文件，后缀为 `.a`；bin 则存放可执行文件。
-
-
 
 ### [Go 编译链接过程概述](http://golang.design/go-questions/compile/link-process/)
 
-
-
 Go 程序并不能直接运行，每条 Go 语句必须转化为一系列的低级机器语言指令，将这些指令打包到一起，并以二进制磁盘文件的形式存储起来，也就是可执行目标文件。
-
-
-
-从源文件到可执行目标文件的转化过程：
-
-
-
-![img](https://golang.design/go-questions/compile/assets/7.png)
-
-
 
 完成以上各个阶段的就是 Go 编译系统。你肯定知道大名鼎鼎的 GCC（GNU Compile Collection），中文名为 GNU 编译器套装，它支持像 C，C++，Java，Python，Objective-C，Ada，Fortran，Pascal，能够为很多不同的机器生成机器码。
 
-
-
 可执行目标文件可以直接在机器上执行。一般而言，先执行一些初始化的工作；找到 main 函数的入口，执行用户写的代码；执行完成后，main 函数退出；再执行一些收尾的工作，整个过程完毕。
-
-
 
 在接下来的文章里，我们将探索`编译`和`运行`的过程。
 
-
-
 Go 源码里的编译器源码位于 `src/cmd/compile` 路径下，链接器源码位于 `src/cmd/link` 路径下。
-
-
 
 ### [Go 编译相关的命令详解](http://golang.design/go-questions/compile/cmd/)
 
-
-
-和编译相关的命令主要是：
-
-
-
-```go
-go build
-go install
-go run
-```
-
-
-
 #### go build
-
-
 
 `go build` 用来编译指定 packages 里的源码文件以及它们的依赖包，编译的时候会到 `$GoPath/src/package` 路径下寻找源码文件。`go build` 还可以直接编译指定的源码文件，并且可以同时指定多个。
 
-
-
 通过执行 `go help build` 命令得到 `go build` 的使用方法：
 
-
-
-```go
+```bash
 usage: go build [-o output] [-i] [build flags] [packages]
 ```
 
-
-
 `-o` 只能在编译单个包的时候出现，它指定输出的可执行文件的名字。
-
-
-
 `-i` 会安装编译目标所依赖的包，安装是指生成与代码包相对应的 `.a` 文件，即静态库文件（后面要参与链接），并且放置到当前工作区的 pkg 目录下，且库文件的目录层级和源码层级一致。
-
-
 
 至于 build flags 参数，`build, clean, get, install, list, run, test` 这些命令会共用一套：
 
@@ -2186,39 +1881,21 @@ usage: go build [-o output] [-i] [build flags] [packages]
 | -x    | 打印命令执行过程中所涉及到的命令，并执行                     |
 | -work | 打印编译过程中的临时文件夹。通常情况下，编译完成后会被删除   |
 
-
-
 我们知道，Go 语言的源码文件分为三类：命令源码、库源码、测试源码。
-
-
 
 命令源码文件：是 Go 程序的入口，包含 `func main()` 函数，且第一行用 `package main` 声明属于 main 包。
 
-
-
 库源码文件：主要是各种函数、接口等，例如工具类的函数。
-
-
 
 测试源码文件：以 `_test.go` 为后缀的文件，用于测试程序的功能和性能。
 
-
-
 注意，`go build` 会忽略 `*_test.go` 文件。
-
-
 
 #### go install
 
-
-
 `go install` 用于编译并安装指定的代码包及它们的依赖包。相比 `go build`，它只是多了一个“安装编译后的结果文件到指定目录”的步骤。
 
-
-
 还是使用之前 hello-world 项目的例子，我们先将 pkg 目录删掉，在项目根目录执行：
-
-
 
 ```go
 go install src/main.go
@@ -2228,39 +1905,27 @@ go install src/main.go
 go install util
 ```
 
-
-
 两者都会在根目录下新建一个 `pkg` 目录，并且生成一个 `util.a` 文件。
-
-
 
 并且，在执行前者的时候，会在 GOBIN 目录下生成名为 main 的可执行文件。
 
-
-
 所以，运行 `go install` 命令，库源码包对应的 `.a` 文件会被放置到 `pkg` 目录下，命令源码包生成的可执行文件会被放到 GOBIN 目录。
-
-
 
 `go install` 在 GoPath 有多个目录的时候，会产生一些问题，具体可以去看郝林老师的 `Go 命令教程`，这里不展开了。
 
-
-
 #### go run
-
-
 
 `go run` 用于编译并运行命令源码文件。
 
 ### [Go 程序启动过程是怎样的](http://golang.design/go-questions/compile/booting/)
 
-## 十三、框架
+## 框架
 
 ### Gin
 
-文档：https://gin-gonic.com/zh-cn/docs/introduction/
+[文档](https://gin-gonic.com/zh-cn/docs/introduction/)
 
-#### 0、特性
+#### 特性
 
 1. **快速**
 
@@ -2294,7 +1959,7 @@ go install util
 
 1. 1. 新建一个中间件非常简单，去查看[示例代码](https://gin-gonic.com/zh-cn/docs/examples/using-middleware/)吧。
 
-#### 1、[gin目录结构](https://blog.csdn.net/qq_34877350/article/details/107959381)
+#### [gin目录结构](https://blog.csdn.net/qq_34877350/article/details/107959381)
 
 文档：https://blog.csdn.net/qq_34877350/article/details/107959381
 
@@ -2330,7 +1995,7 @@ go install util
 - 文件 引用顺序 大致如下：
 - main.go(在main中关闭数据库) - router(Middlewares) - Controllers - Services(sessions) - Models - Databases
 
-#### 2、[Gin框架介绍及使用 - 李文周的博客](https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0)
+#### [Gin框架介绍及使用 - 李文周的博客](https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0)
 
 文档：https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0
 
@@ -2373,7 +2038,7 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 - 多协议支持Hertz 框架原生提供 HTTP1.1、ALPN 协议支持。除此之外，由于分层设计，Hertz 甚至支持自定义构建协议解析逻辑，以满足协议层扩展的任意需求。
 - 网络层切换能力Hertz 实现了 Netpoll 和 Golang 原生网络库 间按需切换能力，用户可以针对不同的场景选择合适的网络库，同时也支持以插件的方式为 Hertz 扩展网络库实现。
 
-### RPC-Kitex 
+### RPC-Kitex
 
 文档：https://www.cloudwego.io/zh/docs/kitex/overview/
 
@@ -2391,7 +2056,7 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 
 ## 参考并致谢
 
-1. 可可酱 [可可酱：Golang常见面试题](https://zhuanlan.zhihu.com/p/434629143)
-2. Bel_Ami同学 [golang 面试题(从基础到高级)](https://link.zhihu.com/?target=https%3A//blog.csdn.net/Bel_Ami_n/article/details/123352478)
+1. [可可酱：Golang常见面试题](https://zhuanlan.zhihu.com/p/434629143)
+2. [golang 面试题(从基础到高级)](https://blog.csdn.net/Bel_Ami_n/article/details/123352478)
 
 > [原文](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md)
