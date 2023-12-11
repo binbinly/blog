@@ -1,3 +1,5 @@
+# golang基础
+
 ## 安装
 
 - [官方文档](https://go.dev/doc/install)

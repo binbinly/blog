@@ -1,3 +1,5 @@
+# es6+基础
+
 ## es6 ~ es13所有新特性
 
 ### ECMAScript简介
