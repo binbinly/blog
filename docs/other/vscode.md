@@ -1,6 +1,7 @@
 # vscode
 
 ## 配置
+
 ```json
 {
     "workbench.iconTheme": "vscode-icons",
@@ -14,6 +15,7 @@
 ```
 
 ## 常用插件
+
 - `Chinese (Simplified)` 中文包
 - `IntelliJ IDEA Keybindings` 使用IDEA快捷键
 - `Codeium` AI辅助代码补全

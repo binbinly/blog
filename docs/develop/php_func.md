@@ -407,5 +407,4 @@
 | [date_modify](https://www.php.net/date_modify)  | 修改时间戳 |
 | [date_diff](https://www.php.net/date_diff)  | 返回两个 `DateTime` 对象间的差值 |
 
-------
 > [原文](https://github.com/fossabot/notes-1/blob/master/PHP/PHP%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0.md)

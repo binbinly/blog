@@ -11,14 +11,15 @@
 * [PHP7新特性](https://www.php.net/manual/zh/migration70.new-features.php)
 * [PHP Package Repository](https://packagist.org/)
 * [Laravel 10 中文文档](https://learnku.com/docs/laravel/10.x)
-* [laravel-admin](https://explore-pu.github.io/laravel-admin-docs-cn/guide/)
+* [laravel-admin 文档](https://explore-pu.github.io/laravel-admin-docs-cn/guide/)
 
 ### 下载
 
 [下载地址](https://www.php.net/downloads)
 
 ### yum安装
-- [install doc](https://computingforgeeks.com/how-to-install-php-8-2-on-centos-rhel-7/?expand_article=1)
+
+[install doc](https://computingforgeeks.com/how-to-install-php-8-2-on-centos-rhel-7/?expand_article=1)
 
 ```bash
 # Enable EPEL repository on your CentOS 7 / RHEL 7 system:
@@ -38,6 +39,7 @@ sudo systemctl enable --now nginx php-fpm
 ```
 
 ### 源码编译安装
+
 ```bash
 # 下载适合的版本
 wget https://www.php.net/distributions/php-8.2.12.tar.gz
@@ -83,6 +85,7 @@ make
 # 安装
 make install
 ```
+
 ```bash
 # 添加环境变量
 vim /etc/profile
@@ -153,9 +156,9 @@ $argc — 传递给脚本的参数数目
 $argv — 传递给脚本的参数数组
 ```
 
-- 超全局变量
+#### 超全局变量
 
-PHP 中的许多预定义变量都是“超全局的”，这意味着它们在一个脚本的全部作用域中都可用。在函数或方法中无需执行 `global $variable`; 就可以访问它们
+PHP 中的许多预定义变量都是`超全局的`，这意味着它们在一个脚本的全部作用域中都可用。在函数或方法中无需执行 `global $variable`; 就可以访问它们
 超全局变量：`$GLOBALS`、`$_SERVER`、`$_GET`、`$_POST`、`$_FILES`、`$_COOKIE`、`$_SESSION`、`$_REQUEST`、`$_ENV`
 
 ### 魔术常量

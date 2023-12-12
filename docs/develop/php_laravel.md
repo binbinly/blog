@@ -91,7 +91,7 @@ $user->login();
 这样想用任何方式记录操作日志都不需要去修改 `User` 类了，只需要通过构造函数参数传递就可以实现，其实这就是 **控制反转**。
 
 > 不需要自己修改内容，改成由外部传递。这种由外部负责其依赖需求的行为，我们可以称其为 **控制反转（IoC）**。
-
+>
 > 不是由自己内部 `new` 对象或者实例，通过构造函数，或者方法传入的都属于 **依赖注入（DI）** 。上面的例子也算是依赖注入，
 
 ### laravel 依赖注入
@@ -117,7 +117,7 @@ class PostController extends Controller {
 
 ### 反射理解
 
-+ 反射常用的 api
+#### 反射常用的 api
 
 ```php
 // 获取User的reflectionClass对象
@@ -136,7 +136,7 @@ $user = $reflector->newInstance();
 $user = $reflector->newInstanceArgs($dependencies = []);
 ```
 
-+ 具体代码实现
+#### 具体代码实现
 
 ```php
 // 注意我们这里需要修改一下User的构造函数，如果不去修改。反射是不能动态创建接口的，那如果非要用接口该怎么处理呢？下一节我们讲Ioc容器的时候会去解决。
@@ -492,7 +492,7 @@ UserFacade::setFacadeIoc($ioc);
 UserFacade::login();
 ```
 
-##  Laravel中间件
+## Laravel中间件
 
 > Laravel 中间件提供了一种方便的机制来过滤进入应用的 HTTP 请求
 

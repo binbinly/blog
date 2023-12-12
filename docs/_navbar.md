@@ -36,8 +36,6 @@
   * [mysql](interview/mysql.md)
   * [redis](interview/redis.md)
   * [rabbitmq](interview/rabbitmq.md)
-  * [mongodb上](interview/mongodb.md)
-  * [mongodb下](interview/mongodb2.md)
   * [cdn](interview/cdn.md)
   * [HTTPS通信流程详解](interview/https.md)
   * [TCP三次握手](interview/tcp.md)

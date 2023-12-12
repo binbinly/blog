@@ -358,13 +358,3 @@ g0   g        // m0的g0，也就是m0.g0 = &g0
 在程序初始化时，这些全变量都会被初始化为0值，指针会被初始化为nil指针，切片初始化为nil切片，int被初始化为数字0，结构体的所有成员变量按其本类型初始化为其类型的0值。所以程序刚启动时allgs，allm和allp都不包含任何g,m和p。
 
 > 原文： <https://github.com/lifei6671/interview-go/blob/master/base/go-scheduler-base.md>
-
-
-
-
-
-
-
-
-
-
