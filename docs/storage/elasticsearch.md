@@ -1,4 +1,6 @@
-## 安装
+# Elasticsearch
+
+## 基础
 
 > [文章来源](https://www.elastic.org.cn/categories/docs)
 
@@ -44,17 +46,19 @@ transport.port：9300
 ```
 
 > 开发模式：开发模式是默认配置（未配置集群发现设置），如果用户只是出于学习目的，而引导检查会把很多用户挡在门外，所以ES提供了一个设置项`discovery.type=single-node`。此项配置为指定节点为单节点发现以绕过引导检查。
-
+>
 > 生产模式：当用户修改了有关集群的相关配置会触发生产模式，在生产模式下，服务启动会触发ES的引导检查或者叫启动检查（bootstrap checks），所谓引导检查就是在服务启动之前对一些重要的配置项进行检查，检查其配置值是否是合理的。引导检查包括对JVM大小、内存锁、虚拟内存、最大线程数、集群发现相关配置等相关的检查，如果某一项或者几项的配置不合理，ES会拒绝启动服务，并且在开发模式下的某些警告信息会升级成错误信息输出。引导检查十分严格，之所以宁可拒绝服务也要阻止用户启动服务是为了防止用户在对ES的基本使用不了解的前提下启动服务而导致的后期性能问题无法解决或者解决起来很麻烦。因为一旦服务以某种不合理的配置启动，时间久了之后可能会产生较大的性能问题，但此时集群已经变得难以维护和扩展，ES为了避免这种情况而做出了引导检查的设置，本来在开发模式下为警告的启动日志会升级为报错（Error）。这种设定虽然增加了用户的使用门槛，但是避免了日后产生更大的问题。
 
 ### 检查服务状态
 
 > 在7.x的版本是通过如下地址访问ES服务：http://localhost:9200/
-
+>
 > Elastic 8 默认开启了 SSL，将默认配置项由true改为false即可
+
 ```bash
 xpack.security.enabled: false
 ```
+
 > 推荐 https://localhost:9200/
 
 ### 构建基于Security的本地集群
@@ -89,7 +93,7 @@ Elasticsearch（后称为 ES ）是一个天生支持分布式的搜索、聚合
 - 跨编程语言：支持Java、Golang、Python、C#、PHP等多种变成语言，几乎所有语言开发者都可以使用Elasticsearch。
 
 > 性能高，PB（1PB = 1024TB = 1024²GB）级数据秒内响应。
-
+>
 > 不支持事务
 
 ### 节点：Node
@@ -102,7 +106,8 @@ GET _cat/nodes?v
 
 ### 角色：Roles
 
-+ 常见角色
+常见角色
+
 - 主节点（active master）：一般指活跃的主节点，一个集群中只能有一个，主要作用是对集群的管理。
 - 候选节点（master-eligible）：当主节点发生故障时，参与选举，也就是主节点的替代节点。
 - 数据节点（data node）：数据节点保存包含已编入索引的文档的分片。数据节点处理数据相关操作，如 CRUD、搜索和聚合。这些操作是 I/O 密集型、内存密集型和 CPU 密集型的。监控这些资源并在它们过载时添加更多数据节点非常重要。
@@ -131,7 +136,7 @@ node.roles: [ 角色1, 角色2, xxx ]
 
 > ES 是自动发现的，即零配置，开箱即用，无需任何网络配置，Elasticsearch 将绑定到可用的环回地址并扫描本地端口9300到9305连接同一服务器上运行的其他节点，自动形成集群。此行为无需进行任何配置即可提供自动集群服务。
 
-+ 核心配置
+### 核心配置
 
 - `network.host`：即提供服务的ip地址，一般配置为本节点所在服务器的内网地址，此配置会导致节点由开发模式转为生产模式，从而触发引导检查。
 - `network.publish_host`：即提供服务的ip地址，一般配置为本节点所在服务器的公网地址
@@ -157,10 +162,12 @@ GET _cluster/health
 - _cat/shards：查看集群中所有分片的分配情况
 
 ### Cluster APIs
+
 - _cluster/allocation/explain：可用于诊断分片未分配原因
 - _cluster/health/ ：检查集群状态
 
 ### 索引未分配的原因
+
 - `ALLOCATION_FAILED`: 由于分片分配失败而未分配
 - `CLUSTER_RECOVERED`: 由于完整群集恢复而未分配.
 - `DANGLING_INDEX_IMPORTED`: 由于导入悬空索引而未分配.
@@ -174,7 +181,7 @@ GET _cluster/health
 - `REPLICA_ADDED`: 由于显式添加了复制副本而未分配.
 - `REROUTE_CANCELLED`: 由于显式取消重新路由命令而取消分配.
 
-# 分片
+## 分片
 
 > 分片可以理解为 索引的碎片。并且所有碎片都是可以无限复制的
 
@@ -240,6 +247,7 @@ PUT test_setting/_settings
 ### 索引操作
 
 > 以小写英文字母命名索引，不要使用驼峰或者帕斯卡命名法则，如过出现多个单词的索引名称，以全小写 + 下划线分隔的方式：如test_index。
+
 ```bash
 # 创建索引
 PUT <index_name>
@@ -342,12 +350,14 @@ POST /_bulk
 {"index":{"_index":"goods","_id":"1"}}
 {"name":"phone"}
 ```
+
 ```bash
 # update
 POST goods/_bulk
 { "update": { "_index": "goods",  "_id": "1"} }
 { "doc" : {"name" : "huawei"} }
 ```
+
 ```bash
 # delete
 POST /_bulk
@@ -358,14 +368,15 @@ POST /_bulk
 
 > ES 中的 mapping 有点类似与关系数据库中表结构的概念
 
-+ 查看索引
+### 查看索引
 
 ```bash
 GET /<index_name>/_mappings
 
 GET /<index_name>/_mappings/field/<field_name>
 ```
-+ 创建索引
+
+### 创建索引
 
 ```bash
 PUT /<index_name>
@@ -382,7 +393,9 @@ PUT /<index_name>
   "alias":"t" //索引别名
 }
 ```
-+ 修改索引
+
+### 修改索引
+
 ```bash
 PUT <index_name>/_mapping
 {
@@ -395,6 +408,7 @@ PUT <index_name>/_mapping
   }
 }
 ```
+
 > **注意**：并非所有字段参数都可以修改。字段类型不可修改，字段分词器不可修改
 
 ### 数据类型
@@ -449,12 +463,14 @@ PUT <index_name>/_mapping
 - `fielddata` 查询时内存数据结构，在首次用当前字段聚合、排序或者在脚本中使用时，需要字段为fielddata数据结构，并且创建倒排索引保存到堆中
 - `fields` 给 field 创建多字段，用于不同目的（全文检索或者聚合分析排序）
 - format 用于格式化代码
+
 ```json
 "date":{
     "type":"date",
     "format":"yyyy-MM-dd"
 }
 ```
+
 - `ignore_above` 超过长度将被忽略
 - ignore_malformed	忽略类型错误
 - index_options	控制将哪些信息添加到反向索引中以进行搜索和突出显示。仅用于text 字段
@@ -504,6 +520,7 @@ GET _analyze
   "analyzer": "english"
 }
 ```
+
 ```bash
 # 不同词项过滤器的基本使用
 GET _analyze
@@ -519,6 +536,7 @@ GET _analyze
   "text" : ["www.elastic.org.cn","www elastic org cn"]
 }
 ```
+
 ```bash
 # 默认停用词使用
 GET _analyze
@@ -554,10 +572,11 @@ GET test_token_filter_stop/_analyze
 }
 ```
 
-+ 同义词
-同义词定义规则
+#### 同义词定义规则
+
 - a, b, c => d：这种方式，a、b、c 会被 d 代替。
 - a, b, c, d：这种方式下，a、b、c、d 是等价的。
+
 ```bash
 # 自定义规则，直接在synonym内部声明规则
 PUT test_token_filter_synonym
@@ -603,12 +622,13 @@ GET test_token_filter_synonym/_analyze
 }
 ```
 
-+ 字符过滤器：Character Filter
+#### 字符过滤器：Character Filter
 
-    + type：使用的字符过滤器类型名称，可配置以下值
-        - html_strip
-        - mapping
-        - pattern_replace
++ type：使用的字符过滤器类型名称，可配置以下值
+    - html_strip
+    - mapping
+    - pattern_replace
+
 ```bash
 PUT <index_name>
 {
@@ -626,7 +646,9 @@ PUT <index_name>
   }
 }
 ```
-+ 字符映射过滤器：Mapping Character Filter
+
+#### 字符映射过滤器：Mapping Character Filter
+
 ```bash
 PUT test_html_strip_filter
 {
@@ -652,7 +674,9 @@ GET test_html_strip_filter/_analyze
   "text": "你就是个垃圾！滚"
 }
 ```
-+ 正则替换过滤器：Pattern Replace Character Filter
+
+#### 正则替换过滤器：Pattern Replace Character Filter
+
 ```bash
 PUT text_pattern_replace_filter
 {
@@ -675,7 +699,7 @@ GET text_pattern_replace_filter/_analyze
 }
 ```
 
-### 内置分词器：
+### 内置分词器
 
 - **Standard** ：默认分词器，中文支持的不理想，会逐字拆分。参数值为：standard
 - Pattern：以正则匹配分隔符，把文本拆分成若干词项。参数值为：pattern
@@ -710,6 +734,7 @@ PUT <index_name>
   }
 }
 ```
+
 ```bash
 # 案例
 PUT test_analyzer
@@ -783,6 +808,7 @@ PUT test_analyzer/_doc/1
   "title":"asd垃圾a滚sd,<a>www</a>.elastic!org?<p>cnelasticsearch</p><b><span>"
 }
 ```
+
 ### analyzer 和 search_analyzer
 
 - `analyzer`：为字段指定的分词器，仅对文本字段生效，针对的是源数据字段，也就是source data
@@ -961,14 +987,16 @@ GET test_normalizer/_search
 
 ### 中文分词器 IK
 
-+ [下载](https://github.com/medcl/elasticsearch-analysis-ik)
+> [下载](https://github.com/medcl/elasticsearch-analysis-ik)
 
-+ 安装
+#### 安装
+
 - 创建插件文件夹：cd {es-root-path}/plugins/ && mkdir ik
 - 将插件解压缩到文件夹：{es-root-path}/plugins/ik
 - 重新启动 ES 服务
 
-+  词库文件描述
+#### 词库文件描述
+
 IKAnalyzer.cfg.xml：IK分词配置文件
 
 主词库：main.dic
@@ -983,12 +1011,13 @@ surname.dic：特殊词库：百家姓
 preposition：特殊词库：语气词
 自定义词库：网络词汇、流行词、特定领域词库等。
 
-+ 分词器
+#### 分词器
 
-    + ik_max_word：会将文本做最细粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国，中华人民，中华，华人，人民共和国，人民，人，民，共和国，共和，和，国国，国歌”，会穷尽各种可能的组合，适合 Term Query；
-    + ik_smart：会做最粗粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国，国歌”，适合 Phrase 查询。
+- ik_max_word：会将文本做最细粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国，中华人民，中华，华人，人民共和国，人民，人，民，共和国，共和，和，国国，国歌”，会穷尽各种可能的组合，适合 Term Query；
+- ik_smart：会做最粗粒度的拆分，比如会将“中华人民共和国国歌”拆分为“中华人民共和国，国歌”，适合 Phrase 查询。
 
-+ 词库配置
+#### 词库配置
+
 ```bash
 <properties>
 	<comment>IK Analyzer 扩展配置</comment>
@@ -1004,6 +1033,7 @@ preposition：特殊词库：语气词
 ```
 
 ## 搜索：Query DSL
+
 ```json
 // 不查看源数据，仅查看元字段
 {
@@ -1011,6 +1041,7 @@ preposition：特殊词库：语气词
   "query": {} 
 }
 ```
+
 ```json
 // 只看以obj.开头的字段
 {
@@ -1031,9 +1062,12 @@ preposition：特殊词库：语气词
   "query": {} 
 }
 ```
+
 ### 分页
+
 - from：从低几个文档开始返回，需要为非负数，默认为 ：0
 - size：定义要返回的命中数，默认值为：10
+
 ```bash
 GET <index>/_search
 {
@@ -1041,13 +1075,15 @@ GET <index>/_search
   "size": 20
 }
 ```
+
 > from + size 必须小于等于 10000
-
+>
 > max_result_window：可以解除 from + size 必须小于 10000 的限制，但是如果不清楚其原理，而盲目修改阈值，可能会造成严重后果
-
+>
 > track_total_hits：允许 hits.total 返回实际数值，但是会牺牲性能
 
 ### 排序
+
 ```bash
 # sort_field：可以是 _source field，也可以是 meta data field
 GET <index>/_search
@@ -1061,7 +1097,9 @@ GET <index>/_search
   ]
 }
 ```
+
 ### Url Query
+
 ```bash
 GET /goods/_search 
 # 带参数查询
@@ -1077,6 +1115,7 @@ GET /goods/_search?q=2040-07-27
 ### 全文检索：Full Text Query
 
 #### match
+
 ```bash
 GET <index>/_search
 {
@@ -1087,6 +1126,7 @@ GET <index>/_search
   }
 }
 ```
+
 ```json
 // match_all：匹配所有结果的子句
 {
@@ -1105,6 +1145,7 @@ GET <index>/_search
 ```
 
 #### 精准查询：Term-Level Query
+
 > term query 不会对搜索词分词 而且会保留搜索词原有的所有属性，如大小写、标点符号等
 
 ```json
@@ -1124,7 +1165,8 @@ GET <index>/_search
 }
 ```
 
-####  Ids 查找
+#### Ids 查找
+
 ```json
 {
   "query": {
@@ -1138,6 +1180,7 @@ GET <index>/_search
 #### 范围查找：Range Query
 
 > 可选参数 `gt`(>) `gte`(>=) `lt`(<) `lte`(<=>)
+
 ```json
 {
   "query": {
@@ -1153,6 +1196,7 @@ GET <index>/_search
 ```
 
 #### 布尔查询：Boolean Query
+
 ```json
 {
   "query": {
@@ -1165,6 +1209,7 @@ GET <index>/_search
   }
 }
 ```
+
 ```json
 GET goods_en/_search
 {
@@ -1189,13 +1234,14 @@ GET goods_en/_search
 }
 ```
 
-####  minimum_should_match 参数
+#### minimum_should_match 参数
 
 > minimum_should_match 参数用来指定 should 返回的文档必须匹配的条件的数量或百分比，如果 bool 查询包含至少一个 should 子句，而没有 must 或 filter 子句，则默认值为 1。
-
+>
 > 但是如果 bool 查询中同级子句中出现了 must 或者 filter 子句，则 minimum_should_match 的默认值将变为 0。
 
 #### 子查询嵌套
+
 ```json
 // 条件1：name 中不包含 iphone
 // 条件2: 
@@ -1280,6 +1326,7 @@ GET <index_name>/_search
 ### 三种类型的聚合
 
 #### 桶聚合：Bucket Aggregations
+
 ```json
 {
   "aggs": {
@@ -1291,6 +1338,7 @@ GET <index_name>/_search
   }
 }
 ```
+
 ```json
 {
   "aggs": {
@@ -1314,7 +1362,9 @@ GET <index_name>/_search
   }
 }
 ```
-+ 多个字段同时聚合 Multi Terms
+
+#### 多个字段同时聚合 Multi Terms
+
 ```json
 {
   "aggs": {
@@ -1401,6 +1451,7 @@ GET <index_name>/_search
 **doc values** 是正排索引的基本数据结构之一，其存在是为了提升排序和聚合效率，默认true，如果确定不需要对字段进行排序或聚合，也不需要通过脚本访问字段值，则可以禁用 doc values 值以节省磁盘空间。
 
 > 从广义来说，doc values 本质上是一个序列化的 列式存储 。列式存储 适用于聚合、排序、脚本等操作，所有的数字、地理坐标、日期、IP 和不分词（ not_analyzed ）字符类型都会默认开启，不支持 **text**和 **annotated_text**类型
+
 ```bash
 PUT test_doc_values
 {
@@ -1449,6 +1500,7 @@ PUT /<index>/_mapping
 ```
 
 ### 嵌套聚合
+
 ```json
 {
   "aggs": {
@@ -1467,6 +1519,7 @@ PUT /<index>/_mapping
   }
 }
 ```
+
 ```json
 //统计不同品牌商品中的每个类型的商品数量
 {
@@ -1487,6 +1540,7 @@ PUT /<index>/_mapping
   }
 }
 ```
+
 ```json
 //统计不同等级的商品的价格信息（平均价格、最高价、最低价等）
 {
@@ -1509,6 +1563,7 @@ PUT /<index>/_mapping
 ```
 
 ### 分页和排序
+
 + size：对聚合结果查询的数据量，默认值为 10，如 size: 20，则表示取前 20 条数据。
 + order_type：对结果特定属性值排序，有两个可选项
 
@@ -1519,6 +1574,7 @@ PUT /<index>/_mapping
 
     + asc：正序排列
     + desc：倒序排列
+
 ```bash
 GET <index_name>/_search
 {
@@ -1540,6 +1596,7 @@ GET <index_name>/_search
 #### 多字段排序
 
 类似于 order by a,b,即先按照 a 字段排序，值相同时按照字段 b 排序。
+
 ```json
 //按照品牌名称聚合
 //要求先按照品牌所拥有的商品数量排序
@@ -1562,7 +1619,9 @@ GET <index_name>/_search
   }
 }
 ```
-####  多层聚合嵌套排序
+
+#### 多层聚合嵌套排序
+
 ```json
 // 按照品牌字段排序，在对同一个品牌下不同的标签排序，都按照数量倒序排列。
 {
@@ -1589,7 +1648,9 @@ GET <index_name>/_search
   }
 }
 ```
+
 #### 按照内层聚合排序
+
 ```json
 // 按照平均价格对手机品牌由低到高排序？
 {
@@ -1613,6 +1674,7 @@ GET <index_name>/_search
   }
 }
 ```
+
 ```json
 // 统计不同标签下商品数量
 // 首先按照标签下商品数量倒序排列
@@ -1644,7 +1706,9 @@ GET <index_name>/_search
 ```
 
 ### 过滤器
+
 + Filter 用于局部聚合查询条件过滤，可在指定聚合函数内嵌套使用
+
 ```json
 {
   "aggs": {
@@ -1655,6 +1719,7 @@ GET <index_name>/_search
   }
 }
 ```
+
 ```json
 // 分别统计所有商品的平均价格和统计商品类型为 phone 的商品的平均价格
 {
@@ -1670,6 +1735,7 @@ GET <index_name>/_search
   }
 } 
 ```
+
 ```json
 // 当我们需要按照商品类型分桶，但是希望统计耳机、手机、电视三个分桶的数据总和。
 {
@@ -1696,7 +1762,9 @@ GET <index_name>/_search
   }
 }
 ```
+
 + Filters
+
 ```json
 {
   "size": 0,
@@ -1739,7 +1807,9 @@ GET <index_name>/_search
   }
 }
 ```
+
 +  全局聚合过滤
+
 ```bash
 POST goods/_search?filter_path=aggregations
 {
@@ -1758,7 +1828,9 @@ POST goods/_search?filter_path=aggregations
   }
 }
 ```
+
 + Global
+
 ```json
 // avg_price 的计算结果是基于 query 的查询结果的，而 all_avg_price 的聚合是基于 all data 的
 {
@@ -1779,6 +1851,7 @@ POST goods/_search?filter_path=aggregations
   }
 }
 ```
+
 ```json
 {
   "size": 0,
@@ -1824,7 +1897,9 @@ POST goods/_search?filter_path=aggregations
   }
 }
 ```
+
 + Post Filter 后置过滤
+
 ```json
 {
   "aggs": {
@@ -1835,7 +1910,9 @@ POST goods/_search?filter_path=aggregations
   }
 }
 ```
+
 > 以上查询中 post filter 对聚合结果没有影响。可以理解为聚合的后置过滤器
+
 ```json
 // 按照标签聚合，并展示IOS标签下的商品信息
 {
@@ -1915,6 +1992,7 @@ Bucket Sort 是一种聚合操作，用于对桶（bucket）进行排序。它�
   }
 }
 ```
+
 > 其中，“aggregation_name” 是聚合操作的名称，“字段名” 是要基于其进行排序的字段。您可以选择指定多个排序字段以及每个字段的排序顺序，如 “asc”（升序）或 “desc”（降序）。
 
 ```json
@@ -1945,11 +2023,13 @@ Bucket Sort 是一种聚合操作，用于对桶（bucket）进行排序。它�
   }
 }
 ```
+
 > 在这个例子中，我们首先使用 “terms” 聚合按照 “product_name” 字段进行分桶，并设置 “size” 为 5，以获取前 5 个产品。然后，在每个桶内部，使用 “bucket_sort” 对桶进行排序，根据 “sales_amount” 字段的值进行降序排序。最后，我们设置 “size” 为 5，以获取每个桶内销售金额最高的前 5 个产品。
 
 ### 常见的查询函数
 
 #### histogram 用于区间统计，如不同价格商品区间的销售情况
+
 ```bash
 GET product/_search?size=0
 {
@@ -1966,7 +2046,9 @@ GET product/_search?size=0
   }
 }
 ```
+
 #### date-histogram 基于日期的直方图，比如统计一年每个月的销售额
+
 ```bash
 GET product/_search?size=0
 {
@@ -1985,6 +2067,7 @@ GET product/_search?size=0
   }
 }
 ```
+
 + interval_type：时间间隔的参数可选项
 
     + fixed_interval：ms（毫秒）、s（秒）、 m（分钟）、h（小时）、d（天），注意单位需要带上具体的数值，如2d为两天。需要当心当单位过小，会导致输出桶过多而导致服务崩溃。
@@ -2085,6 +2168,7 @@ GET emails/_search?size=0
 ```
 
 + 案例
+
 ```bash
 # 假设有电影索引，按照不同的属性对其分类。
 PUT 电影/_bulk?refresh
@@ -2095,6 +2179,7 @@ PUT 电影/_bulk?refresh
 { "index" : { "_id" : 3 } } 
 { "name":"恐怖片","accounts" : ["午夜凶铃", "道士上山"]}
 ```
+
 ```bash
 # 统计每个人的喜好和不同人之间的共同爱好
 GET 电影/_search

@@ -17,6 +17,7 @@
 ## 存储
   
 * [mysql 基础](storage/mysql.md)
+* [MySQL执行计划分析](storage/mysql_explain.md)
 * [mysql 索引](storage/mysql_index.md)
 * [mysql 事务隔离级别](storage/mysql_transaction_level.md)
 * [mysql 日志](storage/mysql_logs.md)

@@ -2,8 +2,6 @@
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mysql/mysql-index.md)
 
-> 感谢[WT-AHA](https://github.com/WT-AHA)对本文的完善，相关 PR：https://github.com/Snailclimb/JavaGuide/pull/1648 。
-
 但凡经历过几场面试的小伙伴，应该都清楚，数据库索引这个知识点在面试中出现的频率高到离谱。
 
 除了对于准备面试来说非常重要之外，善用索引对 SQL 的性能提升非常明显，是一个性价比较高的 SQL 优化手段。
@@ -45,11 +43,11 @@ hash = hashfunc(key)
 index = hash % array_size
 ```
 
-![](https://oss.javaguide.cn/github/javaguide/database/mysql20210513092328171.png)
+![](../images/mysql/mysql20210513092328171.png)
 
 但是！哈希算法有个 **Hash 冲突** 问题，也就是说多个不同的 key 最后得到的 index 相同。通常情况下，我们常用的解决办法是 **链地址法**。链地址法就是将哈希冲突数据存放在链表中。就比如 JDK1.8 之前 `HashMap` 就是通过链地址法来解决哈希冲突的。不过，JDK1.8 以后`HashMap`为了减少链表过长的时候搜索时间过长引入了红黑树。
 
-![](https://oss.javaguide.cn/github/javaguide/database/mysql20210513092224836.png)
+![](../images/mysql/mysql20210513092224836.png)
 
 为了减少 Hash 冲突的发生，一个好的哈希函数应该“均匀地”将数据分布在整个可能的哈希值集合中。
 
@@ -75,7 +73,7 @@ SELECT * FROM tb1 WHERE id < 500;
 
 当二叉查找树是平衡的时候，也就是树的每个节点的左右子树深度相差不超过 1 的时候，查询的时间复杂度为 O(log2(N))，具有比较高的效率。然而，当二叉查找树不平衡时，例如在最坏情况下（有序插入节点），树会退化成线性链表（也被称为斜树），导致查询效率急剧下降，时间复杂退化为 O（N）。
 
-![斜树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/oblique-tree.png)
+![斜树](../images/mysql/oblique-tree.png)
 
 也就是说，**二叉查找树的性能非常依赖于它的平衡程度，这就导致其不适合作为 MySQL 底层索引的数据结构。**
 
@@ -85,7 +83,7 @@ SELECT * FROM tb1 WHERE id < 500;
 
 AVL 树是计算机科学中最早被发明的自平衡二叉查找树，它的名称来自于发明者 G.M. Adelson-Velsky 和 E.M. Landis 的名字缩写。AVL 树的特点是保证任何节点的左右子树高度之差不超过 1，因此也被称为高度平衡二叉树，它的查找、插入和删除在平均和最坏情况下的时间复杂度都是 O(logn)。
 
-![AVL 树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/avl-tree.png)
+![AVL 树](../images/mysql/avl-tree.png)
 
 AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL 旋转、RR 旋转、LR 旋转和 RL 旋转。其中 LL 旋转和 RR 旋转分别用于处理左左和右右失衡，而 LR 旋转和 RL 旋转则用于处理左右和右左失衡。
 
@@ -103,7 +101,7 @@ AVL 树采用了旋转操作来保持平衡。主要有四种旋转操作：LL �
 4. 如果节点是红色的，则它的子节点必须是黑色的（反之不一定）；
 5. 从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）。
 
-![红黑树](https://oss.javaguide.cn/github/javaguide/cs-basics/data-structure/red-black-tree.png)
+![红黑树](../images/mysql/red-black-tree.png)
 
 和 AVL 树不同的是，红黑树并不追求严格的平衡，而是大致的平衡。正因如此，红黑树的查询效率稍有下降，因为红黑树的平衡性相对较弱，可能会导致树的高度较高，这可能会导致一些数据需要进行多次磁盘 IO 操作才能查询到，这也是 MySQL 没有选择红黑树的主要原因。也正因如此，红黑树的插入和删除操作效率大大提高了，因为红黑树在插入和删除节点时只需进行 O(1) 次数的旋转和变色操作，即可保持基本平衡状态，而不需要像 AVL 树一样进行 O(logn) 次数的旋转操作。
 
@@ -167,7 +165,7 @@ MySQL 8.x 中实现的索引新特性：
 
 在 MySQL 的 InnoDB 的表中，当没有显示的指定表的主键时，InnoDB 会自动先检查表中是否有唯一索引且不允许存在 null 值的字段，如果有，则选择该字段为默认的主键，否则 InnoDB 将会自动创建一个 6Byte 的自增主键。
 
-![主键索引](https://oss.javaguide.cn/github/javaguide/open-source-project/cluster-index.png)
+![主键索引](../images/mysql/cluster-index.png)
 
 ## 二级索引
 
@@ -185,7 +183,7 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 二级索引:
 
-![二级索引](https://oss.javaguide.cn/github/javaguide/open-source-project/no-cluster-index.png)
+![二级索引](../images/mysql/no-cluster-index.png)
 
 ## 聚簇索引与非聚簇索引
 
@@ -230,11 +228,11 @@ PS: 不懂的同学可以暂存疑，慢慢往下看，后面会有答案的，�
 
 这是 MySQL 的表的文件截图:
 
-![MySQL 表的文件](https://oss.javaguide.cn/github/javaguide/database/mysql20210420165311654.png)
+![MySQL 表的文件](../images/mysql/mysql20210420165311654.png)
 
 聚簇索引和非聚簇索引:
 
-![聚簇索引和非聚簇索引](https://oss.javaguide.cn/github/javaguide/database/mysql20210420165326946.png)
+![聚簇索引和非聚簇索引](../images/mysql/mysql20210420165326946.png)
 
 #### 非聚簇索引一定回表查询吗(覆盖索引)?
 
@@ -267,7 +265,7 @@ SELECT id FROM table WHERE id=1;
 > 如主键索引，如果一条 SQL 需要查询主键，那么正好根据主键索引就可以查到主键。再如普通索引，如果一条 SQL 需要查询 name，name 字段正好有索引，
 > 那么直接根据这个索引就可以查到数据，也无需回表。
 
-![覆盖索引](https://oss.javaguide.cn/github/javaguide/database/mysql20210420165341868.png)
+![覆盖索引](../images/mysql/mysql20210420165341868.png)
 
 我们这里简单演示一下覆盖索引的效果。
 
@@ -316,7 +314,7 @@ SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;#降序排序
 
 使用 `EXPLAIN` 命令分析这条 SQL 语句，通过 `Extra` 这一列的 `Using filesort` ，我们发现是没有用到覆盖索引的。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/not-using-covering-index-demo.png)
+![](../images/mysql/not-using-covering-index-demo.png)
 
 不过这也是理所应当，毕竟我们现在还没有创建索引呢！
 
@@ -328,7 +326,7 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 
 创建完成之后，再用 `EXPLAIN` 命令分析再次分析这条 SQL 语句。
 
-![](https://oss.javaguide.cn/github/javaguide/mysql/using-covering-index-demo.png)
+![](../images/mysql/using-covering-index-demo.png)
 
 通过 `Extra` 这一列的 `Using index` ，说明这条 SQL 语句成功使用了覆盖索引。
 
@@ -445,5 +443,3 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | Extra         | 附加信息                                     |
 
 篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
-
-<!-- @include: @article-footer.snippet.md -->
