@@ -330,8 +330,6 @@ ALTER TABLE `cus_order` ADD INDEX id_score_name(score, name);
 
 通过 `Extra` 这一列的 `Using index` ，说明这条 SQL 语句成功使用了覆盖索引。
 
-关于 `EXPLAIN` 命令的详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
-
 ### 联合索引
 
 使用表中的多个字段创建索引，就是 **联合索引**，也叫 **组合索引** 或 **复合索引**。
@@ -441,5 +439,3 @@ mysql> EXPLAIN SELECT `score`,`name` FROM `cus_order` ORDER BY `score` DESC;
 | rows          | 预计要读取的行数                             |
 | filtered      | 按表条件过滤后，留存的记录数的百分比         |
 | Extra         | 附加信息                                     |
-
-篇幅问题，我这里只是简单介绍了一下 MySQL 执行计划，详细介绍请看：[MySQL 执行计划分析](./mysql-query-execution-plan.md)这篇文章。
