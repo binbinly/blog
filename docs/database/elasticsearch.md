@@ -1,8 +1,8 @@
 # Elasticsearch
 
-## 基础
-
 > [文章来源](https://www.elastic.org.cn/categories/docs)
+
+## 基础
 
 ### 下载
 
@@ -21,14 +21,14 @@ i18n.locale: "zh-CN"
 
 ### 目录结构
 
-- `bin`	可执行脚本文件，包括启动elasticsearch服务、插件管理、函数命令等。
-- `config`	配置文件目录，如elasticsearch配置、角色配置、jvm配置等。
-- `lib`	elasticsearch所依赖的java库。
-- `data`	默认的数据存放目录，包含节点、分片、索引、文档的所有数据，生产环境要求必须修改。
-- `logs`	默认的日志文件存储路径，生产环境务必修改。
-- `modules`	包含所有的Elasticsearch模块，如Cluster、Discovery、Indices等。
-- `plugins`	已经安装的插件的目录。
-- jdk/jdk.app	7.x 以后特有，自带的 java 环境，8.x版本自带 jdk 17
+- `bin` 可执行脚本文件，包括启动elasticsearch服务、插件管理、函数命令等。
+- `config` 配置文件目录，如elasticsearch配置、角色配置、jvm配置等。
+- `lib` elasticsearch所依赖的java库。
+- `data` 默认的数据存放目录，包含节点、分片、索引、文档的所有数据，生产环境要求必须修改。
+- `logs` 默认的日志文件存储路径，生产环境务必修改。
+- `modules` 包含所有的Elasticsearch模块，如Cluster、Discovery、Indices等。
+- `plugins` 已经安装的插件的目录。
+- jdk/jdk.app 7.x 以后特有，自带的 java 环境，8.x版本自带 jdk 17
 
 ### 基础配置
 
@@ -413,53 +413,54 @@ PUT <index_name>/_mapping
 
 ### 数据类型
 
-+ 基本数据类型
-    + Numbers：数字类型，包含很多具体的基本数据类型
-    + binary：编码为 Base64 字符串的二进制值。
-    + boolean：即布尔类型，接受 true 和 false。
-    + alias：字段别名。
-    + Keywords：包含 `keyword`、constant_keyword 和 wildcard。
-    + Dates：日期类型，包括 `data` 和 data_nanos，两种类型
-+ 对象关系类型（复杂类型）
-    + object：非基本数据类型之外，默认的 json 对象为 object 类型。
-    + flattened：单映射对象类型，其值为 json 对象。
-    + `nested`：嵌套类型。
-    + join：父子级关系类型。
-+ 结构化类型
-    + Range：范围类型，比如 long_range，double_range，data_range 等
-    + ip：ipv4 或 ipv6 地址
-    + version：版本号
-    + murmur3：计算和存储值的散列
-+ 聚合数据类型
-    + aggregate_metric_double：
-    + histogram：
-+  文本搜索字段
-    + `text` ：文本数据类型，用于全文检索。
-    + annotated-text：
-    + `completion`
-    + search_as_you_type：
-    + token_count：
-+ 文档排名类型
-    + dense_vector：记录浮点值的密集向量。
-    + rank_feature：记录数字特征以提高查询时的命中率。
-    + rank_features：记录数字特征以提高查询时的命中率。
-+ `空间数据类型`
-    + geo_point：纬度和经度点。
-    + geo_shape：复杂的形状，例如多边形。
-    + point：任意笛卡尔点。
-    + shape：任意笛卡尔几何。
-+ 其他类型
-    + percolator：用Query DSL 编写的索引查询。
+- 基本数据类型
+  - Numbers：数字类型，包含很多具体的基本数据类型
+  - binary：编码为 Base64 字符串的二进制值。
+  - boolean：即布尔类型，接受 true 和 false。
+  - alias：字段别名。
+  - Keywords：包含 `keyword`、constant_keyword 和 wildcard。
+  - Dates：日期类型，包括 `data` 和 data_nanos，两种类型
+
+- 对象关系类型（复杂类型）
+  - object：非基本数据类型之外，默认的 json 对象为 object 类型。
+  - flattened：单映射对象类型，其值为 json 对象。
+  - `nested`：嵌套类型。
+  - join：父子级关系类型。
+- 结构化类型
+  - Range：范围类型，比如 long_range，double_range，data_range 等
+  - ip：ipv4 或 ipv6 地址
+  - version：版本号
+  - murmur3：计算和存储值的散列
+- 聚合数据类型
+  - aggregate_metric_double：
+  - histogram：
+- 文本搜索字段
+  - `text` ：文本数据类型，用于全文检索。
+  - annotated-text：
+  - `completion`
+  - search_as_you_type：
+  - token_count：
+- 文档排名类型
+  - dense_vector：记录浮点值的密集向量。
+  - rank_feature：记录数字特征以提高查询时的命中率。
+  - rank_features：记录数字特征以提高查询时的命中率。
+- `空间数据类型`
+  - geo_point：纬度和经度点。
+  - geo_shape：复杂的形状，例如多边形。
+  - point：任意笛卡尔点。
+  - shape：任意笛卡尔几何。
+- 其他类型
+  - percolator：用Query DSL 编写的索引查询。
 
 ### 映射参数
 
-- `analyzer`	指定分析器，只有 text 类型字段支持。
-- coerce	是否允许强制类型转换
-- copy_to	该参数允许将多个字段的值复制到组字段中，然后可以将其作为单个字段进行查询
-- `doc_values` 	为了提升排序和聚合效率，默认true，如果确定不需要对字段进行排序或聚合，也不需要通过脚本访问字段值，则可以禁用doc值以节省磁盘空间（不支持 text 和 annotated_text）
+- `analyzer` 指定分析器，只有 text 类型字段支持。
+- coerce 是否允许强制类型转换
+- copy_to 该参数允许将多个字段的值复制到组字段中，然后可以将其作为单个字段进行查询
+- `doc_values` 为了提升排序和聚合效率，默认true，如果确定不需要对字段进行排序或聚合，也不需要通过脚本访问字段值，则可以禁用doc值以节省磁盘空间（不支持 text 和 annotated_text）
 - `dynamic` 控制是否可以动态添加新字段，支持以下四个选项：true：（默认）允许动态映射false：忽略新字段。这些字段不会被索引或搜索，但仍会出现在_source返回的命中字段中。这些字段不会添加到映射中，必须显式添加新字段。runtime：新字段作为运行时字段添加到索引中，这些字段没有索引，是_source在查询时加载的。strict：如果检测到新字段，则会抛出异常并拒绝文档。必须将新字段显式添加到映射中。
 - eager_global_ordinals 用于聚合的字段上，优化聚合性能。
-- enabled	是否创建倒排索引，可以对字段操作，也可以对索引操作，如果不创建索引，让然可以检索并在_source元数据中展示，谨慎使用，该状态无法修改。
+- enabled 是否创建倒排索引，可以对字段操作，也可以对索引操作，如果不创建索引，让然可以检索并在_source元数据中展示，谨慎使用，该状态无法修改。
 - `fielddata` 查询时内存数据结构，在首次用当前字段聚合、排序或者在脚本中使用时，需要字段为fielddata数据结构，并且创建倒排索引保存到堆中
 - `fields` 给 field 创建多字段，用于不同目的（全文检索或者聚合分析排序）
 - format 用于格式化代码
@@ -472,22 +473,22 @@ PUT <index_name>/_mapping
 ```
 
 - `ignore_above` 超过长度将被忽略
-- ignore_malformed	忽略类型错误
-- index_options	控制将哪些信息添加到反向索引中以进行搜索和突出显示。仅用于text 字段
-- index_phrases	提升exact_value查询速度，但是要消耗更多磁盘空间
-- index_prefixes	前缀搜索：min_chars：前缀最小长度，>0，默认2（包含）max_chars：前缀最大长度，<20，默认5（包含）
+- ignore_malformed 忽略类型错误
+- index_options 控制将哪些信息添加到反向索引中以进行搜索和突出显示。仅用于text 字段
+- index_phrases 提升exact_value查询速度，但是要消耗更多磁盘空间
+- index_prefixes 前缀搜索：min_chars：前缀最小长度，>0，默认2（包含）max_chars：前缀最大长度，<20，默认5（包含）
 - `index` 是否对创建对当前字段创建倒排索引，默认 true，如果不创建索引，该字段不会通过索引被搜索到,但是仍然会在 source 元数据中展示true 新检测到的字段将添加到映射中。（默认）false 新检测到的字段将被忽略。这些字段将不会被索引，因此将无法搜索，但仍会出现在_source返回的匹配项中。这些字段不会添加到映射中，必须显式添加新字段。strict 如果检测到新字段，则会引发异常并拒绝文档。必须将新字段显式添加到映射中
-- meta	附加到元字段
-- normalizer	文档归一化器
+- meta 附加到元字段
+- normalizer 文档归一化器
 - `norms` 是否禁用评分（在filter和聚合字段上应该禁用）。
 - `null_value` 为 null 值设置默认值
-- position_increment_gap	用于数组中相邻搜索中的搜索间隙，slop 默认 100 见：代码块 1
+- position_increment_gap 用于数组中相邻搜索中的搜索间隙，slop 默认 100 见：代码块 1
 - properties 除了mapping还可用于object的属性设置
 - `search_analyzer` 设置单独的查询时分析器
-- similarity	为字段设置相关度算法，支持：BM25boolean注意：classic（TF-IDF）在 ES 8.x 中已不再支持！
-- subobjects	ES 8 新增，subobjects 设置为 false 的字段的值，其子字段的值不被扩展为对象。
-- store	设置字段是否仅查询
-- term_vector	运维参数，在运维篇会详细讲解。
+- similarity 为字段设置相关度算法，支持：BM25boolean注意：classic（TF-IDF）在 ES 8.x 中已不再支持！
+- subobjects ES 8 新增，subobjects 设置为 false 的字段的值，其子字段的值不被扩展为对象。
+- store 设置字段是否仅查询
+- term_vector 运维参数，在运维篇会详细讲解。
 
 ## 分词器：Text Analysis
 
@@ -624,10 +625,10 @@ GET test_token_filter_synonym/_analyze
 
 #### 字符过滤器：Character Filter
 
-+ type：使用的字符过滤器类型名称，可配置以下值
-    - html_strip
-    - mapping
-    - pattern_replace
+- type：使用的字符过滤器类型名称，可配置以下值
+  - html_strip
+  - mapping
+  - pattern_replace
 
 ```bash
 PUT <index_name>
@@ -1018,17 +1019,17 @@ preposition：特殊词库：语气词
 
 #### 词库配置
 
-```bash
+```properties
 <properties>
-	<comment>IK Analyzer 扩展配置</comment>
-	<!--用户可以在这里配置自己的扩展字典 -->
-	<entry key="ext_dict">custom/es_extend.dic;custom/es_buzzword.dic</entry>
-	<!--用户可以在这里配置自己的扩展停止词字典-->
-	<entry key="ext_stopwords"></entry>
-	<!--用户可以在这里配置远程扩展字典 -->
-	<entry key="remote_ext_dict">http://localhost/api/hotWord</entry>
-	<!--用户可以在这里配置远程扩展停止词字典-->
-	<entry key="remote_ext_stopwords">http://localhost/api/stopword</entry>
+  <comment>IK Analyzer 扩展配置</comment>
+  <!--用户可以在这里配置自己的扩展字典 -->
+  <entry key="ext_dict">custom/es_extend.dic;custom/es_buzzword.dic</entry>
+  <!--用户可以在这里配置自己的扩展停止词字典-->
+  <entry key="ext_stopwords"></entry>
+  <!--用户可以在这里配置远程扩展字典 -->
+  <entry key="remote_ext_dict">http://localhost/api/hotWord</entry>
+  <!--用户可以在这里配置远程扩展停止词字典-->
+  <entry key="remote_ext_stopwords">http://localhost/api/stopword</entry>
 </properties>
 ```
 
@@ -1388,13 +1389,13 @@ GET <index_name>/_search
 
 用于统计某个指标，如最大值、最小值、平均值，可以结合桶聚合一起使用，如按照商品类型分桶，统计每个桶的平均价格。
 
-+ 指标函数
-    + 平均值：Avg
-    + 最大值：Max
-    + 最小值：Min
-    + 求和：Sum
-    + 详细信息：Stats
-    + 数量：Value count
+- 指标函数
+  - 平均值：Avg
+  - 最大值：Max
+  - 最小值：Min
+  - 求和：Sum
+  - 详细信息：Stats
+  - 数量：Value count
 
 ```json
 {
@@ -1564,16 +1565,14 @@ PUT /<index>/_mapping
 
 ### 分页和排序
 
-+ size：对聚合结果查询的数据量，默认值为 10，如 size: 20，则表示取前 20 条数据。
-+ order_type：对结果特定属性值排序，有两个可选项
-
-    + _count：按照文档数量排序
-    + _key：对聚合结果的 key 值排序
-    + _term：7.x 版本中已废弃，但尚可使用，ES 8.x 之后版本已不再支持。
-+ order_value：支持正序和倒序
-
-    + asc：正序排列
-    + desc：倒序排列
+- size：对聚合结果查询的数据量，默认值为 10，如 size: 20，则表示取前 20 条数据。
+- order_type：对结果特定属性值排序，有两个可选项
+  - _count：按照文档数量排序
+  - _key：对聚合结果的 key 值排序
+  - _term：7.x 版本中已废弃，但尚可使用，ES 8.x 之后版本已不再支持。
+- order_value：支持正序和倒序
+  - asc：正序排列
+  - desc：倒序排列
 
 ```bash
 GET <index_name>/_search
@@ -1707,7 +1706,7 @@ GET <index_name>/_search
 
 ### 过滤器
 
-+ Filter 用于局部聚合查询条件过滤，可在指定聚合函数内嵌套使用
+- Filter 用于局部聚合查询条件过滤，可在指定聚合函数内嵌套使用
 
 ```json
 {
@@ -1763,7 +1762,7 @@ GET <index_name>/_search
 }
 ```
 
-+ Filters
+- Filters
 
 ```json
 {
@@ -1808,7 +1807,7 @@ GET <index_name>/_search
 }
 ```
 
-+  全局聚合过滤
+- 全局聚合过滤
 
 ```bash
 POST goods/_search?filter_path=aggregations
@@ -1829,7 +1828,7 @@ POST goods/_search?filter_path=aggregations
 }
 ```
 
-+ Global
+- Global
 
 ```json
 // avg_price 的计算结果是基于 query 的查询结果的，而 all_avg_price 的聚合是基于 all data 的
@@ -1898,7 +1897,7 @@ POST goods/_search?filter_path=aggregations
 }
 ```
 
-+ Post Filter 后置过滤
+- Post Filter 后置过滤
 
 ```json
 {
@@ -2036,11 +2035,11 @@ GET product/_search?size=0
   "aggs": {
     "<histogram_name>": {
       "histogram": {
-        "field": "price", 				#字段名称
-        "interval": 1000,					#区间间隔
-        "keyed": true,						#返回数据的结构化类型
-        "min_doc_count": <num>,		#返回桶的最小文档数阈值，即文档数小于num的桶不会被输出
-        "missing": 1999						#空值的替换值，即如果文档对应字段的值为空，则默认输出1999（参数值）
+        "field": "price", #字段名称
+        "interval": 1000, #区间间隔
+        "keyed": true, #返回数据的结构化类型
+        "min_doc_count": <num>, #返回桶的最小文档数阈值，即文档数小于num的桶不会被输出
+        "missing": 1999 #空值的替换值，即如果文档对应字段的值为空，则默认输出1999（参数值）
       }
     }
   }
@@ -2055,10 +2054,10 @@ GET product/_search?size=0
   "aggs": {
     "my_date_histogram": {
       "date_histogram": {
-        "field": "createtime",					#字段需为date类型
-        "<interval_type>": "month",			#时间间隔的参数可选项
-        "format": "yyyy-MM", 						#日期的格式化输出
-        "extended_bounds": {						#输出空桶
+        "field": "createtime", #字段需为date类型
+        "<interval_type>": "month", #时间间隔的参数可选项
+        "format": "yyyy-MM",  #日期的格式化输出
+        "extended_bounds": { #输出空桶
           "min": "2020-01",
           "max": "2020-12"
         }
@@ -2068,26 +2067,24 @@ GET product/_search?size=0
 }
 ```
 
-+ interval_type：时间间隔的参数可选项
-
-    + fixed_interval：ms（毫秒）、s（秒）、 m（分钟）、h（小时）、d（天），注意单位需要带上具体的数值，如2d为两天。需要当心当单位过小，会导致输出桶过多而导致服务崩溃。
-    + calendar_interval：
-+ 
-    + year
-    + quarter
-    + month
-    + week
-    + day
-    + hour
-    + minute
-+ 
-    + 在 8.x 版本中 interval 已弃用，如果你使用的是 7.x 的版本，你将看到下面一段话： 而如果你使用的是 8.x 的版本，那么系统将返回错误。
-+ missing：指定在日期字段缺失时，如何处理该时间段。
-+ min_doc_count：指定在时间段内至少需要满足的文档数量才会包含在结果中。默认值为0，表示即使时间段内没有文档，也会返回结果。
-+ time_zone：指定聚合操作中使用的时区。默认情况下，Elasticsearch使用服务器的时区设置。如："time_zone": "Asia/Shanghai",
-+ offset：指定聚合结果中时间段的偏移量。可以通过提供时间单位和数量来指定偏移量。例如，"+1h"表示时间段向后偏移1小时。
-+ keyed：指定是否将结果按时间段的键值对形式返回。如果设置为true，每个时间段的结果将以键值对的形式返回，默认为false。
-+ extended_bounds：指定自定义的时间范围。可以通过提供"min"和"max"参数来限制聚合操作的时间范围。
+- interval_type：时间间隔的参数可选项
+  - fixed_interval：ms（毫秒）、s（秒）、 m（分钟）、h（小时）、d（天），注意单位需要带上具体的数值，如2d为两天。需要当心当单位过小，会导致输出桶过多而导致服务崩溃。
+  - calendar_interval：
+- 时间
+  - year
+  - quarter
+  - month
+  - week
+  - day
+  - hour
+  - minute
+- 在 8.x 版本中 interval 已弃用，如果你使用的是 7.x 的版本，你将看到下面一段话： 而如果你使用的是 8.x 的版本，那么系统将返回错误。
+- missing：指定在日期字段缺失时，如何处理该时间段。
+- min_doc_count：指定在时间段内至少需要满足的文档数量才会包含在结果中。默认值为0，表示即使时间段内没有文档，也会返回结果。
+- time_zone：指定聚合操作中使用的时区。默认情况下，Elasticsearch使用服务器的时区设置。如："time_zone": "Asia/Shanghai",
+- offset：指定聚合结果中时间段的偏移量。可以通过提供时间单位和数量来指定偏移量。例如，"+1h"表示时间段向后偏移1小时。
+- keyed：指定是否将结果按时间段的键值对形式返回。如果设置为true，每个时间段的结果将以键值对的形式返回，默认为false。
+- extended_bounds：指定自定义的时间范围。可以通过提供"min"和"max"参数来限制聚合操作的时间范围。
 
 #### percentile
 
@@ -2167,7 +2164,7 @@ GET emails/_search?size=0
 }
 ```
 
-+ 案例
+- 案例
 
 ```bash
 # 假设有电影索引，按照不同的属性对其分类。

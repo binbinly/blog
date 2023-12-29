@@ -2,8 +2,6 @@
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/redis/redis-common-blocking-problems-summary.md)
 
-> 本文整理完善自：https://mp.weixin.qq.com/s/0Nqfq_eQrUb12QH6eBbHXA ，作者：阿 Q 说代码
-
 这篇文章会详细总结一下可能导致 Redis 阻塞的情况，这些情况也是影响 Redis 性能的关键因素，使用 Redis 的时候应该格外注意！
 
 ## O(n) 命令
@@ -40,7 +38,7 @@ Redis 提供了两个命令来生成 RDB 快照文件：
 
 Redis AOF 持久化机制是在执行完命令之后再记录日志，这和关系型数据库（如 MySQL）通常都是执行命令之前记录日志（方便故障恢复）不同。
 
-![AOF 记录日志过程](https://oss.javaguide.cn/github/javaguide/database/redis/redis-aof-write-log-disc.png)
+![AOF 记录日志过程](../images/redis/redis-aof-write-log-disc.png)
 
 **为什么是在执行完命令之后记录日志呢？**
 

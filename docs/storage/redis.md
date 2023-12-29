@@ -1,3 +1,5 @@
+# redis基础
+
 ## 安装
 
 ### 下载
@@ -571,6 +573,7 @@ Redis服务器会将所有被EVAL命令执行过的Lua脚本，以及所有被SC
 - bgsave命令：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，
 
 #### redis.conf 配置
+
 ```bash
 # 周期性执行条件的设置格式为
 save <seconds> <changes>
@@ -617,6 +620,7 @@ rdbchecksum yes
 > AOF(Append Only File), Redis先执行命令，把数据写入内存，然后才记录日志。日志里记录的是Redis收到的每一条命令，这些命令是以文本形式保存。而AOF日志采用写后日志，即先写内存，后写日志。
 
 #### redis.conf配置
+
 ```bash
 # appendonly参数开启AOF持久化，默认关闭
 appendonly no

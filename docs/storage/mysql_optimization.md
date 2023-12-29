@@ -2,10 +2,6 @@
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mysql/mysql-high-performance-optimization-specification-recommendations.md)
 
-> 作者: 听风 原文地址: <https://www.cnblogs.com/huchong/p/10219318.html>。
->
-> JavaGuide 已获得作者授权，并对原文内容进行了完善补充。
-
 ## 数据库命名规范
 
 - 所有数据库对象名称必须使用小写字母并用下划线分割
@@ -382,5 +378,3 @@ pt-online-schema-change 它会首先建立一个与原表结构相同的新表�
 
 - [技术同学必会的 MySQL 设计规约，都是惨痛的教训 - 阿里开发者](https://mp.weixin.qq.com/s/XC8e5iuQtfsrEOERffEZ-Q)
 - [聊聊数据库建表的 15 个小技巧](https://mp.weixin.qq.com/s/NM-aHaW6TXrnO6la6Jfl5A)
-
-<!-- @include: @article-footer.snippet.md -->

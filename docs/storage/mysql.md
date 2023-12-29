@@ -1,3 +1,5 @@
+# mysql基础
+
 ## 安装
 
 ### 下载
@@ -7,9 +9,9 @@
 
 ## MySQL 语法
 
-* | 符号用来指出几个选择中的一个，因此， NULL|NOT NULL 表示或者给出 NULL 或者给出 NOT NULL 。
-* 包含在方括号中的关键字或子句（如[like this]）是可选的。
-* 既没有列出所有的 MySQL 语句，也没有列出每一条子句和选项。
+- | 符号用来指出几个选择中的一个，因此， NULL|NOT NULL 表示或者给出 NULL 或者给出 NOT NULL 。
+- 包含在方括号中的关键字或子句（如[like this]）是可选的。
+- 既没有列出所有的 MySQL 语句，也没有列出每一条子句和选项。
 
 ### SQL 执行顺序
 
@@ -319,13 +321,13 @@ SAVEPOINT sql;
 
 1. 【强制】遵守以上全部一般命名规则。
 2. 【强制】使用单数。
-4. 【强制】库的名称格式：业务系统名称_子系统名。
-5. 【强制】一般分库名称命名格式是`库通配名_编号`，编号从 0 开始递增，比如 `northwind_001`，以时间进行分库的名称格式是`库通配名_时间`。
-6. 【强制】创建数据库时必须显式指定字符集，并且字符集只能是 utf8 或者 utf8mb4。创建数据库 SQL 举例：
- 
-    ```sql
-    create database db_name default character set utf8;
-    ```
+3. 【强制】库的名称格式：业务系统名称_子系统名。
+4. 【强制】一般分库名称命名格式是`库通配名_编号`，编号从 0 开始递增，比如 `northwind_001`，以时间进行分库的名称格式是`库通配名_时间`。
+5. 【强制】创建数据库时必须显式指定字符集，并且字符集只能是 utf8 或者 utf8mb4。创建数据库 SQL 举例：
+
+```sql
+create database db_name default character set utf8;
+```
 
 ### 表规则
 
@@ -395,7 +397,6 @@ SAVEPOINT sql;
     | TIME                                        | 3      | 00:00:00            | 23:59:59               |
     | YEAR                                        | 1      | 1001                | 9999                   |
     | TIMESTAMP                                   | 4      | 1970-01-01 00:00:00 |                        |
-
 
 ### 索引设计
 
@@ -560,10 +561,12 @@ SAVEPOINT sql;
 + 用 UNION ALL 而非 UNION，UNION 有去重开销
 + 高幵发 DB 不建议进行两个表以上的 JOIN 拆分 SQL
 + 同数据类型的列值比较
-  ```sql
+
+```sql
 字段:`remark` varchar(50) NOT NULL COMMENT '备注, 默认为空',
 
 MySQL>SELECT `id`, `gift_code` FROM gift WHERE `deal_id` = 640 AND remark=115127; 1 row in set (0.14 sec)
 MySQL>SELECT `id`, `gift_code` FROM pool_gift WHERE `deal_id` = 640 AND remark='115127'; 1 row in set (0.005 sec)
-  ```
+```
+
 + 避免大 SQL 大事务 大批量

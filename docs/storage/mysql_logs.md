@@ -17,7 +17,7 @@
 
 比如 `MySQL` 实例挂了或宕机了，重启时，`InnoDB`存储引擎会使用`redo log`恢复数据，保证数据的持久性与完整性。
 
-![](https://oss.javaguide.cn/github/javaguide/02.png)
+![](../images/mysql/innodb-redo.png)
 
 `MySQL` 中数据是以页为单位，你查询一条记录，会从硬盘把一页的数据加载出来，加载出来的数据叫数据页，会放入到 `Buffer Pool` 中。
 
@@ -27,7 +27,7 @@
 
 然后会把**在某个数据页上做了什么修改**记录到重做日志缓存（`redo log buffer`）里，接着刷盘到 `redo log` 文件里。
 
-![](https://oss.javaguide.cn/github/javaguide/03.png)
+![](../images/mysql/innodb-redo-2.png)
 
 > 图片笔误提示：第 4 步 “清空 redo log buffe 刷盘到 redo 日志中”这句话中的 buffe 应该是 buffer。
 
@@ -62,7 +62,7 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 另外，`InnoDB` 存储引擎有一个后台线程，每隔`1` 秒，就会把 `redo log buffer` 中的内容写到文件系统缓存（`page cache`），然后调用 `fsync` 刷盘。
 
-![](https://oss.javaguide.cn/github/javaguide/04.png)
+![](../images/mysql/innodb-redo-3.png)
 
 也就是说，一个没有提交事务的 `redo log` 记录，也可能会刷盘。
 
@@ -70,7 +70,7 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 因为在事务执行过程 `redo log` 记录是会写入`redo log buffer` 中，这些 `redo log` 记录会被后台线程刷盘。
 
-![](https://oss.javaguide.cn/github/javaguide/05.png)
+![](../images/mysql/innodb-redo-4.png)
 
 除了后台线程每秒`1`次的轮询操作，还有一种情况，当 `redo log buffer` 占用的空间即将达到 `innodb_log_buffer_size` 一半的时候，后台线程会主动刷盘。
 
@@ -78,13 +78,13 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 #### innodb_flush_log_at_trx_commit=0
 
-![](https://oss.javaguide.cn/github/javaguide/06.png)
+![](../images/mysql/innodb-redo-5.png)
 
 为`0`时，如果`MySQL`挂了或宕机可能会有`1`秒数据的丢失。
 
 #### innodb_flush_log_at_trx_commit=1
 
-![](https://oss.javaguide.cn/github/javaguide/07.png)
+![](../images/mysql/innodb-redo-6.png)
 
 为`1`时， 只要事务提交成功，`redo log`记录就一定在硬盘里，不会有任何数据丢失。
 
@@ -92,7 +92,7 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 #### innodb_flush_log_at_trx_commit=2
 
-![](https://oss.javaguide.cn/github/javaguide/09.png)
+![](../images/mysql/innodb-redo-7.png)
 
 为`2`时， 只要事务提交成功，`redo log buffer`中的内容只写入文件系统缓存（`page cache`）。
 
@@ -106,7 +106,7 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 它采用的是环形数组形式，从头开始写，写到末尾又回到头循环写，如下图所示。
 
-![](https://oss.javaguide.cn/github/javaguide/10.png)
+![](../images/mysql/innodb-redo-8.png)
 
 在个**日志文件组**中还有两个重要的属性，分别是 `write pos、checkpoint`
 
@@ -119,11 +119,11 @@ InnoDB 将 redo log 刷到磁盘上有几种情况：
 
 `write pos` 和 `checkpoint` 之间的还空着的部分可以用来写入新的 `redo log` 记录。
 
-![](https://oss.javaguide.cn/github/javaguide/11.png)
+![](../images/mysql/innodb-redo-9.png)
 
 如果 `write pos` 追上 `checkpoint` ，表示**日志文件组**满了，这时候不能再写入新的 `redo log` 记录，`MySQL` 得停下来，清空一些记录，把 `checkpoint` 推进一下。
 
-![](https://oss.javaguide.cn/github/javaguide/12.png)
+![](../images/mysql/innodb-redo-10.png)
 
 注意从 MySQL 8.0.30 开始，日志文件组有了些许变化：
 
@@ -158,10 +158,6 @@ MySQL830 mysql:8.0.32
 
 这里也表明了 `innodb_log_files_in_group` 和 `innodb_log_file_size` 这两个变量是用来计算 `innodb_redo_log_capacity` ，且已经被废弃。
 
-我们再看下日志文件组的文件数是多少：
-
-![](images/redo-log.png)
-
 可以看到刚好是 32 个，并且每个日志文件的大小是 `671088640 / 32 = 20971520`
 
 所以在使用 MySQL 8.0.30 及之后的版本时，推荐使用 `innodb_redo_log_capacity` 变量配置日志文件组
@@ -195,9 +191,9 @@ MySQL830 mysql:8.0.32
 
 ## binlog
 
-`redo log` 它是物理日志，记录内容是“在某个数据页上做了什么修改”，属于 `InnoDB` 存储引擎。
+`redo log` 它是物理日志，记录内容是 `在某个数据页上做了什么修改`，属于 `InnoDB` 存储引擎。
 
-而 `binlog` 是逻辑日志，记录内容是语句的原始逻辑，类似于“给 ID=2 这一行的 c 字段加 1”，属于`MySQL Server` 层。
+而 `binlog` 是逻辑日志，记录内容是语句的原始逻辑，类似于 `给 ID=2 这一行的 c 字段加 1`，属于`MySQL Server` 层。
 
 不管用什么存储引擎，只要发生了表数据更新，都会产生 `binlog` 日志。
 
@@ -205,7 +201,7 @@ MySQL830 mysql:8.0.32
 
 可以说`MySQL`数据库的**数据备份、主备、主主、主从**都离不开`binlog`，需要依靠`binlog`来同步数据，保证数据一致性。
 
-![](https://oss.javaguide.cn/github/javaguide/01-20220305234724956.png)
+![](../images/mysql/01-20220305234724956.png)
 
 `binlog`会记录所有涉及更新数据的逻辑操作，并且是顺序写。
 
@@ -219,13 +215,13 @@ MySQL830 mysql:8.0.32
 
 指定`statement`，记录的内容是`SQL`语句原文，比如执行一条`update T set update_time=now() where id=1`，记录的内容如下。
 
-![](https://oss.javaguide.cn/github/javaguide/02-20220305234738688.png)
+![](../images/mysql/02-20220305234738688.png)
 
 同步数据时，会执行记录的`SQL`语句，但是有个问题，`update_time=now()`这里会获取当前系统时间，直接执行会导致与原库的数据不一致。
 
 为了解决这种问题，我们需要指定为`row`，记录的内容不再是简单的`SQL`语句了，还包含操作的具体数据，记录内容如下。
 
-![](https://oss.javaguide.cn/github/javaguide/03-20220305234742460.png)
+![](../images/mysql/03-20220305234742460.png)
 
 `row`格式记录的内容看不到详细信息，要通过`mysqlbinlog`工具解析出来。
 
@@ -249,7 +245,7 @@ MySQL830 mysql:8.0.32
 
 `binlog`日志刷盘流程如下
 
-![](https://oss.javaguide.cn/github/javaguide/04-20220305234747840.png)
+![](../images/mysql/04-20220305234747840.png)
 
 - **上图的 write，是指把日志写入到文件系统的 page cache，并没有把数据持久化到磁盘，所以速度比较快**
 - **上图的 fsync，才是将数据持久化到磁盘的操作**
@@ -258,7 +254,7 @@ MySQL830 mysql:8.0.32
 
 为`0`的时候，表示每次提交事务都只`write`，由系统自行判断什么时候执行`fsync`。
 
-![](https://oss.javaguide.cn/github/javaguide/05-20220305234754405.png)
+![](../images/mysql/05-20220305234754405.png)
 
 虽然性能得到提升，但是机器宕机，`page cache`里面的 binlog 会丢失。
 
@@ -266,7 +262,7 @@ MySQL830 mysql:8.0.32
 
 最后还有一种折中方式，可以设置为`N(N>1)`，表示每次提交事务都`write`，但累积`N`个事务后才`fsync`。
 
-![](https://oss.javaguide.cn/github/javaguide/06-20220305234801592.png)
+![](../images/mysql/06-20220305234801592.png)
 
 在出现`IO`瓶颈的场景里，将`sync_binlog`设置成一个比较大的值，可以提升性能。
 
@@ -282,7 +278,7 @@ MySQL830 mysql:8.0.32
 
 在执行更新语句过程，会记录`redo log`与`binlog`两块日志，以基本的事务为单位，`redo log`在事务执行过程中可以不断写入，而`binlog`只有在提交事务时才写入，所以`redo log`与`binlog`的写入时机不一样。
 
-![](https://oss.javaguide.cn/github/javaguide/01-20220305234816065.png)
+![](../images/mysql/01-20220305234816065.png)
 
 回到正题，`redo log`与`binlog`两份日志之间的逻辑不一致，会出现什么问题？
 
@@ -290,25 +286,25 @@ MySQL830 mysql:8.0.32
 
 假设执行过程中写完`redo log`日志后，`binlog`日志写期间发生了异常，会出现什么情况呢？
 
-![](https://oss.javaguide.cn/github/javaguide/02-20220305234828662.png)
+![](../images/mysql/02-20220305234828662.png)
 
 由于`binlog`没写完就异常，这时候`binlog`里面没有对应的修改记录。因此，之后用`binlog`日志恢复数据时，就会少这一次更新，恢复出来的这一行`c`值是`0`，而原库因为`redo log`日志恢复，这一行`c`值是`1`，最终数据不一致。
 
-![](https://oss.javaguide.cn/github/javaguide/03-20220305235104445.png)
+![](../images/mysql/03-20220305235104445.png)
 
 为了解决两份日志之间的逻辑一致问题，`InnoDB`存储引擎使用**两阶段提交**方案。
 
 原理很简单，将`redo log`的写入拆成了两个步骤`prepare`和`commit`，这就是**两阶段提交**。
 
-![](https://oss.javaguide.cn/github/javaguide/04-20220305234956774.png)
+![](../images/mysql/04-20220305234956774.png)
 
 使用**两阶段提交**后，写入`binlog`时发生异常也不会有影响，因为`MySQL`根据`redo log`日志恢复数据时，发现`redo log`还处于`prepare`阶段，并且没有对应`binlog`日志，就会回滚该事务。
 
-![](https://oss.javaguide.cn/github/javaguide/05-20220305234937243.png)
+![](../images/mysql/05-20220305234937243.png)
 
 再看一个场景，`redo log`设置`commit`阶段发生异常，那会不会回滚事务呢？
 
-![](https://oss.javaguide.cn/github/javaguide/06-20220305234907651.png)
+![](../images/mysql/06-20220305234907651.png)
 
 并不会回滚事务，它会执行上图框住的逻辑，虽然`redo log`是处于`prepare`阶段，但是能通过事务`id`找到对应的`binlog`日志，所以`MySQL`认为是完整的，就会提交事务恢复数据。
 
@@ -321,8 +317,9 @@ MySQL830 mysql:8.0.32
 另外，`MVCC` 的实现依赖于：**隐藏字段、Read View、undo log**。在内部实现中，`InnoDB` 通过数据行的 `DB_TRX_ID` 和 `Read View` 来判断数据的可见性，如不可见，则通过数据行的 `DB_ROLL_PTR` 找到 `undo log` 中的历史版本。每个事务读到的数据版本可能是不一样的，在同一个事务中，用户只能看到该事务创建 `Read View` 之前已经提交的修改和该事务本身做的修改
 
 ## error log
-　
+
 记录服务器错误信息，设置方式:
+
 - my.cnf 中 log-error=[path]
 - 启动时配置 mysqld_safe –user=mysql –log-error=[path] &
 
@@ -344,7 +341,7 @@ show status like '%slow_queries%';
 show variables like '%slow%';
 ```
 
-## general query log 
+## general query log
 
 记录了服务器接收到的每一个查询或是命令，无论这些查询或是命令是否正确甚至是否包含语法错误，general log 都会将其记录下来 ，记录的格式为 {Time ，Id ，Command，Argument }。也正因为mysql服务器需要不断地记录日志，开启General log会产生不小的系统开销。 因此，Mysql默认是把General log关闭的
 

@@ -1,8 +1,4 @@
-# MongoDB常见面试题总结（上）
-
-> [原文01](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mongodb/mongodb-questions-01.md)
->
-> [原文02](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mongodb/mongodb-questions-02.md)
+# MongoDB常见问题总结
 
 ## 安装
 
@@ -531,3 +527,7 @@ Rebalance 操作是比较耗费系统资源的，我们可以通过在业务低�
 - Transactions - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/transactions/>
 - WiredTiger Storage Engine - MongoDB 官方文档：<https://www.mongodb.com/docs/manual/core/wiredtiger/>
 - WiredTiger 存储引擎之一：基础数据结构分析：<https://mongoing.com/topic/archives-35143>
+
+> [原文01](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mongodb/mongodb-questions-01.md)
+>
+> [原文02](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mongodb/mongodb-questions-02.md)
