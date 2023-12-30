@@ -1,4 +1,4 @@
-# Redis常见阻塞原因总结
+# Redis 常见阻塞原因总结
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/redis/redis-common-blocking-problems-summary.md)
 

@@ -1,4 +1,4 @@
-# Redis 3 种特殊数据类型详解
+# Redis 三种特殊数据类型详解
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/redis/redis-data-structures-02.md)
 

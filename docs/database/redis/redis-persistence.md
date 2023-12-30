@@ -1,4 +1,4 @@
-# Redis持久化机制详解
+# Redis 持久化机制详解
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/redis/redis-persistence.md)
 

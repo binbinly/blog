@@ -1,4 +1,4 @@
-# 详解Redis三大集群模式
+# Redis 三大集群模式
 
 ![](static/images/redis/redis-cluster.png)
 

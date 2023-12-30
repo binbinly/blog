@@ -1,4 +1,4 @@
-# Redis 5 种基本数据类型详解
+# Redis 五种基本数据类型详解
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/redis/redis-data-structures-01.md)
 
