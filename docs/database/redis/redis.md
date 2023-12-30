@@ -435,11 +435,13 @@ Redis的发布与订阅功能由PUBLISH、SUBSCRIBE、PSUB-SCRIBE等命令组成
 通过执行SUBSCRIBE命令，客户端可以订阅一个或多个频道，从而成为这些频道的订阅者（subscriber）：每当有其他客户端向被订阅的频道发送消息（message）时，频道的所有订阅者都会收到这条消息。
 
 > 订阅者
+
 ```bash
 redis> SUBSCRIBE test
 ```
 
 > 发布者
+
 ```bash
 redis> test "Redis PUBLISH test"
 ```
@@ -718,7 +720,7 @@ redis> BITCOUNT peter
 
 ### 商城购物车
 
-> `string` | `hash` 
+> `string` | `hash`
 
 数量 `incr` `decr` 修改
 

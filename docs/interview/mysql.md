@@ -63,7 +63,7 @@ MySQL 字段类型可以简单分为三大类：
 
 下面这张图不是我画的，忘记是从哪里保存下来的了，总结的还蛮不错的。
 
-![MySQL 常见字段类型总结](../images/mysql/summary-of-mysql-field-types.png)
+![MySQL 常见字段类型总结](static/images/mysql/summary-of-mysql-field-types.png)
 
 MySQL 字段类型比较多，我这里会挑选一些日常开发使用很频繁且面试常问的字段类型，以面试问题的形式来详细介绍。如无特殊说明，针对的都是 InnoDB 存储引擎。
 
@@ -161,7 +161,7 @@ MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布�
 
 下图是 MySQL 的一个简要架构图，从下图你可以很清晰的看到客户端的一条 SQL 语句在 MySQL 内部是如何执行的。
 
-![](../images/mysql/13526879-3037b144ed09eb88.png)
+![](static/images/mysql/13526879-3037b144ed09eb88.png)
 
 从上图可以看出， MySQL 主要由下面几部分构成：
 
@@ -180,7 +180,7 @@ MySQL 核心在于存储引擎，想要深入学习 MySQL，必定要深入研�
 
 MySQL 支持多种存储引擎，你可以通过 `SHOW ENGINES` 命令来查看 MySQL 支持的所有存储引擎。
 
-![查看 MySQL 提供的所有存储引擎](../images/mysql/image-20220510105408703.png)
+![查看 MySQL 提供的所有存储引擎](static/images/mysql/image-20220510105408703.png)
 
 从上图我们可以查看出， MySQL 当前默认的存储引擎是 InnoDB。并且，所有的存储引擎中只有 InnoDB 是事务性存储引擎，也就是说只有 InnoDB 支持事务。
 
@@ -282,7 +282,7 @@ InnoDB 引擎中，其数据文件本身就是索引文件。相比 MyISAM，索
 
 InnoDB 的性能比 MyISAM 更强大，不管是在读写混合模式下还是只读模式下，随着 CPU 核数的增加，InnoDB 的读写能力呈线性增长。MyISAM 因为读写不能并发，它的处理能力跟核数没关系。
 
-![InnoDB 和 MyISAM 性能对比](../images/mysql/innodb-myisam-performance-comparison.png)
+![InnoDB 和 MyISAM 性能对比](static/images/mysql/innodb-myisam-performance-comparison.png)
 
 **总结**：
 
@@ -576,7 +576,7 @@ SELECT ... FOR UPDATE;
 
 《MySQL 技术内幕 InnoDB 存储引擎》这本书对应的描述应该是笔误了。
 
-![](../images/mysql/image-20220511171419081.png)
+![](static/images/mysql/image-20220511171419081.png)
 
 ### 当前读和快照读有什么区别？
 

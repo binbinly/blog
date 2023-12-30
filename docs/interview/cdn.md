@@ -17,11 +17,11 @@
 
 你可以将 CDN 看作是服务上一层的特殊缓存服务，分布在全国各地，主要用来处理静态资源的请求。
 
-![CDN 简易示意图](../images/cdn/cdn-101.png)
+![CDN 简易示意图](static/images/cdn/cdn-101.png)
 
 我们经常拿全站加速和内容分发网络做对比，不要把两者搞混了！全站加速（不同云服务商叫法不同，腾讯云叫 ECDN、阿里云叫 DCDN）既可以加速静态资源又可以加速动态资源，内容分发网络（CDN）主要针对的是 **静态资源** 。
 
-![阿里云文档：https://help.aliyun.com/document_detail/64836.html](../images/cdn/cdn-aliyun-dcdn.png)
+![阿里云文档：https://help.aliyun.com/document_detail/64836.html](static/images/cdn/cdn-aliyun-dcdn.png)
 
 绝大部分公司都会在项目开发中使用 CDN 服务，但很少会有自建 CDN 服务的公司。基于成本、稳定性和易用性考虑，建议直接选择专业的云厂商（比如阿里云、腾讯云、华为云、青云）或者 CDN 厂商（比如网宿、蓝汛）提供的开箱即用的 CDN 服务。
 
@@ -49,7 +49,7 @@
 > - 回源：当 CDN 节点上没有用户请求的资源或该资源的缓存已经过期时，CDN 节点需要从原始服务器获取最新的资源内容，这个过程就是回源。当用户请求发生回源的话，会导致该请求的响应速度比未使用 CDN 还慢，因为相比于未使用 CDN 还多了一层 CDN 的调用流程。
 > - 预热：预热是指在 CDN 上提前将内容缓存到 CDN 节点上。这样当用户在请求这些资源时，能够快速地从最近的 CDN 节点获取到而不需要回源，进而减少了对源站的访问压力，提高了访问速度。
 
-![CDN 回源](../images/cdn/cdn-back-to-source.png)
+![CDN 回源](static/images/cdn/cdn-back-to-source.png)
 
 如果资源有更新的话，你也可以对其 **刷新** ，删除 CDN 节点上缓存的旧资源，并强制 CDN 节点回源站获取最新资源。
 
@@ -68,7 +68,7 @@ CDN 会通过 GSLB 找到最合适的 CDN 节点，更具体点来说是下面�
 3. GSLB 返回性能最好（通常距离请求地址最近）的 CDN 节点（边缘服务器，真正缓存内容的地方）的地址给浏览器；
 4. 浏览器直接访问指定的 CDN 节点。
 
-![CDN 原理示意图](../images/cdn/cdn-overview.png)
+![CDN 原理示意图](static/images/cdn/cdn-overview.png)
 
 为了方便理解，上图其实做了一点简化。GSLB 内部可以看作是 CDN 专用 DNS 服务器和负载均衡系统组合。CDN 专用 DNS 服务器会返回负载均衡系统 IP 地址给浏览器，浏览器使用 IP 地址请求负载均衡系统进而找到对应的 CDN 节点。
 

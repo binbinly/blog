@@ -531,7 +531,7 @@ create database db_name default character set utf8;
 
 + 尽量不在数据库做运算，程序端处理
 + 控制单表数据量，纯 `int 1000W`，含 `char 500w`，单库表控制在 `300` 内
-+ 表字段控制在 `50 个纯 int` ，`20 个纯 char `
++ 表字段控制在 `50 个纯 int` ，`20 个纯 char`
 + 避免使用 NULL 字段
 + 少用并拆分 TEXT/BLOB
 + LIMIT 高效分页

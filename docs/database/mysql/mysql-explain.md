@@ -2,8 +2,6 @@
 
 > [原文](https://github.com/Snailclimb/JavaGuide/blob/main/docs/database/mysql/mysql-query-execution-plan.md)
 
-优化 SQL 的第一步应该是读懂 SQL 的执行计划。本篇文章，我们一起来学习下 MySQL `EXPLAIN` 执行计划相关知识。
-
 ## 什么是执行计划？
 
 **执行计划** 是指一条 SQL 语句在经过 **MySQL 查询优化器** 的优化会后，具体的执行方式。
