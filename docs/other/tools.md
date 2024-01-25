@@ -30,6 +30,7 @@
 
 ## 其他工具
 
+* [效率工具](https://www.u.tools/)
 * [内网穿透](https://gofrp.org/zh-cn/)
 * [接码平台](https://sms-activate.org/cn/)
 * [在线电子书转换器（电子书格式在线转换）](http://cn.epubee.com/)
