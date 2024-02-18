@@ -1,5 +1,10 @@
 # PhpStorm
 
+## 激活
+
+- [JetBrains系列 2022 全版本激活补丁 - 果核剥壳](https://www.ghxi.com/jetbrains2022bd.html)
+- [激活码](https://www.henry-ji.tk/html/jetbrains/)
+
 ## 优化 PhpStorm 速度
 
 ### Java VM options
