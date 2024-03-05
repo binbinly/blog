@@ -296,3 +296,4 @@ $ git archive
 
 * [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 * [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+* [Git核心概念总结](https://github.com/Snailclimb/JavaGuide/blob/main/docs/tools/git/git-intro.md)

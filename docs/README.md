@@ -49,6 +49,7 @@
 * [nginx](system/nginx.md)
 * [docker](system/docker.md)
 * [git](system/git.md)
+* [Web 实时消息推送详解](system/message-push.md)
 
 ## 面试指南
 
@@ -72,3 +73,4 @@
 * [Chrome常用插件](other/chrome.md)
 * [phpstorm](other/phpstorm.md)
 * [vscode](other/vscode.md)
+* [github](other/github.md)

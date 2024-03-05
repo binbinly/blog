@@ -26,3 +26,7 @@
 > 链接：https://juejin.cn/post/7028003193502040072
 > 来源：稀土掘金
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+## 其他
+
+- [TCP 三次握手和四次挥手（传输层）](https://github.com/Snailclimb/JavaGuide/blob/main/docs/cs-basics/network/tcp-connection-and-disconnection.md)
