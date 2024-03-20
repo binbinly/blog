@@ -30,6 +30,7 @@
 
 ## 其他工具
 
+* [github-mit](https://choosealicense.com/licenses/mit/)
 * [效率工具](https://www.u.tools/)
 * [内网穿透](https://gofrp.org/zh-cn/)
 * [接码平台](https://sms-activate.org/cn/)
