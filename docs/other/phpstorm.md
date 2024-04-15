@@ -3,7 +3,8 @@
 ## 激活
 
 - [JetBrains系列 2022 全版本激活补丁 - 果核剥壳](https://www.ghxi.com/jetbrains2022bd.html)
-- [激活码](https://www.henry-ji.tk/html/jetbrains/)
+- [激活码](https://3.jetbra.in/))
+- [激活码]([https://3.jetbra.in/](https://cloudflare-ipfs.com/ipfs/bafybeiawsvnhqx5o2aqa37pvq7brlk7vqj2cpty3b5xac655bxbpqbpkq4/)))
 
 ## 优化 PhpStorm 速度
 
