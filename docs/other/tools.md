@@ -34,6 +34,7 @@
 - [文字转语音](https://elevenlabs.io/)
 - [生成图片](https://app.leonardo.ai/)
 - [生成图片](https://www.midjourney.com/explore?tab=top)
+- [生成图片](https://tongyi.aliyun.com/qianwen/agent/chat?agentId=A-75466-d136bf52&type=FindAgent)
 
 ## 其他工具
 
